@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mulryuProject
+  datasource:
+    url: jdbc:mysql://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S11P12A201?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: S11P12A201
+    password: WzScD4nJ8f
+    driver-class-name: com.mysql.cj.jdbc.Driver
