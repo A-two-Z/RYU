@@ -26,11 +26,11 @@ public class MulRobot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="robot_id")
-	private int RobotId;
+	private int robotId;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false, name = "robot_status")
-	private MulRobotStatus RobotStatus;
+	private MulRobotStatus robotStatus;
 	
 }
 
