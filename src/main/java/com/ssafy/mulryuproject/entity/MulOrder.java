@@ -32,11 +32,11 @@ public class MulOrder {
 
 	@ManyToOne
     @JoinColumn(name = "product_id")
-	private int productId;
+	private MulProduct product;
 
 	@ManyToOne
     @JoinColumn(name = "robot_id")
-	private int robotId;
+	private MulRobot robotId;
 
 	// 클라이언트 주문 번호
 	@Column(nullable = false, name = "order_number")
