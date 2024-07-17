@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.mulryuproject.Servcie.MulProductService;
 import com.ssafy.mulryuproject.dto.MulProductDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;
+import com.ssafy.mulryuproject.servcie.MulProductService;
 
 import lombok.RequiredArgsConstructor;
 

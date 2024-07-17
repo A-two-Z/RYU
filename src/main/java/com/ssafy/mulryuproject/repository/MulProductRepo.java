@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.Repository;
+package com.ssafy.mulryuproject.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,8 +1,12 @@
 package com.ssafy.mulryuproject.entity;
 
 
+import com.ssafy.mulryuproject.enums.MulRobotStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +28,10 @@ public class MulRobot {
 	@Column(name="robot_id")
 	private int RobotId;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false, name = "robot_status")
-	private int RobotStatus;
+	private MulRobotStatus RobotStatus;
 	
 }
+
+

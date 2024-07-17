@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.Servcie;
+package com.ssafy.mulryuproject.servcie;
 
 import com.ssafy.mulryuproject.dto.MulProductDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;

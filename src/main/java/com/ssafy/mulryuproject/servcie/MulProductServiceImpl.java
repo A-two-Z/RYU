@@ -1,10 +1,10 @@
-package com.ssafy.mulryuproject.Servcie;
+package com.ssafy.mulryuproject.servcie;
 
 import org.springframework.stereotype.Service;
 
-import com.ssafy.mulryuproject.Repository.MulProductRepo;
 import com.ssafy.mulryuproject.dto.MulProductDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;
+import com.ssafy.mulryuproject.repository.MulProductRepo;
 
 import lombok.RequiredArgsConstructor;
 
