@@ -27,11 +27,11 @@ public class MulProductSector {
 	private int productSectorId;
 
 	@ManyToOne
-    @JoinColumn(name = "product_id")
-	private MulProduct product;
+	@JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    private MulProduct product;
 
 	@ManyToOne
-    @JoinColumn(name = "sector_id")
+    @JoinColumn(name = "sector_id", referencedColumnName = "sector_id")
 	private MulSector sector;
 	
 	@Column(nullable = false, name = "quantity")

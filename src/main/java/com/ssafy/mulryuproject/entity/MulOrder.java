@@ -31,11 +31,11 @@ public class MulOrder {
 	private int productSectorId;
 
 	@ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
 	private MulProduct product;
 
 	@ManyToOne
-    @JoinColumn(name = "robot_id")
+    @JoinColumn(name = "robot_id", referencedColumnName = "robot_id")
 	private MulRobot robotId;
 
 	// 클라이언트 주문 번호
