@@ -1,5 +1,6 @@
 package com.ssafy.mulryuproject.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

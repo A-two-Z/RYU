@@ -3,6 +3,14 @@ spring:
     name: mulryuProject
   datasource:
     url: jdbc:mysql://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S11P12A201?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    username: S11P12A201
+    username: S11P12A201@stg-yswa-kr-practice-db-master
     password: WzScD4nJ8f
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+  security: # 0717 LHJ Spring security를 사용하기 위해 임시로 지정한 name과 password
+    user:
+      name: admin
+      password: admin

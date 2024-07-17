@@ -19,8 +19,6 @@ public class MulProductServiceImpl implements MulProductService {
 		MulProduct product = MulProduct.builder()
                 .productName(dto.getProductName())
                 .build();
-
-		
 		return productRepo.save(product);
 	}
 
