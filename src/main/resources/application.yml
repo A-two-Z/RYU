@@ -6,6 +6,7 @@ spring:
     username: S11P12A201@stg-yswa-kr-practice-db-master
     password: WzScD4nJ8f
     driver-class-name: com.mysql.cj.jdbc.Driver
+# TestDB로 이전 PJT MariaDB 연동
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect

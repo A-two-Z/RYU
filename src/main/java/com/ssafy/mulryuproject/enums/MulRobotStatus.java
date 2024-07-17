@@ -1,7 +1,7 @@
 package com.ssafy.mulryuproject.enums;
 
 public enum MulRobotStatus {
-	OFFLINE(0), ONLINE(1), ERROR(2);
+	REST(0), WORK(1);
 
 	private final int value;
 
