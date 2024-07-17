@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Mul_Product_Sector")
+@Table(name="Mul_order")
 public class MulOrder {
 	
 	@Id
