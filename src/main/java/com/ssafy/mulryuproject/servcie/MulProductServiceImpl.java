@@ -26,17 +26,26 @@ public class MulProductServiceImpl implements MulProductService {
 
 	@Override
 	public List<MulProduct> readProductEntity() {
-		return null;
+		return productRepo.findAll();
 	}
 
 	@Override
 	public MulProduct updateProductEntity(MulProductDTO dto) {
-		return null;
+		MulProduct product = MulProduct.builder()
+				.productName(dto.getProductName())
+				.build();
+		return productRepo.save(product);
 	}
 
 	@Override
 	public boolean deleteProductById(Integer id) {
-		return false;
+		// 0718 LHJ 만약 ID가 있으면 해당 ID 삭제
+		if (productRepo.existsById(id)) {
+			productRepo.deleteById(id);
+            return true;
+        }
+		
+        return false;
 	}
 
 }
