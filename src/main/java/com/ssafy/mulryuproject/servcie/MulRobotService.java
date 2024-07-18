@@ -15,13 +15,13 @@ public interface MulRobotService {
 	public List<MulRobot> getRobotListEntity();
 	
 	// 로봇의 status에 따라 로봇을 가져오는 메소드
-	public List<MulRobot> getRobotStatusEntity();
+	public List<MulRobot> getRestRobotListEntity();
 
 	// 특정 로봇 하나를 가져오는 메소드
-	public Optional<MulRobot> getRobotEntity(MulRobot robot);
+	public Optional<MulRobot> getRobotEntity(int id);
 
 	// 로봇의 status를 업데이트 하는 메소드
-	public MulRobot updateRobotEntity(MulRobot dto);
+	public MulRobot toggleRobotEntity(MulRobot robot);
 
 	// 로봇 하나를 삭제하는 메소드
 	public boolean deleteRobotById(Integer id);

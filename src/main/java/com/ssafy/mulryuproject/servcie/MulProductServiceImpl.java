@@ -36,13 +36,20 @@ public class MulProductServiceImpl implements MulProductService {
 	@Override
 	public Optional<MulProduct> getProductEntity(MulProduct product) {
 		int id = product.getProductId();
-		return productRepo.findById(id);
+		if(id != 0) // product의 인덱스는 1로 시작하기 때문에 0일 수 없음.
+			return productRepo.findById(id);
+		else
+			return null;
 	}
 
 	// 0718 LHJ product를 업데이트하는 메소드
 	@Override
 	public MulProduct updateProductEntity(MulProduct product) {
-		return productRepo.save(product);
+		
+		if (productRepo.existsById(product.getProductId())) 
+			return productRepo.save(product);
+		else
+			return null;
 	}
 
 	// 0718 LHJ product를 삭제하는 메소드

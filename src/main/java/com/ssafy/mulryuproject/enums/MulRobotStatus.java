@@ -12,4 +12,8 @@ public enum MulRobotStatus {
 	public int getValue() {
 		return value;
 	}
+	
+	public MulRobotStatus toggle() {
+        return this == REST ? WORK : REST;
+    }
 }
