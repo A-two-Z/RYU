@@ -1,5 +1,10 @@
 package com.ssafy.mulryuproject.dto;
 
-public class MulSectorDTO {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class MulSectorDTO {
+	private String sectorName;
 }
