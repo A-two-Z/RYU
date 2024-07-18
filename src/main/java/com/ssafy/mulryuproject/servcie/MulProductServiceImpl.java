@@ -25,15 +25,19 @@ public class MulProductServiceImpl implements MulProductService {
 	}
 
 	@Override
-	public List<MulProduct> readProductEntity() {
+	public List<MulProduct> getProductListEntity() {
 		return productRepo.findAll();
+	}
+	
+	@Override
+	public MulProduct getProductEntity(MulProduct product) {
+		int id = product.getProductId();
+		
+		return productRepo.getById(id);
 	}
 
 	@Override
-	public MulProduct updateProductEntity(MulProductDTO dto) {
-		MulProduct product = MulProduct.builder()
-				.productName(dto.getProductName())
-				.build();
+	public MulProduct updateProductEntity(MulProduct product) {
 		return productRepo.save(product);
 	}
 
@@ -48,4 +52,5 @@ public class MulProductServiceImpl implements MulProductService {
         return false;
 	}
 
+	
 }

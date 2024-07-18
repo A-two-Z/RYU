@@ -8,9 +8,11 @@ import com.ssafy.mulryuproject.entity.MulProduct;
 public interface MulProductService {
 	public MulProduct saveProductEntity(MulProductDTO dto);
 	
-	public List<MulProduct> readProductEntity();
+	public List<MulProduct> getProductListEntity();
 	
-	public MulProduct updateProductEntity(MulProductDTO dto);
+	public MulProduct getProductEntity(MulProduct product);
+	
+	public MulProduct updateProductEntity(MulProduct dto);
 	
 	public boolean deleteProductById(Integer id);
 	
