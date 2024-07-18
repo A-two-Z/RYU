@@ -27,86 +27,76 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class MqttConfiguration {
-	private final String TOPIC_NAME = "mytopic";
+	private final String TOPIC_NAME = "1"; // 임시 토픽.
 	private final String USER_NAME = "sub_client";
-	private final String SERVER_URI = "tcp://localhost:1883";
+	private final String[] SERVER_URI = {"tcp://localhost:1883"};
+    // 배열을 사용함으로써 클라이언트가 하나 이상의 MQTT 브로커에 연결을 시도할 수 있다.
+	
 	private final String SERVER_ID = "serverIn";
 	private final String SERVER_OUT = "serverOut";
 	
 	@Autowired
 	private final MulRobotService service;
 	
-	@Bean
+	@Bean // MQTT 클라이언트를 위한 설정을 정의하는 빈
 	public MqttPahoClientFactory mqttClientFactory() {
+		// 기본 MQTT Paho 클라이언트 팩토리를 생성
 		DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
 		
-		MqttConnectOptions options = new MqttConnectOptions();
-		
-		options.setServerURIs(new String[] {SERVER_URI});
-		options.setUserName(USER_NAME);
-		options.setCleanSession(true);
-		
-		factory.setConnectionOptions(options);
-		
-		return factory;
+		// MQTT 연결 옵션을 설정
+	    MqttConnectOptions options = new MqttConnectOptions();
+	    
+	    options.setServerURIs(SERVER_URI); // 서버 URI 설정
+	    
+	    options.setUserName(USER_NAME); // 사용자 이름 설정
+	    options.setCleanSession(true); // 클린 세션 설정
+
+	    // 생성된 옵션을 팩토리에 설정
+	    factory.setConnectionOptions(options);
+
+	    // 팩토리를 반환하여 빈으로 등록
+	    return factory;
 	}
+	
+	// MQTT 메시지를 받을 채널을 정의하는 빈
 	@Bean
 	public MessageChannel mqttInputChannel() {
-		return new DirectChannel();
+	    // 직접 채널을 생성하여 반환
+	    return new DirectChannel();
 	}
-	
+
+	// MQTT 메시지를 수신하는 프로듀서를 정의하는 빈
 	@Bean
 	public MessageProducer inbound() {
-		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(SERVER_ID,
-				mqttClientFactory(), "#");
+	    // MQTT Paho 메시지 드리븐 채널 어댑터를 생성
+	    MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(SERVER_ID, mqttClientFactory(), "#");
+	    adapter.setCompletionTimeout(5000); // 완료 타임아웃 설정
+	    adapter.setConverter(new DefaultPahoMessageConverter()); // 메시지 변환기 설정
+	    adapter.setQos(2); // QoS 설정: 메시지가 정확히 한 번 전달되는 것을 보장
+	    adapter.setOutputChannel(mqttInputChannel()); // 출력 채널 설정
 
-		adapter.setCompletionTimeout(5000);
-		adapter.setConverter(new DefaultPahoMessageConverter());
-		adapter.setQos(2);
-		adapter.setOutputChannel(mqttInputChannel());
-		return adapter;
+	    // 어댑터를 반환하여 빈으로 등록
+	    return adapter;
 	}
-	
-	
-	// Pub에서 전달한 데이터 출력
+
+	// MQTT 메시지를 보낼 채널을 정의하는 빈
 	@Bean
-	@ServiceActivator(inputChannel = "mqttInputChannel")
-	public MessageHandler handler() {
-		return new MessageHandler() {
-
-			@Override
-			public void handleMessage(Message<?> message) throws MessagingException {
-				String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
-				System.out.println(message.toString());
-				
-				if(topic.equals(TOPIC_NAME)) {
-					System.out.println("This is the topic");
-				}
-				
-				Gson gson = new Gson();
-		        MulRobot pack = gson.fromJson(message.getPayload().toString(), MulRobot.class);
-		        System.out.println(pack.toString());
-		        
-		        //packService.create(pack);
-		        
-				System.out.println(message.getPayload());
-			}
-
-		};
+	public MessageChannel mqttOutboundChannel() {
+	    // 직접 채널을 생성하여 반환
+	    return new DirectChannel();
 	}
-	
-	
+
+	// MQTT 메시지를 보내는 핸들러를 정의하는 빈
 	@Bean
-    public MessageChannel mqttOutboundChannel() {
-        return new DirectChannel();
-    }
-	@Bean
-    @ServiceActivator(inputChannel =  "mqttOutboundChannel")
-    public MessageHandler mqttOutbound() {
-        MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(SERVER_OUT, mqttClientFactory());
-        messageHandler.setAsync(true);
-        messageHandler.setDefaultTopic("#");
-        messageHandler.setDefaultRetained(false);
-        return messageHandler;
-    }
+	@ServiceActivator(inputChannel = "mqttOutboundChannel")
+	public MessageHandler mqttOutbound() {
+	    // MQTT Paho 메시지 핸들러를 생성
+	    MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(SERVER_OUT, mqttClientFactory());
+	    messageHandler.setAsync(true); // 비동기 설정
+	    messageHandler.setDefaultTopic("#"); // 기본 토픽 설정
+	    messageHandler.setDefaultRetained(false); // 기본 리텐션 설정
+
+	    // 메시지 핸들러를 반환하여 빈으로 등록
+	    return messageHandler;
+	}
 }
