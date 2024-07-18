@@ -16,6 +16,7 @@ public class MulProductServiceImpl implements MulProductService {
 	
 	private final MulProductRepo productRepo;
 	
+	// 0718 LHJ product를 저장하는 메소드
 	@Override
 	public MulProduct saveProductEntity(MulProductDTO dto) {
 		MulProduct product = MulProduct.builder()
@@ -24,11 +25,13 @@ public class MulProductServiceImpl implements MulProductService {
 		return productRepo.save(product);
 	}
 
+	// 0718 LHJ product의 전체 리스트를 가지고 오는 메소드
 	@Override
 	public List<MulProduct> getProductListEntity() {
 		return productRepo.findAll();
 	}
 	
+	// 0718 LHJ product 테이블 중 id가 일치하는 하나의 데이터를 가져오는 메소드
 	@Override
 	public MulProduct getProductEntity(MulProduct product) {
 		int id = product.getProductId();
@@ -36,11 +39,13 @@ public class MulProductServiceImpl implements MulProductService {
 		return productRepo.getById(id);
 	}
 
+	// 0718 LHJ product를 업데이트하는 메소드
 	@Override
 	public MulProduct updateProductEntity(MulProduct product) {
 		return productRepo.save(product);
 	}
 
+	// 0718 LHJ product를 삭제하는 메소드
 	@Override
 	public boolean deleteProductById(Integer id) {
 		// 0718 LHJ 만약 ID가 있으면 해당 ID 삭제
