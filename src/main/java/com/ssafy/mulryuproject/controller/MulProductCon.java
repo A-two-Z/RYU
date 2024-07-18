@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/mul")
+@RequestMapping("/product")
 public class MulProductCon {
 	private final MulProductService service;
 
