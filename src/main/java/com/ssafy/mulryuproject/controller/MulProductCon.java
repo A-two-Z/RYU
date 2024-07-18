@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,11 +26,12 @@ public class MulProductCon {
 	private final MulProductService service;
 
 	// Create
-	@PostMapping()
+	@PostMapping
 	public ResponseEntity<MulProduct> saveProduct(@RequestBody MulProduct product){
 		MulProductDTO productDto = new MulProductDTO();
 		productDto.setProductName(product.getProductName());
 		MulProduct savedEntity = service.saveProductEntity(productDto);
+		
 		return ResponseEntity.ok(savedEntity);
 	}
 	
@@ -52,7 +55,11 @@ public class MulProductCon {
 	}
 	
 	// Delete
-	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<MulProduct> deleteProduct(@PathVariable int id){
+		boolean deleteEntity = service.deleteProductById(id);
+		return (deleteEntity ? new ResponseEntity<>(HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+	}
 	
 	
 	

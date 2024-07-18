@@ -1,6 +1,7 @@
 package com.ssafy.mulryuproject.servcie;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.ssafy.mulryuproject.dto.MulProductDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;
@@ -10,7 +11,7 @@ public interface MulProductService {
 	
 	public List<MulProduct> getProductListEntity();
 	
-	public MulProduct getProductEntity(MulProduct product);
+	public Optional<MulProduct> getProductEntity(MulProduct product);
 	
 	public MulProduct updateProductEntity(MulProduct dto);
 	

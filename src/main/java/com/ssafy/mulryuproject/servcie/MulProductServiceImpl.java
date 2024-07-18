@@ -1,6 +1,7 @@
 package com.ssafy.mulryuproject.servcie;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -33,10 +34,9 @@ public class MulProductServiceImpl implements MulProductService {
 	
 	// 0718 LHJ product 테이블 중 id가 일치하는 하나의 데이터를 가져오는 메소드
 	@Override
-	public MulProduct getProductEntity(MulProduct product) {
+	public Optional<MulProduct> getProductEntity(MulProduct product) {
 		int id = product.getProductId();
-		
-		return productRepo.getById(id);
+		return productRepo.findById(id);
 	}
 
 	// 0718 LHJ product를 업데이트하는 메소드
