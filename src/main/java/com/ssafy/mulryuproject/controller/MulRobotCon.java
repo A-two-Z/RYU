@@ -35,12 +35,12 @@ public class MulRobotCon {
 		
 		JsonObject message = new Gson().toJsonTree(robot.get()).getAsJsonObject();
 		
-		System.out.println(message.toString());
+//		System.out.println(message.toString()); // 연동 체크 코드
 		
 		mqtGateway
 		.sendToMqtt(
-				message.get("robotStatus").toString(), 
-				message.get("robotId").getAsString()
+				message.get("robotId").getAsString(),
+				message.get("robotStatus").toString()
 				);
 		
 		MulRobot savedEntity = service.toggleRobotEntity(robot.get());

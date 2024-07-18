@@ -29,14 +29,11 @@ import lombok.RequiredArgsConstructor;
 public class MqttConfiguration {
 	private final String TOPIC_NAME = "1"; // 임시 토픽.
 	private final String USER_NAME = "sub_client";
-	private final String[] SERVER_URI = {"tcp://localhost:1883"};
+	private final String[] SERVER_URI = {"tcp://39.115.5.187:1883"};
     // 배열을 사용함으로써 클라이언트가 하나 이상의 MQTT 브로커에 연결을 시도할 수 있다.
 	
 	private final String SERVER_ID = "serverIn";
 	private final String SERVER_OUT = "serverOut";
-	
-	@Autowired
-	private final MulRobotService service;
 	
 	@Bean // MQTT 클라이언트를 위한 설정을 정의하는 빈
 	public MqttPahoClientFactory mqttClientFactory() {
@@ -72,7 +69,7 @@ public class MqttConfiguration {
 	    MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(SERVER_ID, mqttClientFactory(), "#");
 	    adapter.setCompletionTimeout(5000); // 완료 타임아웃 설정
 	    adapter.setConverter(new DefaultPahoMessageConverter()); // 메시지 변환기 설정
-	    adapter.setQos(2); // QoS 설정: 메시지가 정확히 한 번 전달되는 것을 보장
+	    adapter.setQos(2); // QoS-2 설정: 메시지가 정확히 한 번 전달되는 것을 보장
 	    adapter.setOutputChannel(mqttInputChannel()); // 출력 채널 설정
 
 	    // 어댑터를 반환하여 빈으로 등록
