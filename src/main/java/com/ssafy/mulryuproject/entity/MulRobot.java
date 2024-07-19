@@ -1,11 +1,15 @@
 package com.ssafy.mulryuproject.entity;
 
-import org.springframework.data.annotation.Id;
+
+import com.ssafy.mulryuproject.enums.MulRobotStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,9 +26,12 @@ public class MulRobot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="robot_id")
-	private int RobotId;
+	private int robotId;
 	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false, name = "robot_status")
-	private int RobotStatus;
+	private MulRobotStatus robotStatus;
 	
 }
+
+

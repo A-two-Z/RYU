@@ -13,17 +13,18 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder // 주 생성자(또는 특정 필드를 초기화하는 생성자)를 생성하는 어노테이션
-@NoArgsConstructor // 기본 생성자를 추가하는 어노테이션
-@AllArgsConstructor // 모든 필드를 초기화하는 생성자 생성
-@Table(name = "Mul_Product")
-public class MulProduct {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="Mul_Sector")
+public class MulSector {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="product_id")
-	private int productId;
+	@Column(name="sector_id")
+	private int sectorId;
 	
-	@Column(nullable = false, name = "product_name", length = 255)
-	private String productName;
+	@Column(nullable = false, name = "sector_name", length = 10)
+	private String sectorName;
 	
 }
