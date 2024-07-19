@@ -1,7 +1,6 @@
 package com.ssafy.mulryuproject.dto;
 
 import com.ssafy.mulryuproject.entity.MulProduct;
-import com.ssafy.mulryuproject.entity.MulRobot;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 import lombok.Getter;
