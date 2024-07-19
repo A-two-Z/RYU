@@ -27,8 +27,8 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class MqttConfiguration {
-	private final String TOPIC_NAME = "1"; // 임시 토픽.
-	private final String USER_NAME = "sub_client";
+//	private final String TOPIC_NAME = "1"; // 임시 토픽.
+	private final String USER_NAME = "TestName";
 	private final String[] SERVER_URI = {"tcp://39.115.5.187:1883"};
     // 배열을 사용함으로써 클라이언트가 하나 이상의 MQTT 브로커에 연결을 시도할 수 있다.
 	
@@ -75,6 +75,18 @@ public class MqttConfiguration {
 	    // 어댑터를 반환하여 빈으로 등록
 	    return adapter;
 	}
+	
+	@Bean
+    @ServiceActivator(inputChannel = "mqttInputChannel")
+    public MessageHandler handler() {
+        return message -> {
+            String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
+            if (topic.equals("1")) {
+                System.out.println("Received message: " + message.getPayload());
+                // Add your message processing logic here
+            }
+        };
+    }
 
 	// MQTT 메시지를 보낼 채널을 정의하는 빈
 	@Bean

@@ -20,26 +20,26 @@ public class MulRobotServiceImpl implements MulRobotService {
 
 	// 후순위 메소드
 	@Override
-	public MulRobot saveRobotEntity(MulRobotDTO dto) {
+	public MulRobot saveRobot(MulRobotDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// 로봇의 리스트를 가져오는 메소드
 	@Override
-	public List<MulRobot> getRobotListEntity() {
+	public List<MulRobot> getRobotList() {
 		return robotRepo.findAll();
 	}
 
 	// 쉬는 로봇의 리스트를 가져오는 메소드
 	@Override
-	public List<MulRobot> getRestRobotListEntity() {
+	public List<MulRobot> getRestRobotList() {
 		return robotRepo.findByRobotStatus(MulRobotStatus.REST);
 	}
 
 	// 로봇 하나를 가져오는 메소드
 	@Override
-	public Optional<MulRobot> getRobotEntity(int id) {
+	public Optional<MulRobot> getRobot(int id) {
 		if(id != 0) // robot의 인덱스는 1로 시작하기 때문에 0일 수 없음.
 			return robotRepo.findById(id);
 		else
@@ -48,7 +48,7 @@ public class MulRobotServiceImpl implements MulRobotService {
 
 	// 로봇의 status를 갱신하는 메소드
 	@Override
-	public MulRobot toggleRobotEntity(MulRobot robot) {
+	public MulRobot toggleRobotStatus(MulRobot robot) {
 		if (robotRepo.existsById(robot.getRobotId())) {
 			MulRobot update = MulRobot.builder()
 					.robotId(robot.getRobotId())

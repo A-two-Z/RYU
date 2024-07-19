@@ -30,7 +30,7 @@ public class MulProductCon {
 	public ResponseEntity<MulProduct> saveProduct(@RequestBody MulProduct product){
 		MulProductDTO productDto = new MulProductDTO();
 		productDto.setProductName(product.getProductName());
-		MulProduct savedEntity = service.saveProductEntity(productDto);
+		MulProduct savedEntity = service.saveProduct(productDto);
 		
 		return ResponseEntity.ok(savedEntity);
 	}
@@ -38,7 +38,7 @@ public class MulProductCon {
 	// Read
 	@GetMapping
 	public ResponseEntity<List<MulProduct>> getProductList(){
-		List<MulProduct> productList = service.getProductListEntity();
+		List<MulProduct> productList = service.getProductList();
 		
 		if (productList != null && !productList.isEmpty()) {
             return new ResponseEntity<>(productList, HttpStatus.OK);
@@ -50,7 +50,7 @@ public class MulProductCon {
 	// Update
 	@PutMapping
 	public ResponseEntity<MulProduct> updateProduct(@RequestBody MulProduct product){
-		MulProduct savedEntity = service.updateProductEntity(product);
+		MulProduct savedEntity = service.updateProduct(product);
 		return ResponseEntity.ok(savedEntity);
 	}
 	
