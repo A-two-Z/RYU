@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-public class MqttConfiguration {
+public class MqttConfig {
 //	private final String TOPIC_NAME = "1"; // 임시 토픽.
 	private final String USER_NAME = "TestName";
 	private final String[] SERVER_URI = {"tcp://39.115.5.187:1883"};

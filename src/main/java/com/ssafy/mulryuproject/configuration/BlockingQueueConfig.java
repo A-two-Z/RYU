@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import com.ssafy.mulryuproject.entity.MulOrder;
 
 @Configuration
-public class BlockingQueueConfiguration {
+public class BlockingQueueConfig {
 
 	// 의존성 주입을 사용하여 큐의 인스턴스를 주입(일관성 유지)
 	@Bean
