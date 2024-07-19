@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.ssafy.mulryuproject.dto.MulOrderDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 public interface MulOrderService {
 
@@ -13,6 +14,9 @@ public interface MulOrderService {
 	
 	// Read List
 	public List<MulOrder> getOrderList();
+	
+	// Read List Status
+	public List<MulOrder> getOrderStatusList(MulOrderStatus stauts);
 	
 	// Read One
 	public Optional<MulOrder> getOrder(MulOrder order);

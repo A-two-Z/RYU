@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.ssafy.mulryuproject.dto.MulOrderDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 public class MulOrderServiceImpl implements MulOrderService {
 
@@ -17,6 +18,11 @@ public class MulOrderServiceImpl implements MulOrderService {
 	@Override
 	public List<MulOrder> getOrderList() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MulOrder> getOrderStatusList(MulOrderStatus stauts) {
 		return null;
 	}
 
