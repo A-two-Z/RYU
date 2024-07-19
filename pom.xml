@@ -93,6 +93,12 @@
 			<artifactId>gson</artifactId>
 		</dependency>
 		
+		<!-- RabbitMQ 의존성 추가 -->
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit-test</artifactId>
+		</dependency>
+		
 <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
 <dependency>
     <groupId>org.springdoc</groupId>

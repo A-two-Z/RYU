@@ -16,6 +16,14 @@ spring:
       name: admin
       password: admin
 
+  rabbitmq: # 0719 LHJ RabbitMQ 연동을 위한 설정파일
+    host: 70.12.246.232
+    port: 5672
+    username: mulryu
+    password: mul?ryu201
+    virtual-host: /
+    connection-timeout: 5000
+
 springdoc:
   packages-to-scan: com.ssafy.mulryuproject.controller
   default-consumes-media-type: application/json;charset=UTF-8

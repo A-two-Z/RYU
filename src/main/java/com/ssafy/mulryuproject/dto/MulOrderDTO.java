@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 public class MulOrderDTO {
 	private MulProduct product;
-	private MulRobot robotId;
-	private int orderNumber;
+//	private MulRobot robotId;
+	private String orderNumber;
 	private int orderQuantity;
 	private MulOrderStatus orderStatus;
 }

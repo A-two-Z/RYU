@@ -27,20 +27,21 @@ public class MulOrder {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="product_sector_id")
-	private int productSectorId;
+	@Column(name="order_id")
+	private int orderId;
 
 	@ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
 	private MulProduct product;
 
-	@ManyToOne
-    @JoinColumn(name = "robot_id", referencedColumnName = "robot_id")
-	private MulRobot robotId;
+//	0719 LHJ 안쓰는 컬럼 주석 처리
+//	@ManyToOne
+//    @JoinColumn(name = "robot_id", referencedColumnName = "robot_id")
+//	private MulRobot robotId;
 
 	// 클라이언트 주문 번호
-	@Column(nullable = false, name = "order_number")
-	private int orderNumber;
+	@Column(nullable = false, name = "order_number", length = 255)
+	private String orderNumber;
 
 	// 주문한 수량
 	@Column(nullable = false, name = "order_Quantity")
