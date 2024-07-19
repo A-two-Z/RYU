@@ -13,7 +13,7 @@ public interface MulProductService {
 	
 	public Optional<MulProduct> getProduct(MulProduct product);
 	
-	public MulProduct updateProduct(MulProduct dto);
+	public MulProduct updateProduct(MulProduct product);
 	
 	public boolean deleteProductById(Integer id);
 	

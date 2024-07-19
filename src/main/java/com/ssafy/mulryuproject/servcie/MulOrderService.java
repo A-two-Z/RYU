@@ -16,13 +16,13 @@ public interface MulOrderService {
 	public List<MulOrder> getOrderList();
 	
 	// Read List Status
-	public List<MulOrder> getOrderStatusList(MulOrderStatus stauts);
+	public List<MulOrder> getOrderStatusList(MulOrderStatus status);
 	
 	// Read One
 	public Optional<MulOrder> getOrder(MulOrder order);
 	
 	// Update
-	public MulOrder updateOrder(MulOrder dto);
+	public MulOrder updateOrder(MulOrder order);
 	
 	// Delete
 	public boolean deleteOrdertById(Integer id);

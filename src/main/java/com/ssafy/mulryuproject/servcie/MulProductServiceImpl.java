@@ -36,7 +36,7 @@ public class MulProductServiceImpl implements MulProductService {
 	@Override
 	public Optional<MulProduct> getProduct(MulProduct product) {
 		int id = product.getProductId();
-		if(id != 0) // product의 인덱스는 1로 시작하기 때문에 0일 수 없음.
+		if(productRepo.existsById(product.getProductId())) 
 			return productRepo.findById(id);
 		else
 			return null;

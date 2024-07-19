@@ -17,7 +17,7 @@ public interface MulSectorService {
 	public Optional<MulSector> getSector(MulSector sector);
 	
 	// Update
-	public MulSector updateSector(MulSector dto);
+	public MulSector updateSector(MulSector sector);
 	
 	// Delete
 	public boolean deleteSectortById(Integer id);

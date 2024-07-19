@@ -17,7 +17,7 @@ public interface MulProductSectorService {
 	public Optional<MulProductSector> getPS(MulProductSector ps);
 	
 	// Update
-	public MulProductSector updatePS(MulProductSector dto);
+	public MulProductSector updatePS(MulProductSector ps);
 	
 	// Delete
 	public boolean deletePStById(Integer id);
