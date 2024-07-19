@@ -15,3 +15,8 @@ spring:
     user:
       name: admin
       password: admin
+
+springdoc:
+  packages-to-scan: com.ssafy.mulryuproject.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8

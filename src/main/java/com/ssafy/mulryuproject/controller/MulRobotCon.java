@@ -37,13 +37,13 @@ public class MulRobotCon {
 		
 		JsonObject message = new Gson().toJsonTree(robot.get()).getAsJsonObject();
 		
-//		System.out.println(message.toString()); // 연동 체크 코드
+		System.out.println(message.toString()); // 연동 체크 코드
 		
-//		mqtGateway
-//		.sendToMqtt(
-//				message.get("robotId").getAsString(),
-//				message.get("robotStatus").toString()
-//				);
+		mqtGateway
+		.sendToMqtt(
+				message.get("robotId").getAsString(),
+				message.get("robotStatus").toString()
+				);
 		
 		System.out.println(queue.toString());
 		System.out.println(queue.size());

@@ -57,7 +57,7 @@ public class MqttConfiguration {
 	
 	// MQTT 메시지를 받을 채널을 정의하는 빈
 	@Bean
-	public MessageChannel mqttInputChannel() {
+	public MessageChannel InputTestChannel() {
 	    // 직접 채널을 생성하여 반환
 	    return new DirectChannel();
 	}
@@ -70,14 +70,14 @@ public class MqttConfiguration {
 	    adapter.setCompletionTimeout(5000); // 완료 타임아웃 설정
 	    adapter.setConverter(new DefaultPahoMessageConverter()); // 메시지 변환기 설정
 	    adapter.setQos(2); // QoS-2 설정: 메시지가 정확히 한 번 전달되는 것을 보장
-	    adapter.setOutputChannel(mqttInputChannel()); // 출력 채널 설정
+	    adapter.setOutputChannel(InputTestChannel()); // 출력 채널 설정
 
 	    // 어댑터를 반환하여 빈으로 등록
 	    return adapter;
 	}
 	
 	@Bean
-    @ServiceActivator(inputChannel = "mqttInputChannel")
+    @ServiceActivator(inputChannel = "InputTestChannel")
     public MessageHandler handler() {
         return message -> {
             String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
