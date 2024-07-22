@@ -1,23 +1,22 @@
 package com.ssafy.mulryuproject.controller;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.mulryuproject.dto.MulToRobotDTO;
+import com.ssafy.mulryuproject.dto.MulOrderDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
-import com.ssafy.mulryuproject.entity.MulProduct;
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
-import com.ssafy.mulryuproject.servcie.MulProductSectorService;
-import com.ssafy.mulryuproject.servcie.MulProductService;
-import com.ssafy.mulryuproject.servcie.MulSectorService;
-import com.ssafy.mulryuproject.servcie.MulToRobotServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,52 +24,69 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/order")
 public class MulOrderCon {
-	private final MulOrderService orderService;
 
-	private final MulToRobotServiceImpl toRobotService;
-	
-	private final MulProductService productService;
+	private final MulOrderService service;
 
-	
-	// 중요! RabbitMQ로 전달하는 메소드
-	@PostMapping("/orderToQ")
-	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order){
-		List<MulToRobotDTO> robotList = new LinkedList<>();
-		for(MulOrder getOrderOne : order) {
-			Optional<MulOrder> orderOne = orderService.getOrder(getOrderOne);
-			
-			Optional<MulProduct> product = productService
-					.getProduct(
-							MulProduct
-							.builder()
-							.productId(orderOne.get()
-									.getProductId()
-									.getProductId())
-							.build());
-			
-			MulToRobotDTO robot = toRobotService.createToRobot(orderOne.get(), product.get());
-			robotList.add(robot);
+	// Create
+	@PostMapping
+	public ResponseEntity<MulOrder> createOrder(@RequestBody MulOrder order) {
+		MulOrderDTO orderDto = new MulOrderDTO();
+
+		orderDto.setProductId(order.getProductId().getProductId());
+
+		orderDto.setOrderQuantity(order.getOrderQuantity());
+		orderDto.setOrderNumber(order.getOrderNumber());
+		orderDto.setOrderStatus(MulOrderStatus.WAIT);
+
+		MulOrder savedEntity = service.saveOrder(orderDto);
+
+		return ResponseEntity.ok(savedEntity);
+	}
+
+	// Read List
+	@GetMapping
+	public ResponseEntity<List<MulOrder>> getOrderList() {
+		List<MulOrder> orderList = service.getOrderList();
+
+		if (orderList != null && !orderList.isEmpty()) {
+			return new ResponseEntity<>(orderList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
 		}
-		
-		toRobotService.sendMessage(robotList);
-		
-		return null;
+	}
+
+	// Read One
+	@GetMapping("/order_{id}")
+	public ResponseEntity<MulOrder> getOrderDetail(@PathVariable int id) {
+		MulOrder order = MulOrder
+				.builder()
+				.orderId(id)
+				.build();
+		Optional<MulOrder> orderOne = service.getOrder(order);
+
+		return orderOne.get() == null ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY)
+				: new ResponseEntity<>(orderOne.get(), HttpStatus.OK);
 	}
 	
-	//Create
-	@PostMapping("")
-	public ResponseEntity<MulOrder> createOrder(){
-		
-		return null;
-	}
-	
-	//getList
-	
-	//getOne
-	
-	//getStatusList
-	
-	//update
-	
-	//delete
+	// getStatusList
+	@GetMapping("orderList")
+    public ResponseEntity<List<MulOrder>> getOrderListToStatus(@RequestParam String status) {
+        List<MulOrder> orderList = null;
+
+        // Enum 상수와 문자열을 비교할 때는 equals()를 사용합니다.
+        if (MulOrderStatus.WAIT.name().equals(status)) {
+            orderList = service.getOrderStatusList(MulOrderStatus.WAIT);
+        } else if (MulOrderStatus.DELIVER.name().equals(status)) {
+            orderList = service.getOrderStatusList(MulOrderStatus.DELIVER);
+        }
+
+        if (orderList == null || orderList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(orderList, HttpStatus.OK);
+        }
+    }
+	// update
+
+	// delete
 }
