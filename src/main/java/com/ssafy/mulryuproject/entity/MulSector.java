@@ -24,7 +24,7 @@ public class MulSector {
 	@Column(name="sector_id")
 	private int sectorId;
 	
-	@Column(nullable = false, name = "sector_name", length = 10)
+	@Column(nullable = false, name = "sector_name", length = 10, unique = true)
 	private String sectorName;
 	
 }

@@ -23,7 +23,7 @@ public class MulProduct {
 	@Column(name="product_id")
 	private int productId;
 	
-	@Column(nullable = false, name = "product_name", length = 255)
+	@Column(nullable = false, name = "product_name", length = 255, unique = true)
 	private String productName;
 	
 }

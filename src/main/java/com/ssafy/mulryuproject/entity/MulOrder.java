@@ -1,6 +1,5 @@
 package com.ssafy.mulryuproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 import jakarta.persistence.Column;
@@ -17,10 +16,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Mul_order")

@@ -1,6 +1,7 @@
 package com.ssafy.mulryuproject.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.mulryuproject.dto.MulOrderDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
@@ -27,7 +27,11 @@ public class MulOrderCon {
 	@PostMapping("/orderToQ")
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order){
 		
-		System.out.println(order.toString());
+		for(MulOrder one : order) {
+			Optional<MulOrder> str = orderService.getOrder(one);
+			System.out.println(str.get());
+			System.out.println(str.get().getProductId().getProductId());
+		}
 		
 		// 전송해야 할 데이터: Order + Sector 여러개
 		// 받아오는 데이터: Order 목록들
