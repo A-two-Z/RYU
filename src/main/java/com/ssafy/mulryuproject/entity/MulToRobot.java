@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Builder;
@@ -19,13 +20,15 @@ public class MulToRobot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	private String productId;
+	@Column(name="sector_name")
+	private String sectorName;
+
+	@Column(name="product_name")
 	private String productName;
+	
+	@Column(name="order_quantity")
 	private String orderQuantity;
-	private String productLocation;
-	private boolean isDelivery;
-	private Date productDate;
-	
-	
-	
+
+	@Column(name="order_Date")
+	private Date orderDate;
 }

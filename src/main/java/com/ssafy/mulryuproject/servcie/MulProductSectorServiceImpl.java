@@ -65,7 +65,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 	@Override
 	public List<MulProductSector> getPSListToProduct(MulProduct product) {
-		return psRepo.findByProductId(product);
+		return psRepo.findByProductIdOrderByQuantityDesc(product);
 	}
 
 }

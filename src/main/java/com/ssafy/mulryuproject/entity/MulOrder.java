@@ -21,7 +21,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @Builder
-@ToString
+@ToString // Debug용
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Mul_order")

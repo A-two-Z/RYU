@@ -9,6 +9,6 @@ import com.ssafy.mulryuproject.entity.MulProductSector;
 
 public interface MulProductSectorRepo extends JpaRepository<MulProductSector, Integer>{
 	
-	List<MulProductSector> findByProductId(MulProduct productId);
+	List<MulProductSector> findByProductIdOrderByQuantityDesc(MulProduct productId);
 	
 }
