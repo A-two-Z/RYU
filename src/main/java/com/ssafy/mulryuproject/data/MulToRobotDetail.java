@@ -1,9 +1,9 @@
-package com.ssafy.mulryuproject.dto;
+package com.ssafy.mulryuproject.data;
 
 import lombok.Data;
 
 @Data
-public class MulToRobotDTO {
+public class MulToRobotDetail {
 	private String sectorName;
 
 	private String productName;

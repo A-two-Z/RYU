@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ssafy.mulryuproject.dto.MulToRobotDTO;
+import com.ssafy.mulryuproject.data.MulToRobotDetail;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +25,7 @@ public class MulToRobot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	private List<MulToRobotDTO> orders; // OrderDetails 리스트
+	private List<MulToRobotDetail> orders; // OrderDetails 리스트
 
 	@Column(name="order_Date")
 	private Date orderDate;

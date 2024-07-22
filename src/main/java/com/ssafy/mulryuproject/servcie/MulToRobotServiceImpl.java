@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ssafy.mulryuproject.dto.MulToRobotDTO;
+import com.ssafy.mulryuproject.data.MulToRobotDetail;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
@@ -34,32 +34,27 @@ public class MulToRobotServiceImpl {
 
 	private final MulToRobotOrder orderRepository;
 	
-	public List<MulToRobotDTO> chkSectorQuantity(MulOrder order, MulProduct product) {
+	public List<MulToRobotDetail> chkSectorQuantity(MulOrder order, MulProduct product) {
 		List<MulProductSector> sector = psService.getPSListToProduct(product);
 		int orderQuantity = order.getOrderQuantity();
-		List<MulToRobotDTO> robotDestinationList = new LinkedList<>();
+		List<MulToRobotDetail> robotDestinationList = new LinkedList<>();
 		
-		for (MulProductSector sectorOne : sector) {
-			// 반드시 처음 한 번은 섹터에 들려야 한다.
+		for (MulProductSector sectorOne : sector) { // 반드시 처음 한 번은 섹터에 들려야 한다.
 			 robotDestinationList.add(createToRobot(order, product));
 
 			 if(sectorOne.getQuantity() >= orderQuantity) {// 하나의 섹터에만 가면 된다.
 				 orderQuantity = 0;
 				 break;
 			 }
-			else  // 2개 이상의 섹터에 가야한다.
+			else  // 2개 이상의 섹터에 가야한다. 모든 sector를 전부 돌더라도 물건 물량을 확보할 수 없는 경우는 고려하지 않는다.
 				orderQuantity -= sectorOne.getQuantity();
 		}
 		
-		if(orderQuantity == 0) {
-			return robotDestinationList;
-		}else {
-			return null;
-		}
+		return robotDestinationList;
 	}
 	
 	// Order Create ( sector의 갯수가 하나 이상일 때 )
-	public MulToRobotDTO createToRobot(MulOrder order, MulProduct product) {
+	public MulToRobotDetail createToRobot(MulOrder order, MulProduct product) {
 		List<MulProductSector> sector = psService.getPSListToProduct(product);
 		MulProductSector getFirst = null;
 
@@ -72,19 +67,17 @@ public class MulToRobotServiceImpl {
 		Optional<MulSector> sectorOne = sectorService
 				.getSector(MulSector.builder().sectorId(getFirst.getSectorId().getSectorId()).build());
 
-		MulToRobotDTO robot = new MulToRobotDTO();
+		MulToRobotDetail robot = new MulToRobotDetail();
 		robot.setProductName(product.getProductName());
 		robot.setSectorName(sectorOne.get().getSectorName());
 		robot.setOrderQuantity(order.getOrderQuantity());
-
-		System.out.println(robot.toString());
 
 		return robot;
 	}
 
 	// Transmit
 //	@RabbitListener(queues = "robot.queue")
-	public void sendMessage(List<MulToRobotDTO> robotDTO) {
+	public void sendMessage(List<MulToRobotDetail> robotDTO) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			String robotOrder = objectMapper.writeValueAsString(robotDTO);
@@ -107,7 +100,7 @@ public class MulToRobotServiceImpl {
 	
 	
 	// MongoDB에 Robot으로 전달한 데이터를 백업
-	public void saveRobotOrderToMongo(List<MulToRobotDTO> list) {
+	public void saveRobotOrderToMongo(List<MulToRobotDetail> list) {
 		MulToRobot saveRobotOrder = MulToRobot.builder()
 				.orders(list)
 				.orderDate(new Date())
@@ -115,6 +108,5 @@ public class MulToRobotServiceImpl {
 		
 		orderRepository.save(saveRobotOrder);
 	}
-	
 	
 }
