@@ -1,9 +1,12 @@
 package com.ssafy.mulryuproject.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.ssafy.mulryuproject.dto.MulToRobotDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -22,14 +25,7 @@ public class MulToRobot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	@Column(name="sector_name")
-	private String sectorName;
-
-	@Column(name="product_name")
-	private String productName;
-	
-	@Column(name="order_quantity")
-	private int orderQuantity;
+	private List<MulToRobotDTO> orders; // OrderDetails 리스트
 
 	@Column(name="order_Date")
 	private Date orderDate;
