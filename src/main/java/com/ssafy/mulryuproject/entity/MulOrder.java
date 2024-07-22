@@ -1,5 +1,6 @@
 package com.ssafy.mulryuproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 import jakarta.persistence.Column;
@@ -32,7 +33,7 @@ public class MulOrder {
 
 	@ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-	private MulProduct product;
+	private MulProduct productId;
 
 //	0719 LHJ 안쓰는 컬럼 주석 처리
 //	@ManyToOne

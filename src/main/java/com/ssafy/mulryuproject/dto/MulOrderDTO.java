@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MulOrderDTO {
-	private MulProduct product;
+	private MulProduct productId;
 //	private MulRobot robotId;
 	private String orderNumber;
 	private int orderQuantity;

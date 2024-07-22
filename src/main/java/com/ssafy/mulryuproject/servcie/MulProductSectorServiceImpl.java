@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
@@ -60,6 +61,11 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
         }
 		
         return false;
+	}
+
+	@Override
+	public List<MulProductSector> getPSListToProduct(MulProduct product) {
+		return psRepo.findByProductId(product);
 	}
 
 }
