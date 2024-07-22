@@ -39,12 +39,23 @@ public class MulToRobotServiceImpl {
 
 		// 0722 LHJ list.getFirst() 메소드와 동일한 기능
 		for (MulProductSector sectorOne : sector) {
+			if(sectorOne.getQuantity() > order.getOrderQuantity()) {
+				
+			}
+			
 			getFirst = sectorOne;
 			break;
 		}
 
 		Optional<MulSector> sectorOne = sectorService
-				.getSector(MulSector.builder().sectorId(getFirst.getSectorId().getSectorId()).build());
+				.getSector(
+						MulSector
+						.builder()
+						.sectorId(
+								getFirst
+								.getSectorId()
+								.getSectorId())
+						.build());
 
 		MulToRobotDTO robot = new MulToRobotDTO();
 		robot.setProductName(product.getProductName());
