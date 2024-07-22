@@ -9,9 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MulProductSectorDTO {
-	private MulProduct product;
+	private int product;
 
-	private MulSector sector;
+	private int sector;
 	
 	private int quantity;
 }

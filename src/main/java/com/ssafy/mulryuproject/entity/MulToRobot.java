@@ -10,9 +10,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @Builder
+@ToString
 @Document(collection = "MulToRobot") // MongoDB에 연동하는 Enitity
 public class MulToRobot {
 	
@@ -27,7 +29,7 @@ public class MulToRobot {
 	private String productName;
 	
 	@Column(name="order_quantity")
-	private String orderQuantity;
+	private int orderQuantity;
 
 	@Column(name="order_Date")
 	private Date orderDate;

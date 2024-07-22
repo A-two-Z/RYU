@@ -1,18 +1,16 @@
 package com.ssafy.mulryuproject.dto;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class MulToRobotDTO {
 	private String sectorName;
 
 	private String productName;
 	
-	private String orderQuantity;
-
-	private Date orderDate;
+	private int orderQuantity;
 }
