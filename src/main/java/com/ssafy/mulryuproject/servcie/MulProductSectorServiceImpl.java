@@ -68,4 +68,11 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		return psRepo.findByProductIdOrderByQuantityDesc(product);
 	}
 
+	@Override
+	public void updatePSList(List<MulProductSector> psList) {
+		for(MulProductSector getOne : psList) {
+			updatePS(getOne);
+		}
+	}
+	
 }

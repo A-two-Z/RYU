@@ -46,7 +46,7 @@ public class MulToRobotServiceImpl {
 		return robotDestinationList;
 	}
 	
-	// Order Create ( sector의 갯수가 하나 이상일 때 )
+	// Order Create
 	public MulToRobotDetail createToRobot(MulOrder order, MulProduct product, MulProductSector sector) {
 
 		Optional<MulSector> sectorOne = sectorService
@@ -80,7 +80,7 @@ public class MulToRobotServiceImpl {
 		}
 	}
 
-	// RabbitMQ와 통신이 되었다는 걸 확인하고, DB를 업데이트 하는 메소드
+	// RabbitMQ와 통신이 되었다는 걸 확인하는 메소드
 	
 	
 	
@@ -92,6 +92,13 @@ public class MulToRobotServiceImpl {
 				.build();
 		
 		orderRepository.save(saveRobotOrder);
+	}
+	
+	// ProductSector의 수량을 엄데이트하는 메소드
+	public void updateProductSectorQuantity(List<MulProductSector> list) {
+		for(MulProductSector getOne : list) {
+			psService.updatePS(getOne);
+		}
 	}
 	
 }

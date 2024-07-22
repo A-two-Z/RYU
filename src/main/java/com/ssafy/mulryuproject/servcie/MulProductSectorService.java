@@ -23,6 +23,9 @@ public interface MulProductSectorService {
 	// Update
 	public MulProductSector updatePS(MulProductSector ps);
 	
+	// 수량 업데이트 하는 메소드
+	public void updatePSList(List<MulProductSector> psList);
+	
 	// Delete
 	public boolean deletePStById(Integer id);
 }
