@@ -36,36 +36,21 @@ public class MulToRobotServiceImpl {
 	
 	public List<MulToRobotDetail> chkSectorQuantity(MulOrder order, MulProduct product) {
 		List<MulProductSector> sector = psService.getPSListToProduct(product);
-		int orderQuantity = order.getOrderQuantity();
 		List<MulToRobotDetail> robotDestinationList = new LinkedList<>();
 		
-		for (MulProductSector sectorOne : sector) { // 반드시 처음 한 번은 섹터에 들려야 한다.
-			 robotDestinationList.add(createToRobot(order, product));
-
-			 if(sectorOne.getQuantity() >= orderQuantity) {// 하나의 섹터에만 가면 된다.
-				 orderQuantity = 0;
-				 break;
-			 }
-			else  // 2개 이상의 섹터에 가야한다. 모든 sector를 전부 돌더라도 물건 물량을 확보할 수 없는 경우는 고려하지 않는다.
-				orderQuantity -= sectorOne.getQuantity();
+		for (MulProductSector sectorOne : sector) { 
+			 robotDestinationList.add(createToRobot(order, product, sectorOne));
+			 break;
 		}
 		
 		return robotDestinationList;
 	}
 	
 	// Order Create ( sector의 갯수가 하나 이상일 때 )
-	public MulToRobotDetail createToRobot(MulOrder order, MulProduct product) {
-		List<MulProductSector> sector = psService.getPSListToProduct(product);
-		MulProductSector getFirst = null;
-
-		// 0722 LHJ list.getFirst() 메소드와 동일한 기능
-		for (MulProductSector sectorOne : sector) {
-			getFirst = sectorOne;
-			break;
-		}
+	public MulToRobotDetail createToRobot(MulOrder order, MulProduct product, MulProductSector sector) {
 
 		Optional<MulSector> sectorOne = sectorService
-				.getSector(MulSector.builder().sectorId(getFirst.getSectorId().getSectorId()).build());
+				.getSector(MulSector.builder().sectorId(sector.getSectorId().getSectorId()).build());
 
 		MulToRobotDetail robot = new MulToRobotDetail();
 		robot.setProductName(product.getProductName());
