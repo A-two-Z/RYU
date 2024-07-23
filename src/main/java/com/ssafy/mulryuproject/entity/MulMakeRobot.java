@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ssafy.mulryuproject.data.MulToRobotDetail;
+import com.ssafy.mulryuproject.data.MulMakeRobotDetail;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -19,13 +19,13 @@ import lombok.ToString;
 @Builder
 @ToString
 @Document(collection = "MulToRobot") // MongoDB에 연동하는 Enitity
-public class MulToRobot {
+public class MulMakeRobot {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	private List<MulToRobotDetail> orders; // OrderDetails 리스트
+	private List<MulMakeRobotDetail> orders; // OrderDetails 리스트
 
 	@Column(name="order_Date")
 	private Date orderDate;

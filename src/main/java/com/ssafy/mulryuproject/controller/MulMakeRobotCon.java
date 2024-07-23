@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.mulryuproject.data.MulToRobotDetail;
+import com.ssafy.mulryuproject.data.MulMakeRobotDetail;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
 import com.ssafy.mulryuproject.servcie.MulProductService;
-import com.ssafy.mulryuproject.servcie.MulToRobotServiceImpl;
+import com.ssafy.mulryuproject.servcie.MulMakeRobotServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,10 +25,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/MulToRobot")
-public class MulToRobotCon {
+public class MulMakeRobotCon {
 	private final MulOrderService orderService;
 
-	private final MulToRobotServiceImpl toRobotService;
+	private final MulMakeRobotServiceImpl toRobotService;
 	
 	private final MulProductService productService;
 
@@ -36,7 +36,7 @@ public class MulToRobotCon {
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order){
-		List<MulToRobotDetail> robotList = new LinkedList<>();
+		List<MulMakeRobotDetail> robotList = new LinkedList<>();
 		for(MulOrder getOrderOne : order) {
 			Optional<MulOrder> orderOne = orderService.getOrder(getOrderOne);
 			
@@ -49,7 +49,7 @@ public class MulToRobotCon {
 									.getProductId())
 							.build());
 			
-			MulToRobotDetail robot = toRobotService.createToRobot(orderOne.get(), product.get());
+			MulMakeRobotDetail robot = toRobotService.createToRobot(orderOne.get(), product.get());
 			robotList.add(robot);
 		}
 		
