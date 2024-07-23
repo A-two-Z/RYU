@@ -13,6 +13,7 @@ import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
 import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
+import com.ssafy.mulryuproject.servcie.MulTransmitOrderService;
 import com.ssafy.mulryuproject.servcie.MulTransmitOrderServiceImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
-	private final MulTransmitOrderServiceImpl transmitService;
+	private final MulTransmitOrderService transmitService;
 	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
