@@ -32,7 +32,6 @@ public class MulMakeRobotCon {
 	
 	private final MulProductService productService;
 
-	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order){

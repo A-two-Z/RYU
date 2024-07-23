@@ -29,21 +29,22 @@ public class MulMakeRobotServiceImpl {
 
 	private final MulSectorService sectorService;
 
-	private final RabbitTemplate rabbitTemplate;
 
 	private final MulMakeRobotOrder orderRepository;
 
 	// 로봇에게 전달할 Order
-	public MulMakeRobot chkSectorQuantity(List<MulOrder> order, MulProduct product) {
+	public MulMakeRobot chkSectorQuantity(List<MulOrder> orders, MulProduct product) {
 		List<MulProductSector> sectors = psService.getPSListToProduct(product);
 		MulProductSector sector = null;
 
-		for(MulProductSector getSector : sectors) {
-			sector = getSector;
-			break;
+		for(MulOrder order : orders) {
+			for(MulProductSector getSector : sectors) {
+				sector = getSector;
+				break;
+			}
+			createToRobot(order, product, sector);
 		}
 		
-		return createToRobot(order, product, sector);
 	}
 
 	// Order Create
@@ -60,30 +61,7 @@ public class MulMakeRobotServiceImpl {
 		return robot;
 	}
 
-	// MQ로 Transmit
-	/*
-//	@RabbitListener(queues = "robot.queue")
-	public void sendMessage(List<MulToRobotDetail> robotDTO) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			String robotOrder = objectMapper.writeValueAsString(robotDTO);
-			rabbitTemplate.convertAndSend(robotOrder);
-
-			Message message = MessageBuilder.withBody(robotOrder.getBytes())
-					.setHeader("content_type", "application/json").build();
-
-			System.out.println(message.toString());
-			System.out.println("JSON Output Size: " + robotOrder.getBytes().length + " bytes");
-
-//			rabbitTemplate.send("robot.exchange", "robot.key", message);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-	}
-*/
 	
-	// RabbitMQ와 통신이 되었다는 걸 확인하는 메소드
-
 	// MongoDB에 Robot으로 전달한 데이터를 백업
 	public void saveRobotOrderToMongo(List<MulMakeRobotDetail> list) {
 		MulMakeRobot saveRobotOrder = MulMakeRobot.builder().orders(list).orderDate(new Date()).build();
