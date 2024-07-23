@@ -19,8 +19,8 @@ public class SwaggerConfig {
         String[] paths = {"/**"};
 
         return GroupedOpenApi.builder()
-                .group("물류 API v1")  // 그룹 이름을 설정한다.
-                .pathsToMatch(paths)     // 그룹에 속하는 경로 패턴을 지정한다.
+                .group("물류 API v1")  
+                .pathsToMatch(paths)    
                 .build();
     }
 }
