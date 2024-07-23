@@ -3,14 +3,13 @@ package com.ssafy.mulryuproject.entity;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ssafy.mulryuproject.data.MulMakeRobotDetail;
+import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -19,14 +18,14 @@ import lombok.ToString;
 @Builder
 @ToString
 @Document(collection = "MulToRobot") // MongoDB에 연동하는 Enitity
-public class MulMakeRobot {
+public class MulMakeOrder {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	private List<MulMakeRobotDetail> orders; // OrderDetails 리스트
+	private List<MulMakeOrderDetail> orders; // OrderDetails 리스트
 
 	@Column(name="order_Date")
+	@CreatedDate
 	private Date orderDate;
 }

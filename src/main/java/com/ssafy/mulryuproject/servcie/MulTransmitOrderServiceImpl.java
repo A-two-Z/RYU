@@ -1,6 +1,8 @@
 package com.ssafy.mulryuproject.servcie;
 
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,12 @@ public class MulTransmitOrderServiceImpl {
 		}
 	*/
 		
-		// RabbitMQ와 통신이 되었다는 걸 확인하는 메소드
+	// RabbitMQ에 메세지를 보내는 메소드 
+    @Autowired
+    private TopicExchange exchange;
 
+    public void sendMessage(String message) {
+    	
+        rabbitTemplate.convertAndSend(exchange.getName(), "robot.#", message);
+    }
 }

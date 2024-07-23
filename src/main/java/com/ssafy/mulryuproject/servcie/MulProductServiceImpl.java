@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductDTO;
+import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.repository.MulProductRepo;
 
@@ -36,11 +37,22 @@ public class MulProductServiceImpl implements MulProductService {
 	@Override
 	public Optional<MulProduct> getProduct(MulProduct product) {
 		int id = product.getProductId();
-		if(productRepo.existsById(product.getProductId())) 
+		if(productRepo.existsById(id)) 
 			return productRepo.findById(id);
 		else
-			return null;
+			return Optional.empty();
 	}
+	
+
+	@Override
+	public Optional<MulProduct> getProduct(MulOrder order) {
+		int id = order.getProductId().getProductId();
+		if(productRepo.existsById(id)) 
+			return productRepo.findById(id);
+		else
+			return Optional.empty();
+	}
+
 
 	// 0718 LHJ product를 업데이트하는 메소드
 	@Override
@@ -63,6 +75,5 @@ public class MulProductServiceImpl implements MulProductService {
 		
         return false;
 	}
-
 	
 }

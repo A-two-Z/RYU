@@ -3,9 +3,9 @@ package com.ssafy.mulryuproject.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ssafy.mulryuproject.entity.MulMakeRobot;
+import com.ssafy.mulryuproject.entity.MulMakeOrder;
 
 @Repository
-public interface MulMakeRobotOrder extends MongoRepository<MulMakeRobot, String>{
+public interface MulSaveOrderToMongoRepo extends MongoRepository<MulMakeOrder, String>{
 
 }
