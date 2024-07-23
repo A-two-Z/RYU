@@ -98,12 +98,6 @@
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit-test</artifactId>
 		</dependency>
-		
-		<!-- 0723 LHJ RabbitMQ 의존성 추가 -->
-		<dependency>
-			<groupId>com.rabbitmq</groupId>
-			<artifactId>amqp-client</artifactId>
-		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
 		<dependency>
