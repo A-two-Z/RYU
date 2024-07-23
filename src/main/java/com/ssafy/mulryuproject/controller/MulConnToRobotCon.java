@@ -34,7 +34,7 @@ public class MulConnToRobotCon {
 		Gson jsonToRobot = new Gson();
 		String obj = jsonToRobot.toJson(robot);
 		
-//		saveOrderService.saveRobotOrderToMongo(robot);
+		saveOrderService.saveRobotOrderToMongo(robot);
 		
 		transmitService.sendMessage(obj);
 		

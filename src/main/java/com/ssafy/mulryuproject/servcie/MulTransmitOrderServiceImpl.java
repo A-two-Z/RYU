@@ -1,8 +1,10 @@
 package com.ssafy.mulryuproject.servcie;
 
-import org.springframework.amqp.core.TopicExchange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.constants.RabbitMQConstants;
@@ -14,14 +16,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MulTransmitOrderServiceImpl {
-	
+	private static final Logger log = LoggerFactory.getLogger(MulTransmitOrderServiceImpl.class);
+
 	private final RabbitTemplate rabbitTemplate;
 
 	// RabbitMQ에 메세지를 보내는 메소드 
-    @Autowired
-    private TopicExchange exchange;
-
     public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend(exchange.getName(), RabbitMQConstants.ROUTING_KEY, message);
+        rabbitTemplate.convertAndSend(RabbitMQConstants.EXCHANGE_NAME, RabbitMQConstants.ROUTING_KEY, message);
     }
+    
 }
