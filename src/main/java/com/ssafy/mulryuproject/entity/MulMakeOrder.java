@@ -25,7 +25,6 @@ public class MulMakeOrder {
 	
 	private List<MulMakeOrderDetail> orders; // OrderDetails 리스트
 
-	@Column(name="order_Date")
 	@CreatedDate
 	private Date orderDate;
 }

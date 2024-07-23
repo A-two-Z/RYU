@@ -41,7 +41,6 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		List<MulMakeOrderDetail> list = new ArrayList<>();
 		
 		for(MulOrder getOrder : orders) {
-			
 			MulOrder order = orderService.getOrder(getOrder).get();
 			MulProduct product = productService.getProduct(order).get();
 			List<MulProductSector> sectors = psService.getPSListToProduct(product);

@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MulTransmitOrderServiceImpl implements MulTransmitOrderService {
-	private static final Logger log = LoggerFactory.getLogger(MulTransmitOrderServiceImpl.class);
+//	private static final Logger log = LoggerFactory.getLogger(MulTransmitOrderServiceImpl.class);
 
 	private final RabbitTemplate rabbitTemplate;
 

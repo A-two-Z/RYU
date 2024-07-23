@@ -32,12 +32,13 @@ public class MulConnToRobotCon {
 	@PostMapping("/orderToQ")
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order) { //
 		MulMakeOrder robot = toMakeOrderService.makeOrder(order);
+		
 		Gson jsonToRobot = new Gson();
 		String obj = jsonToRobot.toJson(robot);
 		
-		saveOrderService.saveRobotOrderToMongo(robot);
-		
 		transmitService.sendMessage(obj);
+		
+		saveOrderService.saveRobotOrderToMongo(robot);
 		
 		return null;
 	}
