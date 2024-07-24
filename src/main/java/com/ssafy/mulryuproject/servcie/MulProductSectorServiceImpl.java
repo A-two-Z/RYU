@@ -67,9 +67,8 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	}
 
 	@Override
-	public void updatePSQunatity(MulProductSector psQuantity) {
-		
-		
+	public void updatePSQunatity(MulProductSector ps) {
+		psRepo.updateProductSectorQuantity(ps.getQuantity(), ps.getProductSectorId());
 	}
 	
 }

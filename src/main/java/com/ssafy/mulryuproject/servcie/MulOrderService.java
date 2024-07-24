@@ -23,7 +23,8 @@ public interface MulOrderService {
 	
 	// Update
 	public MulOrder updateOrder(MulOrder order);
-	
+	//UpdateStatus
+	public void toggleOrderStatus(MulOrder order);
 	// Delete
 	public boolean deleteOrdertById(Integer id);
 }

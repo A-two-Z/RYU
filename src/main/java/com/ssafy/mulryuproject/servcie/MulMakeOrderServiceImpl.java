@@ -53,15 +53,11 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 				break;
 			}
 			
-
-			// Quantity 삭제 메소드
-			MulProductSector quantityUp = MulProductSector.builder()
-					.productSectorId(sector.getProductSectorId())
-					.quantity(
-							sector.getQuantity() - order.getOrderQuantity()
-							)
-					.build();
-			psService.updatePS(sector);
+			// 0724 LHJ productSector 테이블의 quantity를 업데이트 하는 기능의 시점
+			updateQuantity(sector, order);
+			
+			// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
+			orderService.toggleOrderStatus(order);
 			
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
 			list.add(detail);
@@ -74,6 +70,19 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		return makedOrder;
 	}
 
+	// ProductSector 테이블의 Quantity를 빼는 메소드
+	// 이 클래스 내부에서만 사용된다.
+	private void updateQuantity(MulProductSector sector, MulOrder order) {
+		MulProductSector quantityUp = MulProductSector.builder()
+				.productSectorId(sector.getProductSectorId())
+				.quantity(
+						sector.getQuantity() - order.getOrderQuantity()
+						)
+				.build();
+		psService.updatePSQunatity(quantityUp);
+	}
+	
+	
 	// 0723 LHJ 
 	// {product Name: "name", "sector Name": "sector", "orderQuantity" : 20} 하나를 만드는 메소드
 	// 이 클래스 내부에서만 사용된다.

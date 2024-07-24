@@ -55,6 +55,14 @@ public class MulOrderServiceImpl implements MulOrderService {
 		else
 			return null;
 	}
+	
+	@Override
+	public void toggleOrderStatus(MulOrder order) {		
+		orderRepo.updateStatus(
+				order.getOrderStatus() == MulOrderStatus.DELIVER ?
+						MulOrderStatus.WAIT : MulOrderStatus.DELIVER
+						, order.getOrderId());
+	}
 
 	@Override
 	public boolean deleteOrdertById(Integer id) {
