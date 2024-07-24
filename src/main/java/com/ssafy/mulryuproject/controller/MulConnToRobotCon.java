@@ -27,8 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
-	private final MulTransmitOrderService transmitService;
-	private final MulProductService psService;
+//	private final MulTransmitOrderService transmitService;
 	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
@@ -38,7 +37,7 @@ public class MulConnToRobotCon {
 		Gson jsonToRobot = new Gson();
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
-		transmitService.sendMessage(robotOrderToJson);
+//		transmitService.sendMessage(robotOrderToJson);
 		
 		saveOrderService.saveRobotOrderToMongo(robot);
 		

@@ -10,7 +10,7 @@ import com.ssafy.mulryuproject.entity.MulMakeOrder;
 
 public interface MulSaveOrderToMongoRepo extends MongoRepository<MulMakeOrder, String>{
 
-	@Query("{ 'createdDate' : { $gt: ?0 } }")
+	@Query("{ 'orderDate' : { $gt: ?0 } }")
 	public List<MulMakeOrder> getListAfterDate(Date date);
 	
 }

@@ -1,8 +1,5 @@
 package com.ssafy.mulryuproject.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.ssafy.mulryuproject.serializer.MulProductDeserializer;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

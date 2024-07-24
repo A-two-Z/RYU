@@ -18,7 +18,7 @@ public interface MulOrderRepo extends JpaRepository<MulOrder, Integer>{
 	
     @Modifying
     @Transactional
-    @Query("update mul_order set order_status = :status where order_id = :id")
+    @Query("update MulOrder set orderStatus = :status where orderId = :id")
     void updateStatus(@Param("status") MulOrderStatus status, @Param("id") int id);
 
 }

@@ -1,8 +1,10 @@
 package com.ssafy.mulryuproject.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.mulryuproject.dto.MulOrderDTO;
+import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
+import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +30,8 @@ import lombok.RequiredArgsConstructor;
 public class MulOrderCon {
 
 	private final MulOrderService service;
-
+	private final MulSaveOrderToMongo mongoOrderService;
+	
 	// Create
 	@PostMapping
 	public ResponseEntity<MulOrder> createOrder(@RequestBody MulOrder order) {
@@ -67,6 +72,14 @@ public class MulOrderCon {
 		return orderOne.get() == null ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY)
 				: new ResponseEntity<>(orderOne.get(), HttpStatus.OK);
 	}
+	
+	// MongoDB로부터 특정 시점 이후의 order 데이터를 가져옴
+	@GetMapping("/after")
+    public ResponseEntity<List<MulMakeOrder>> getOrdersAfter(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        List<MulMakeOrder> list = mongoOrderService.getOrdersAfter(date);
+		return list.size() <= 0 ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY)
+				: new ResponseEntity<>(list, HttpStatus.OK);
+    }
 	
 	// getStatusList
 	@GetMapping("orderList")
