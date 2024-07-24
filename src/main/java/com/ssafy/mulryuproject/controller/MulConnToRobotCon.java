@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
+import com.ssafy.mulryuproject.servcie.MulProductService;
 import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
 import com.ssafy.mulryuproject.servcie.MulTransmitOrderService;
 import com.ssafy.mulryuproject.servcie.MulTransmitOrderServiceImpl;
@@ -27,6 +28,7 @@ public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
 	private final MulTransmitOrderService transmitService;
+	private final MulProductService psService;
 	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
@@ -34,9 +36,9 @@ public class MulConnToRobotCon {
 		MulMakeOrder robot = toMakeOrderService.makeOrder(order);
 		
 		Gson jsonToRobot = new Gson();
-		String obj = jsonToRobot.toJson(robot);
+		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
-		transmitService.sendMessage(obj);
+		transmitService.sendMessage(robotOrderToJson);
 		
 		saveOrderService.saveRobotOrderToMongo(robot);
 		

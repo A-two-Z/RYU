@@ -53,6 +53,16 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 				break;
 			}
 			
+
+			// Quantity 삭제 메소드
+			MulProductSector quantityUp = MulProductSector.builder()
+					.productSectorId(sector.getProductSectorId())
+					.quantity(
+							sector.getQuantity() - order.getOrderQuantity()
+							)
+					.build();
+			psService.updatePS(sector);
+			
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
 			list.add(detail);
 		}
@@ -66,7 +76,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 
 	// 0723 LHJ 
 	// {product Name: "name", "sector Name": "sector", "orderQuantity" : 20} 하나를 만드는 메소드
-	// 이 클래스 내부에서 사용되는 메소드로, 이 클래스 내부에서만 사용된다.
+	// 이 클래스 내부에서만 사용된다.
 	private MulMakeOrderDetail createToRobot(MulOrder order, MulProduct product, MulProductSector sector) {
 
 		Optional<MulSector> sectorOne = sectorService
@@ -79,5 +89,5 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 
 		return robot;
 	}
-
+	
 }

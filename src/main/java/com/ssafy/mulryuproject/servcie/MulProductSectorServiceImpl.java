@@ -6,10 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
-import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
-import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
 
 import lombok.RequiredArgsConstructor;
@@ -69,10 +67,9 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	}
 
 	@Override
-	public void updatePSList(List<MulProductSector> psList) {
-		for(MulProductSector getOne : psList) {
-			updatePS(getOne);
-		}
+	public void updatePSQunatity(MulProductSector psQuantity) {
+		
+		
 	}
 	
 }
