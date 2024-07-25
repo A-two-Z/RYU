@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.servcie;
+package com.ssafy.mulryuproject.servcieImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.constants.RabbitMQConstants;
+import com.ssafy.mulryuproject.servcie.MulTransmitOrderService;
 
 import lombok.RequiredArgsConstructor;
 

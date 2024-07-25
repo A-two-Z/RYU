@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.servcie;
+package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.repository.MulSaveOrderToMongoRepo;
+import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
 
 import lombok.RequiredArgsConstructor;
 

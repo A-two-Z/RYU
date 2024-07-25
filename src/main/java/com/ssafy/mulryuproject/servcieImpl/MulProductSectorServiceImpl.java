@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.servcie;
+package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import com.ssafy.mulryuproject.servcie.MulProductSectorService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,7 +41,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		if(psRepo.existsById(ps.getProductSectorId()))
 			return psRepo.findById(id);
 		else
-			return null;	
+			return Optional.empty();	
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 	@Override
 	public List<MulProductSector> getPSListToProduct(MulProduct product) {
-		return psRepo.findByProductIdOrderByQuantityDesc(product);
+		return psRepo.findByProductIdOrderBySectorId(product);
 	}
 
 	@Override

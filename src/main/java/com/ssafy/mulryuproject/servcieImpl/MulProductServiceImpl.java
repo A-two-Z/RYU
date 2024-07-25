@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.servcie;
+package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import com.ssafy.mulryuproject.dto.MulProductDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.repository.MulProductRepo;
+import com.ssafy.mulryuproject.servcie.MulProductService;
 
 import lombok.RequiredArgsConstructor;
 

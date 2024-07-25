@@ -4,27 +4,26 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ssafy.mulryuproject.dto.MulOrderDTO;
+import com.ssafy.mulryuproject.dto.MulOrderNumDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
-import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 public interface MulOrderService {
 
 	// Create
-	public MulOrder saveOrder(MulOrderDTO dto);
+	public MulOrder saveOrder(MulOrder product );
 	
 	// Read List
 	public List<MulOrder> getOrderList();
-	
-	// Read List Status
-	public List<MulOrder> getOrderStatusList(MulOrderStatus status);
-	
+
 	// Read One
 	public Optional<MulOrder> getOrder(MulOrder order);
 	
+	// Read By OrderNumber
+	public List<MulOrder> getOrderListByOrderNumber(MulOrderNumDTO dto);
+	
 	// Update
 	public MulOrder updateOrder(MulOrder order);
-	//UpdateStatus
-	public void toggleOrderStatus(MulOrder order);
+	
 	// Delete
 	public boolean deleteOrdertById(Integer id);
 }

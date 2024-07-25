@@ -16,7 +16,7 @@ import jakarta.transaction.Transactional;
 @Repository
 public interface MulProductSectorRepo extends JpaRepository<MulProductSector, Integer>{
 	
-	List<MulProductSector> findByProductIdOrderByQuantityDesc(MulProduct productId);
+	List<MulProductSector> findByProductIdOrderBySectorId(MulProduct productId);
 	
 	@Modifying(clearAutomatically = true)
     @Transactional

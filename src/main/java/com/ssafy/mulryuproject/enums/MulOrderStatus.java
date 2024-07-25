@@ -8,8 +8,9 @@ public enum MulOrderStatus {
 	MulOrderStatus(int value) {
 	        this.value = value;
 	    }
-
-	public int getValue() {
-		return value;
+	
+	public String getValue() {
+		return Integer.toString(value);
 	}
+	
 }
