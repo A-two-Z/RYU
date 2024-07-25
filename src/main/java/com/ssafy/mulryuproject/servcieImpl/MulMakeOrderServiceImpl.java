@@ -45,18 +45,17 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		
 		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNum);
 		
-		System.out.println(orders.toString());
-		
-		for(MulOrder getOrder : orders) {
-			MulOrder order = orderService.getOrder(getOrder).get();
+		for(MulOrder order : orders) {
 			MulProduct product = productService.getProduct(order).get();
 			List<MulProductSector> sectors = psService.getPSListToProduct(product);
 			
 			MulProductSector sector = null;
 			
 			for(MulProductSector getSector : sectors) {
-				sector = getSector;
-				break;
+				if(getSector.getQuantity() >= order.getOrderQuantity()) {
+					sector = getSector;
+					break;
+				}
 			}
 			
 //			if(order.getOrderStatus() == MulOrderStatus.DELIVER)
