@@ -3,9 +3,8 @@ package com.ssafy.mulryuproject.servcie;
 import java.util.List;
 import java.util.Optional;
 
-import com.ssafy.mulryuproject.dto.MulOrderDTO;
-import com.ssafy.mulryuproject.dto.MulOrderNumDTO;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.entity.MulOrderNumber;
 
 public interface MulOrderService {
 
@@ -19,7 +18,7 @@ public interface MulOrderService {
 	public Optional<MulOrder> getOrder(MulOrder order);
 	
 	// Read By OrderNumber
-	public List<MulOrder> getOrderListByOrderNumber(MulOrderNumDTO dto);
+	public List<MulOrder> getOrderListByOrderNumberId(MulOrderNumber orderNumber);
 	
 	// Update
 	public MulOrder updateOrder(MulOrder order);

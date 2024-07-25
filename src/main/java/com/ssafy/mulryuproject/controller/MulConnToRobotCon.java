@@ -2,6 +2,7 @@ package com.ssafy.mulryuproject.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,17 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
 import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
 import com.ssafy.mulryuproject.servcie.MulTransmitOrderService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
-//	private final MulTransmitOrderService transmitService;
+	private final MulTransmitOrderService transmitService;
 	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
@@ -48,16 +44,24 @@ public class MulConnToRobotCon {
 			description = "MulOrder의 값을 받아옵니다. 실제로 전송되는 데이터는 orderId 하나 뿐이어도 정상적으로 작동합니다.\n"
 					+ "Id의 값은 반드시 1 이상이여야 하며, status=Delivery 인 order의 id를 가져오려 하면 서버 내부적으로 무시됩니다."
 			)
-	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody List<MulOrder> order) { //
-		MulMakeOrder robot = toMakeOrderService.makeOrder(order);
-		
+	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody MulOrderNumber orderNumber) { //
+//		System.out.println(orderNumber.getOrderNumber());
+		long beforeTime = System.currentTimeMillis(); //코드 실행 전에 시간 받아오기
+        
+		//실험할 코드 추가
+		        
+		MulMakeOrder robot = toMakeOrderService.makeOrder(orderNumber);
 		Gson jsonToRobot = new Gson();
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
-//		transmitService.sendMessage(robotOrderToJson);
+		transmitService.sendMessage(robotOrderToJson);
 		System.out.println(robotOrderToJson);
-		saveOrderService.saveRobotOrderToMongo(robot);
+//		saveOrderService.saveRobotOrderToMongo(robot);
 		
-		return null;
+		
+		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
+		long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
+		System.out.println("시간차이(m) : "+secDiffTime);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

@@ -1,31 +1,24 @@
 package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageBuilder;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
+import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.entity.MulSector;
-import com.ssafy.mulryuproject.enums.MulOrderStatus;
-import com.ssafy.mulryuproject.entity.MulMakeOrder;
-import com.ssafy.mulryuproject.repository.MulSaveOrderToMongoRepo;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
+import com.ssafy.mulryuproject.servcie.MulOrderNumService;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
 import com.ssafy.mulryuproject.servcie.MulProductService;
 import com.ssafy.mulryuproject.servcie.MulSectorService;
-import com.ssafy.mulryuproject.repository.MulOrderRepo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,10 +34,18 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 
 	private final MulOrderService orderService;
 
+	private final MulOrderNumService onService;
+	
 	// 로봇에게 전달할 Order
 	@Override
-	public MulMakeOrder makeOrder(List<MulOrder> orders) {
+	public MulMakeOrder makeOrder(MulOrderNumber orderNumber) {
 		List<MulMakeOrderDetail> list = new ArrayList<>();
+		
+		MulOrderNumber orderNum = onService.getOrderNumber(orderNumber);
+		
+		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNum);
+		
+		System.out.println(orders.toString());
 		
 		for(MulOrder getOrder : orders) {
 			MulOrder order = orderService.getOrder(getOrder).get();
@@ -53,11 +54,11 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			
 			MulProductSector sector = null;
 			
-			// .getFirst()와 동일한 기능
 			for(MulProductSector getSector : sectors) {
 				sector = getSector;
 				break;
 			}
+			
 //			if(order.getOrderStatus() == MulOrderStatus.DELIVER)
 //				break;
 			
@@ -68,11 +69,11 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			
 			// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
 //			orderService.toggleOrderStatus(order);
-			System.out.println();
 			list.add(detail);
 		}
 		
 		MulMakeOrder makedOrder = MulMakeOrder.builder()
+				.orderNumber(orderNumber.getOrderNumber())
 				.orders(list)
 				.build();
 		
@@ -102,7 +103,6 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 
 		MulMakeOrderDetail robot = new MulMakeOrderDetail();
 		
-		robot.setOrderId(order.getOrderId());
 		robot.setProductName(product.getProductName());
 		robot.setSectorName(sectorOne.get().getSectorName());
 		robot.setOrderQuantity(order.getOrderQuantity());

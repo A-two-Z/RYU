@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ssafy.mulryuproject.dto.MulOrderNumDTO;
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.repository.MulOrderNumRepo;

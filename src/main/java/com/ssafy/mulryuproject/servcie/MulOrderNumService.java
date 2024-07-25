@@ -2,7 +2,6 @@ package com.ssafy.mulryuproject.servcie;
 
 import java.util.List;
 
-import com.ssafy.mulryuproject.dto.MulOrderNumDTO;
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 

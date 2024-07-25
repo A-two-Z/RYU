@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -21,7 +20,7 @@ import lombok.ToString;
 public class MulMakeOrder {
 	
 	@Id
-	private String id;
+	private String orderNumber;
 	
 	private List<MulMakeOrderDetail> orders; // OrderDetails 리스트
 

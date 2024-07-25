@@ -41,8 +41,9 @@ public class MulOrderServiceImpl implements MulOrderService {
 	}
 
 	@Override
-	public List<MulOrder> getOrderListByOrderNumber(MulOrderNumDTO dto) {
-		List<MulOrder> list = orderRepo.findByOrderNumberId(dto);
+	public List<MulOrder> getOrderListByOrderNumberId(MulOrderNumber orderNumber) {
+		
+		List<MulOrder> list = orderRepo.findByOrderNumberId(orderNumber);
 		
 		return list;
 	}

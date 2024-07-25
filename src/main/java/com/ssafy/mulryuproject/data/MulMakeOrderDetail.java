@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class MulMakeOrderDetail {
-	private int orderId;
 	
 	private String sectorName;
 
