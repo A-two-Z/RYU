@@ -1,6 +1,7 @@
 package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.entity.MulSector;
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
 import com.ssafy.mulryuproject.servcie.MulOrderNumService;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
@@ -58,8 +60,8 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 				}
 			}
 			
-//			if(order.getOrderStatus() == MulOrderStatus.DELIVER)
-//				break;
+			if(orderNum.getOrderStatus() == MulOrderStatus.DELIVER)
+				break;
 			
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
 			
@@ -74,6 +76,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		MulMakeOrder makedOrder = MulMakeOrder.builder()
 				.orderNumber(orderNumber.getOrderNumber())
 				.orders(list)
+				.orderDate(new Date())
 				.build();
 		
 		return makedOrder;

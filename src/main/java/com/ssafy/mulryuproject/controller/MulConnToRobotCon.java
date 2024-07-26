@@ -45,23 +45,15 @@ public class MulConnToRobotCon {
 					+ "Id의 값은 반드시 1 이상이여야 하며, status=Delivery 인 order의 id를 가져오려 하면 서버 내부적으로 무시됩니다."
 			)
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody MulOrderNumber orderNumber) { //
-//		System.out.println(orderNumber.getOrderNumber());
-		long beforeTime = System.currentTimeMillis(); //코드 실행 전에 시간 받아오기
-        
-		//실험할 코드 추가
-		        
 		MulMakeOrder robot = toMakeOrderService.makeOrder(orderNumber);
 		Gson jsonToRobot = new Gson();
+		
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
 //		transmitService.sendMessage(robotOrderToJson);
-		System.out.println(robotOrderToJson);
+		
+		System.out.println(robotOrderToJson); 
 		saveOrderService.saveRobotOrderToMongo(robot);
-		
-		
-		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
-		long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
-		System.out.println("시간차이(m) : "+secDiffTime);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

@@ -7,5 +7,10 @@ import com.ssafy.mulryuproject.entity.MulMakeOrder;
 
 public interface MulSaveOrderToMongo {
 	public void saveRobotOrderToMongo(MulMakeOrder list);
+
 	public List<MulMakeOrder> getOrdersAfter(Date date);
+
+	public MulMakeOrder getLastData();
+
+	public MulMakeOrder findByOrderNumberId(String id);
 }

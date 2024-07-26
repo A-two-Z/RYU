@@ -1,5 +1,7 @@
 package com.ssafy.mulryuproject.servcie;
 
+import org.springframework.data.mongodb.repository.Query;
+
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
 

@@ -52,26 +52,40 @@ public class MulOrderCon {
 	public ResponseEntity<MulOrder> createOrder(@RequestBody String getOrder) {
 		// Order를 Json으로 받아옴
 		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
-		System.out.println(jsonObject);
+		
 		// 우선 orderNumber를 통해 orderNumberTable에 OrderNumber를 저장함
 		String orderNumber = jsonObject.get("orderNum").getAsString();
 
+		// OrderNumber 테이블에 orderNumber를 저장한다
 		orderNumservice.saveOrderNum(MulOrderNumber.builder().orderNumber(orderNumber).build());
-
+		
+		// 테이블에 저장된 orderNumber를 통해 OrderNumber 테이블의 PK를 가져온다
 		int orderNumberId = orderNumservice.getOrderNumber(MulOrderNumber.builder().orderNumber(orderNumber).build())
 				.getOrderNumberId();
 
 		JsonArray ordersArray = jsonObject.getAsJsonArray("orders");
-
+		
+		
 		for (JsonElement order : ordersArray) {
 			JsonObject jsonOrder = order.getAsJsonObject();
 
 			int productId = jsonOrder.get("productId").getAsInt();
 			int quantity = Integer.parseInt(jsonOrder.get("quantity").getAsString());
 
-			MulOrder saveOrder = MulOrder.builder().productId(MulProduct.builder().productId(productId).build())
+			MulOrder saveOrder = MulOrder
+					.builder()
+					.productId(
+							MulProduct
+							.builder()
+							.productId(productId)
+							.build())
 					.orderQuantity(quantity)
-					.orderNumberId(MulOrderNumber.builder().orderNumberId(orderNumberId).build()).build();
+					.orderNumberId(
+							MulOrderNumber
+							.builder()
+							.orderNumberId(orderNumberId)
+							.build())
+					.build();
 
 			orderService.saveOrder(saveOrder);
 		}
