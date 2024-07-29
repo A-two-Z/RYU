@@ -14,13 +14,13 @@ import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.entity.MulSector;
-import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
 import com.ssafy.mulryuproject.servcie.MulOrderNumService;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
 import com.ssafy.mulryuproject.servcie.MulProductService;
 import com.ssafy.mulryuproject.servcie.MulSectorService;
+import com.ssafy.mulryuproject.servcie.RedisService;
 
 import lombok.RequiredArgsConstructor;
 import utils.ExceptionUtils;
@@ -31,13 +31,15 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 
 	private final MulProductSectorService psService;
 
-	private final MulSectorService sectorService;
-	
-	private final MulProductService productService;
+	// 0729 LHJ Redis를 사용하며 DB와 직접 연동하는 service는 주석처리
+//	private final MulSectorService sectorService;
+//	private final MulProductService productService;
 
 	private final MulOrderService orderService;
 
 	private final MulOrderNumService onService;
+	
+	private final RedisService redisService;
 	
 	// 로봇에게 전달할 Order
 	@Override
@@ -49,12 +51,15 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNum);
 		
 		// 만약 이미 배송이 DELIVER 된 제품이면 자체적으로 차단
-//		ExceptionUtils.throwIfDelivered(orderNum.getOrderStatus());
+		ExceptionUtils.throwIfDelivered(orderNum.getOrderStatus());
 
 		
 		for(MulOrder order : orders) {
-			MulProduct product = productService.getProduct(order).get();
-			List<MulProductSector> sectors = psService.getPSListToProduct(product);
+//			MulProduct product = productService.getProduct(order).get();
+			int productId = order.getProductId().getProductId();
+			String product = redisService.getProductName(productId);
+			
+			List<MulProductSector> sectors = psService.getPSListToProduct(productId);
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
 			
 			// 0729 LHJ 남아있는 sector가 없으면 오류 던짐
@@ -68,9 +73,6 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			
 			list.add(detail);
 		}
-		
-		// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
-		onService.toggleOrderStatus(orderNum);
 		
 		MulMakeOrder makedOrder = MulMakeOrder.builder()
 				.orderNumber(orderNumber.getOrderNumber())
@@ -112,15 +114,20 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 	// 0723 LHJ 
 	// {orderId: 1, product Name: "name", "sector Name": "sector", "orderQuantity" : 20} 하나를 만드는 메소드
 	// 이 클래스 내부에서만 사용된다.
-	private MulMakeOrderDetail createToRobot(MulOrder order, MulProduct product, MulProductSector sector) {
+	private MulMakeOrderDetail createToRobot(MulOrder order, String productName, MulProductSector sector) {
 
-		Optional<MulSector> sectorOne = sectorService
-				.getSector(MulSector.builder().sectorId(sector.getSectorId().getSectorId()).build());
-
+		
+		// MariaDB에서 받아옴
+//		Optional<MulSector> sectorOne = sectorService
+//				.getSector(MulSector.builder().sectorId(sector.getSectorId().getSectorId()).build());
+		
+		// Redis에서 받아옴
+		String sectorName = redisService.getSectorName(sector.getSectorId().getSectorId());
+		
 		MulMakeOrderDetail robot = new MulMakeOrderDetail();
 		
-		robot.setProductName(product.getProductName());
-		robot.setSectorName(sectorOne.get().getSectorName());
+		robot.setProductName(productName);
+		robot.setSectorName(sectorName);
 		robot.setOrderQuantity(order.getOrderQuantity());
 
 		return robot;

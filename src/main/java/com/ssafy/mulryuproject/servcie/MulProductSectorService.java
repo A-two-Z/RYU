@@ -19,6 +19,7 @@ public interface MulProductSectorService {
 	
 	// Product Id를 통해 section을 찾아오는 메소드
 	public List<MulProductSector> getPSListToProduct(MulProduct product);
+	public List<MulProductSector> getPSListToProduct(int productId);
 	
 	// Update
 	public MulProductSector updatePS(MulProductSector ps);
@@ -28,4 +29,5 @@ public interface MulProductSectorService {
 	
 	// Delete
 	public boolean deletePStById(Integer id);
+
 }

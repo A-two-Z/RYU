@@ -65,7 +65,6 @@ public class MulOrderCon {
 
 		JsonArray ordersArray = jsonObject.getAsJsonArray("orders");
 		
-		
 		for (JsonElement order : ordersArray) {
 			JsonObject jsonOrder = order.getAsJsonObject();
 
@@ -86,10 +85,12 @@ public class MulOrderCon {
 							.orderNumberId(orderNumberId)
 							.build())
 					.build();
-
+			
+			System.out.println(saveOrder.toString());
+			
 			orderService.saveOrder(saveOrder);
 		}
-
+		
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 

@@ -14,6 +14,7 @@ import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
+import com.ssafy.mulryuproject.servcie.MulOrderNumService;
 import com.ssafy.mulryuproject.servcie.MulSaveOrderToMongo;
 import com.ssafy.mulryuproject.servcie.MulTransmitOrderService;
 
@@ -31,6 +32,7 @@ public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
 	private final MulTransmitOrderService transmitService;
+	private final MulOrderNumService onService;
 	
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
@@ -54,16 +56,17 @@ public class MulConnToRobotCon {
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
 		// 0729 Ssafy Wifi에서 통신 불가능
-//		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
+		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
 
-		
+		// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
+//		onService.toggleOrderStatus(orderNumber);
+						
 		System.out.println(robotOrderToJson); 
 		saveOrderService.saveRobotOrderToMongo(robot);
-		
+
 		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
 		long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
 		System.out.println("시간차이(m) : "+secDiffTime);
-		
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
