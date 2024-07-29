@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.serializer;
+package utils;
 
 import java.io.IOException;
 

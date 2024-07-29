@@ -58,6 +58,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
 			
 			if(sector==null) {
+				// 0729 LHJ 남아있는 sector가 없으면 
 			}
 			
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
@@ -65,11 +66,11 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			// 0724 LHJ productSector 테이블의 quantity를 업데이트 하는 기능의 시점
 			updateQuantity(sector, order);
 			
-			// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
-			onService.toggleOrderStatus(orderNum);
-			
 			list.add(detail);
 		}
+		
+		// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
+		onService.toggleOrderStatus(orderNum);
 		
 		MulMakeOrder makedOrder = MulMakeOrder.builder()
 				.orderNumber(orderNumber.getOrderNumber())
