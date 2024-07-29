@@ -127,7 +127,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		MulMakeOrderDetail robot = new MulMakeOrderDetail();
 		
 		robot.setProductName(productName);
-		robot.setSectorName(sectorName);
+		robot.setSectorName("S201"); // 임시 섹터 이름
 		robot.setOrderQuantity(order.getOrderQuantity());
 
 		return robot;
