@@ -23,6 +23,7 @@ import com.ssafy.mulryuproject.servcie.MulProductService;
 import com.ssafy.mulryuproject.servcie.MulSectorService;
 
 import lombok.RequiredArgsConstructor;
+import utils.ExceptionUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -48,23 +49,22 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNum);
 		
 		// 만약 이미 배송이 DELIVER 된 제품이면 자체적으로 차단
-		if(orderNum.getOrderStatus() == MulOrderStatus.DELIVER) {
-			return null;
-		}
+//		ExceptionUtils.throwIfDelivered(orderNum.getOrderStatus());
 
+		
 		for(MulOrder order : orders) {
 			MulProduct product = productService.getProduct(order).get();
 			List<MulProductSector> sectors = psService.getPSListToProduct(product);
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
 			
-			if(sector==null) {
-				// 0729 LHJ 남아있는 sector가 없으면 
-			}
+			// 0729 LHJ 남아있는 sector가 없으면 오류 던짐
+			ExceptionUtils.throwIfSectorIsNull(sector);
+			
 			
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
 			
 			// 0724 LHJ productSector 테이블의 quantity를 업데이트 하는 기능의 시점
-			updateQuantity(sector, order);
+//			updateQuantity(sector, order);
 			
 			list.add(detail);
 		}
