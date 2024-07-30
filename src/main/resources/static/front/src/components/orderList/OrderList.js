@@ -8,7 +8,7 @@ function OrderList() {
     const [orderStatus, setOrderStatus] = useState('WAIT');
 
     useEffect(() => {
-        fetch('http://localhost:8080/order_Num')
+        fetch(process.env.REACT_APP_AWS_URI+':8080/order_Num')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -39,23 +39,20 @@ function OrderList() {
         const orderNumber = document.getElementById('order-number').innerText;
         const orderButton = document.getElementById('order-button');
 
-        fetch('http://localhost:8080/MulToRobot/orderToQ', {
+        fetch(process.env.REACT_APP_AWS_URI + ':8080/MulToRobot/orderToQ', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'orderNumber': orderNumber})
+            body: JSON.stringify({
+                'orderNumber': orderNumber})
         })
-            .then(response => response.json())
-            .then(data => {
-                // Check the response status
-                if (data.orderStatus === 1) {
-                    // Disable the button and change the text
-                    orderButton.disabled = true;
-                    orderButton.innerText = '전송 완료';
-                } else {
-                    // Handle other statuses if necessary
-                    alert('주문 전송에 실패했습니다.');
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }else{
+                    alert("주문 전송에 성공했습니다.")
+                    window.location.reload();
                 }
             })
             .catch(error => {
@@ -78,7 +75,7 @@ function OrderList() {
                 <tbody>
                 {orders.map(order => (
                     <tr id="order-row">
-                        <td>{order.orderNumberId}</td>
+                        <td id="order-id">{order.orderNumberId}</td>
                         <td id="order-number">{order.orderNumber}</td>
                         <td><button id="order-button" onClick={sendOrder} disabled={order.orderStatus === 'DELIVERY'}>{order.orderStatus}</button ></td>
                     </tr>

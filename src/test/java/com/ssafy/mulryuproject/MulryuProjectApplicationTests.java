@@ -2,6 +2,8 @@ package com.ssafy.mulryuproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
+import com.ssafy.mulryuproject.repository.MulOrderNumRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ class MulryuProjectApplicationTests {
 
 	@Autowired
 	private RedisService redisService;
+
+	@Autowired
+	private MulOrderNumRepo orderNumRepo;
 
 	@BeforeEach
 	void setUp() {
@@ -37,6 +42,14 @@ class MulryuProjectApplicationTests {
 			    
 	    System.out.println("Updated Order: " + updatedOrder);
 		
+	}
+
+	@Test
+	public void toggleOrderStatus() {
+		MulOrderNumber orderNum = MulOrderNumber.builder().orderNumberId(2).build();
+		orderNumRepo.updateStatus(
+				MulOrderStatus.WAIT,
+				orderNum.getOrderNumberId());
 	}
 
 //	@Test

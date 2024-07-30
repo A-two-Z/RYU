@@ -9,7 +9,7 @@ function ProductList() {
     const [orderQuantities, setOrderQuantities] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:8080/product')
+        fetch(process.env.REACT_APP_AWS_URI+':8080/product')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -62,7 +62,7 @@ function ProductList() {
         console.log(orderDataString);
 
         // 데이터 전송
-        fetch('http://localhost:8080/order', {
+        fetch(process.env.REACT_APP_AWS_URI+':8080/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
