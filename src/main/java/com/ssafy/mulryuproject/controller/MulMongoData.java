@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Tag(name = "Order Controller", description = "주문 관련 데이터를 CRUD하는 API")
 @RequestMapping("/Mongo")
-public class TESTMulMongoData {
+public class MulMongoData {
 	private final MulSaveOrderToMongo service;
 
 	@GetMapping

@@ -23,6 +23,9 @@ public interface MulOrderNumRepo  extends JpaRepository<MulOrderNumber, Integer>
 	
 	@Query("SELECT m FROM MulOrderNumber m WHERE m.orderNumber = :orderNumber")
 	MulOrderNumber findByOrderNumber(@Param("orderNumber") String orderNumber);
+	
+	List<MulOrderNumber> findAllByOrderByOrderNumberIdDesc();
+
 
 	
 }
