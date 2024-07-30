@@ -47,7 +47,7 @@ public class MulConnToRobotCon {
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody MulOrderNumber orderNumber) { //
 
 		long beforeTime = System.currentTimeMillis();
-		
+		System.out.println(orderNumber.toString());
 		MulMakeOrder robot = toMakeOrderService.makeOrder(orderNumber); 
 		
 		Gson jsonToRobot = new Gson();
@@ -57,11 +57,13 @@ public class MulConnToRobotCon {
 		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
 
 		// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
-		onService.toggleOrderStatus(orderNumber);
+		MulOrderNumber on = onService.getOrderNumber(orderNumber);
+		System.out.println(on.toString());
+		onService.toggleOrderStatus(on);
 		System.out.println(robotOrderToJson);
 
 		// rabbitMQ에 보내게 되면 업데이트
-//		psService.updateQuantity(robot);
+		psService.updateQuantity(robot);
 
 		// 몽고 DB에도 저장
 		saveOrderService.saveRobotOrderToMongo(robot);
