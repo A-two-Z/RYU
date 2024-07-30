@@ -20,7 +20,7 @@ public class MulOrderNumServiceImpl implements MulOrderNumService {
 	@Override
 	public void toggleOrderStatus(MulOrderNumber orderNum) {
 		orderNumRepo.updateStatus(
-				orderNum.getOrderStatus() == MulOrderStatus.DELIVERY ? MulOrderStatus.WAIT : MulOrderStatus.DELIVERY,
+				MulOrderStatus.WAIT,
 				orderNum.getOrderNumberId());
 	}
 

@@ -51,7 +51,6 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		
 		// 만약 이미 배송이 DELIVER 된 제품이면 자체적으로 차단
 		ExceptionUtils.throwIfDelivered(orderNumId.getOrderStatus());
-
 		
 		for(MulOrder order : orders) {
 //			MulProduct product = productService.getProduct(order).get();
@@ -60,17 +59,12 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			
 			List<MulProductSector> sectors = psService.getPSListToProduct(productId);
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
-			
-			
+
 			// 0729 LHJ 남아있는 sector가 없으면 오류 던짐
 			ExceptionUtils.throwIfSectorIsNull(sector);
-			
-			
+
 			MulMakeOrderDetail detail = createToRobot(order, product, sector);
-			
-			// 0724 LHJ productSector 테이블의 quantity를 업데이트 하는 기능의 시점
-//			updateQuantity(sector, order);
-			
+
 			list.add(detail);
 		}
 		
@@ -83,18 +77,18 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		return makedOrder;
 	}
 
-	// ProductSector 테이블의 Quantity를 빼는 메소드
-	// 이 클래스 내부에서만 사용된다.
-	private void updateQuantity(MulProductSector sector, MulOrder order) {
-		MulProductSector quantityUp = MulProductSector.builder()
-				.productSectorId(sector.getProductSectorId())
-				.quantity(
-						sector.getQuantity() - order.getOrderQuantity()
-						)
-				.build();
-		psService.updatePSQunatity(quantityUp);
-	}
-	
+//	// ProductSector 테이블의 Quantity를 빼는 메소드
+//	// 이 클래스 내부에서만 사용된다.
+//	private void updateQuantity(MulProductSector sector, MulOrder order) {
+//		MulProductSector quantityUp = MulProductSector.builder()
+//				.productSectorId(sector.getProductSectorId())
+//				.quantity(
+//						sector.getQuantity() - order.getOrderQuantity()
+//						)
+//				.build();
+//		psService.updatePSQunatity(quantityUp);
+//	}
+//
 	// 0724 LHJ 
 	// 요구하는 Quantity보다 더 많이 갖고 있는 sectors를 가져오는 메소드
 	// 이 클래스 내부에서만 사용된다.
