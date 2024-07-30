@@ -12,10 +12,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Mul_Product_Sector")
@@ -27,13 +29,13 @@ public class MulProductSector {
 	private int productSectorId;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private MulProduct product;
+	@JoinColumn(name = "product_id")
+	private MulProduct productId;
 
 	@ManyToOne
-    @JoinColumn(name = "sector_id", referencedColumnName = "sector_id")
-	private MulSector sector;
-	
+	@JoinColumn(name = "sector_id")
+	private MulSector sectorId;
+
 	@Column(nullable = false, name = "quantity")
 	private int quantity;
 

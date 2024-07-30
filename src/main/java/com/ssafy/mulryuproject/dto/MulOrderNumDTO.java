@@ -1,7 +1,11 @@
-package com.ssafy.mulryuproject.entity;
+package com.ssafy.mulryuproject.dto;
+
+import com.ssafy.mulryuproject.enums.MulOrderStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,23 +14,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @Getter
-@Builder
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name="Mul_Sector")
-public class MulSector {
+@Setter
+public class MulOrderNumDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="sector_id")
-	private int sectorId;
-	
-	@Column(nullable = false, name = "sector_name", length = 10, unique = true)
-	private String sectorName;
+	private String orderNumber;
+
+	private MulOrderStatus orderStatus;
 	
 }

@@ -1,4 +1,4 @@
-package com.ssafy.mulryuproject.servcie;
+package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductDTO;
+import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.repository.MulProductRepo;
+import com.ssafy.mulryuproject.servcie.MulProductService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,11 +38,22 @@ public class MulProductServiceImpl implements MulProductService {
 	@Override
 	public Optional<MulProduct> getProduct(MulProduct product) {
 		int id = product.getProductId();
-		if(id != 0) // product의 인덱스는 1로 시작하기 때문에 0일 수 없음.
+		if(productRepo.existsById(id)) 
 			return productRepo.findById(id);
 		else
-			return null;
+			return Optional.empty();
 	}
+	
+
+	@Override
+	public Optional<MulProduct> getProduct(MulOrder order) {
+		int id = order.getProductId().getProductId();
+		if(productRepo.existsById(id)) 
+			return productRepo.findById(id);
+		else
+			return Optional.empty();
+	}
+
 
 	// 0718 LHJ product를 업데이트하는 메소드
 	@Override
@@ -63,6 +76,5 @@ public class MulProductServiceImpl implements MulProductService {
 		
         return false;
 	}
-
 	
 }

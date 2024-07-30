@@ -2,20 +2,48 @@ spring:
   application:
     name: mulryuProject
   datasource:
-    url: jdbc:mysql://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S11P12A201?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    username: S11P12A201@stg-yswa-kr-practice-db-master
-    password: WzScD4nJ8f
+#    url: jdbc:mysql://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S11P12A201?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+#    username: S11P12A201@stg-yswa-kr-practice-db-master
+#    password: WzScD4nJ8f
+
+#  TestDB로 이전 PJT MariaDB 연동
+    url: jdbc:mysql://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S11P11A201?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: S11P11A201@stg-yswa-kr-practice-db-master
+    password: UtHJ9zAZCW
     driver-class-name: com.mysql.cj.jdbc.Driver
-# TestDB로 이전 PJT MariaDB 연동
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: update
+  data:
+    mongodb:
+      uri: mongodb+srv://S11P12A201:SwbDhPFfsw@ssafy.ngivl.mongodb.net/S11P12A201?authSource=admin&ssl=true
+      username: S11P12A201
+      password: SwbDhPFfsw
+    redis: # 0729 DB의 product와 sector 정보를 담기 위한 redis 추가
+      host: localhost
+      port: 6379
+
+
   security: # 0717 LHJ Spring security를 사용하기 위해 임시로 지정한 name과 password
     user:
       name: admin
       password: admin
 
+
+  rabbitmq: # 0719 LHJ RabbitMQ 연동을 위한 설정파일
+    host: b-53766ed9-286d-43df-9807-6a7d4500ca4b.mq.ap-northeast-2.amazonaws.com
+    port: 5671
+    username: test
+    password: rabbitMQTest
+    connection-timeout: 5000
+    ssl:
+      enabled: true # 기본적으로 Amazon MQ에서는 SSL을 지원하는 브로커로 생성, false로 생성할 시 Error
+
+logging:
+  level:
+    root: INFO
+    com.ssafy.mulryuproject: DEBUG
 springdoc:
   packages-to-scan: com.ssafy.mulryuproject.controller
   default-consumes-media-type: application/json;charset=UTF-8

@@ -1,5 +1,23 @@
 package com.ssafy.mulryuproject.controller;
 
-public class MulSectorCon {
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.mulryuproject.servcie.MulOrderService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/sector")
+public class MulSectorCon {
+	//Create
+	
+	//getList
+	
+	//getOne
+	
+	//update
+	
+	//delete
 }

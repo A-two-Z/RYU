@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>주문하기</title>
+	<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px 0;
+			font-size: 18px;
+			text-align: left;
+		}
+
+		input [type=checkbox] {
+			width: 20px;
+			height: 20px;
+		}
+
+		table thead tr {
+			background-color: #009879;
+			color: #ffffff;
+			text-align: left;
+			font-weight: bold;
+		}
+
+		table th,
+		table td {
+			padding: 12px 15px;
+		}
+
+		table tbody tr {
+			border-bottom: 1px solid #dddddd;
+		}
+
+		table tbody tr:nth-of-type(even) {
+			background-color: #f3f3f3;
+		}
+
+		table tbody tr:last-of-type {
+			border-bottom: 2px solid #009879;
+		}
+
+		button {
+			margin: 20px 0;
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color: #009879;
+			color: #ffffff;
+			border: none;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #007e65;
+		}
+	</style>
+</head>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td colspan="4">주문하기</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>체크박스</td>
+				<td>이름</td>
+				<td>수량</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="1"></td>
+				<td>참치</td>
+				<td><input type="text" name="quantity_1"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="2"></td>
+				<td>모니터</td>
+				<td><input type="text" name="quantity_2"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="3"></td>
+				<td>마우스</td>
+				<td><input type="text" name="quantity_3"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="4"></td>
+				<td>노트북</td>
+				<td><input type="text" name="quantity_4"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="5"></td>
+				<td>초콜릿</td>
+				<td><input type="text" name="quantity_5"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="6"></td>
+				<td>동원참치</td>
+				<td><input type="text" name="quantity_6"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="7"></td>
+				<td>갤럭시북</td>
+				<td><input type="text" name="quantity_7"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="8"></td>
+				<td>갤럭시링</td>
+				<td><input type="text" name="quantity_8"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="9"></td>
+				<td>갤럭시24</td>
+				<td><input type="text" name="quantity_9"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="10"></td>
+				<td>갤럭시 워치</td>
+				<td><input type="text" name="quantity_10"></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="order" value="11"></td>
+				<td>하리보</td>
+				<td><input type="text" name="quantity_11"></td>
+			</tr>
+			
+
+			<!-- 필요한 만큼 항목을 추가합니다. -->
+		</tbody>
+	</table>
+	<button onclick="submitOrder()">주문 제출</button>
+
+	<script>
+		function generateOrderNumber() {
+			const now = new Date();
+			const year = now.getFullYear();
+			const month = String(now.getMonth() + 1).padStart(2, '0');
+			const day = String(now.getDate()).padStart(2, '0');
+			const hours = String(now.getHours()).padStart(2, '0');
+			const minutes = String(now.getMinutes()).padStart(2, '0');
+			const seconds = String(now.getSeconds()).padStart(2, '0');
+			return `${year}${month}${day}${hours}${minutes}${seconds}`;
+		}
+
+		function submitOrder() {
+			const orders = [];
+			const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+			const orderNumber = generateOrderNumber();
+
+			checkboxes.forEach((checkbox) => {
+				const productId = checkbox.value;
+				const quantityInput = document.querySelector(`input[name="quantity_${productId}"]`);
+				const quantity = quantityInput.value;
+
+				if (quantity) {
+					orders.push({productId: productId, quantity: quantity});
+				}
+			});
+
+			// Create an object to be sent
+			const orderData = {
+				orders: orders,
+				orderNum: orderNumber
+			};
+
+			// Convert orderData to JSON string for alert
+			const orderDataString = JSON.stringify(orderData, null, 2);
+
+			// Display the orderData in an alert
+			console.log(orderDataString);
+
+			// Send data using fetch
+			fetch('./order', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: orderDataString
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+					alert('주문이 성공적으로 전송되었습니다!');
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+					alert('주문 전송에 실패했습니다.');
+				});
+		}
+
+
+	</script>
+</body>
+
+</html>

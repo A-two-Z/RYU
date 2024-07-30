@@ -1,11 +1,7 @@
 package com.ssafy.mulryuproject.entity;
 
-import com.ssafy.mulryuproject.enums.MulOrderStatus;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,37 +12,34 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
+@ToString // Debug용
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Mul_order")
+@Table(name = "Mul_order")
 public class MulOrder {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="product_sector_id")
-	private int productSectorId;
+	@Column(name = "order_id")
+	private int orderId;
 
 	@ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-	private MulProduct product;
-
-	@ManyToOne
-    @JoinColumn(name = "robot_id", referencedColumnName = "robot_id")
-	private MulRobot robotId;
-
+	@JoinColumn(name = "product_id")
+	private MulProduct productId;
+	
 	// 클라이언트 주문 번호
-	@Column(nullable = false, name = "order_number")
-	private int orderNumber;
-
+	@ManyToOne
+	@JoinColumn(name = "order_number_id")
+	private MulOrderNumber orderNumberId;
+	
 	// 주문한 수량
 	@Column(nullable = false, name = "order_Quantity")
 	private int orderQuantity;
 	
-	@Enumerated(EnumType.ORDINAL)
-	@Column(nullable = false, name = "order_status")
-	private MulOrderStatus orderStatus;
+	
 }
