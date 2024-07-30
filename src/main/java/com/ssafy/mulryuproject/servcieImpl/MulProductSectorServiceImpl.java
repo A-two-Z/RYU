@@ -3,6 +3,9 @@ package com.ssafy.mulryuproject.servcieImpl;
 import java.util.List;
 import java.util.Optional;
 
+import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
+import com.ssafy.mulryuproject.entity.MulMakeOrder;
+import com.ssafy.mulryuproject.entity.MulOrder;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
@@ -51,6 +54,23 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		else
 			return null;
 	}
+
+	@Override
+	public void updateQuantity(MulMakeOrder orders) {
+		for(MulMakeOrderDetail detail : orders.getOrders()){
+			Optional<MulProductSector> ps = psRepo.findById(detail.getProductSectorId());
+
+			MulProductSector quantityUp = MulProductSector.builder()
+					.productSectorId(detail.getProductSectorId())
+					.quantity(
+							ps.get().getQuantity() - detail.getOrderQuantity()
+					)
+			.build();
+
+			psRepo.save(quantityUp);
+		}
+	}
+
 
 	@Override
 	public boolean deletePStById(Integer id) {

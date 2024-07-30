@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @ToString
 @Document(collection = "MulToRobot") // MongoDB에 연동하는 Enitity
 public class MulMakeOrder {

@@ -1,0 +1,22 @@
+.nav{
+  background-color:black;
+  &-bar{
+    margin:0;
+    padding:10px;
+    list-style-type: none;
+    display:flex;
+    justify-content: space-around;
+
+    li{
+      a{
+        font-size: 30px;
+        text-decoration: none;
+        color:white;
+        &:hover{
+          color:#61dafb;
+        }
+      }
+
+    }
+  }
+}

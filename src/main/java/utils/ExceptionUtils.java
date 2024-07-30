@@ -8,7 +8,7 @@ public class ExceptionUtils {
 
     // 이미 배송된 제품에 대한 예외를 던지는 메서드
     public static void throwIfDelivered(MulOrderStatus orderStatus) {
-        if (orderStatus == MulOrderStatus.DELIVER) {
+        if (orderStatus == MulOrderStatus.DELIVERY) {
             throw new IllegalStateException("이 제품은 이미 배송 된 제품입니다.");
         }
     }
