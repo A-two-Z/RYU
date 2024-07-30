@@ -46,12 +46,11 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 	public MulMakeOrder makeOrder(MulOrderNumber orderNumber) {
 		List<MulMakeOrderDetail> list = new ArrayList<>();
 		
-		MulOrderNumber orderNum = onService.getOrderNumber(orderNumber);
-		
-		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNum);
+		MulOrderNumber orderNumId = onService.getOrderNumber(orderNumber);
+		List<MulOrder> orders = orderService.getOrderListByOrderNumberId(orderNumId);
 		
 		// 만약 이미 배송이 DELIVER 된 제품이면 자체적으로 차단
-		ExceptionUtils.throwIfDelivered(orderNum.getOrderStatus());
+		ExceptionUtils.throwIfDelivered(orderNumId.getOrderStatus());
 
 		
 		for(MulOrder order : orders) {
@@ -61,6 +60,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 			
 			List<MulProductSector> sectors = psService.getPSListToProduct(productId);
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
+			
 			
 			// 0729 LHJ 남아있는 sector가 없으면 오류 던짐
 			ExceptionUtils.throwIfSectorIsNull(sector);
@@ -126,6 +126,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		
 		MulMakeOrderDetail robot = new MulMakeOrderDetail();
 		
+		robot.setProductSectorId(sector.getProductSectorId());
 		robot.setProductName(productName);
 		robot.setSectorName("S201"); // 임시 섹터 이름
 		robot.setOrderQuantity(order.getOrderQuantity());

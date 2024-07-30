@@ -1,5 +1,10 @@
 package com.ssafy.mulryuproject.entity;
 
+import java.util.Date;
+import java.util.List;
+
+import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +22,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @ToString // Debug용
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Mul_order")
