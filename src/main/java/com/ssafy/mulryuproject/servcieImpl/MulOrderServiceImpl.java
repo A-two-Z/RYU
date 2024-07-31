@@ -37,7 +37,7 @@ public class MulOrderServiceImpl implements MulOrderService {
 		if (orderRepo.existsById(order.getOrderId()))
 			return orderRepo.findById(id);
 		else
-			return null;
+			return Optional.empty();
 	}
 
 	@Override

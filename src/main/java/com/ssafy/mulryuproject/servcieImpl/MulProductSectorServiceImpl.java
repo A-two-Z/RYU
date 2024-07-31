@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
-import com.ssafy.mulryuproject.entity.MulMakeOrder;
-import com.ssafy.mulryuproject.entity.MulOrder;
+import com.ssafy.mulryuproject.entity.*;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
-import com.ssafy.mulryuproject.entity.MulProduct;
-import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
 
@@ -24,9 +21,9 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	@Override
 	public MulProductSector savePS(MulProductSectorDTO dto) {
 		MulProductSector ps = MulProductSector.builder()
-				.productId(null)
-				.sectorId(null)
-				.quantity(0)
+				.productId(MulProduct.builder().productId(dto.getProductId()).build())
+				.sectorId(MulSector.builder().sectorId(dto.getSectorId()).build())
+				.quantity(dto.getQuantity())
                 .build();
 		return psRepo.save(ps);
 	}
@@ -57,6 +54,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {
+
 		for(MulMakeOrderDetail detail : orders.getOrders()){
 			Optional<MulProductSector> ps = psRepo.findById(detail.getProductSectorId());
 
