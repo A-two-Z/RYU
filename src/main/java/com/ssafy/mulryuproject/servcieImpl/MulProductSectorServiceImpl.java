@@ -1,15 +1,20 @@
 package com.ssafy.mulryuproject.servcieImpl;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
-import com.ssafy.mulryuproject.entity.*;
+import com.ssafy.mulryuproject.data.MulSectorData;
+import com.ssafy.mulryuproject.dto.MulSectorDTO;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
+import com.ssafy.mulryuproject.entity.MulMakeOrder;
+import com.ssafy.mulryuproject.entity.MulProduct;
+import com.ssafy.mulryuproject.entity.MulProductSector;
+import com.ssafy.mulryuproject.entity.MulSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
+import com.ssafy.mulryuproject.servcie.MulSectorService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,10 +43,12 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	public Optional<MulProductSector> getPS(MulProductSector ps) {
 		// TODO Auto-generated method stub
 		int id = ps.getProductSectorId();
+//		psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
+
 		if(psRepo.existsById(ps.getProductSectorId()))
 			return psRepo.findById(id);
 		else
-			return Optional.empty();	
+			return Optional.empty();
 	}
 
 	@Override
@@ -52,6 +59,27 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 			return null;
 	}
 
+	private final MulSectorService sectorService;
+
+	@Override
+	public Map<String, List<MulSectorData>> getListBySectorName(String SectorName){
+		Optional<MulSector> sectorId = sectorService.getSectorByName(SectorName);
+		List<MulProductSector> list = psRepo.findBySectorId(sectorId.get());
+
+		Map<String, List<MulSectorData>> map  = new LinkedHashMap<>();
+
+		for (MulProductSector ps : list) {
+			String sectorName = ps.getSectorId().getSectorName();
+			String productName = ps.getProductId().getProductName();
+			int quantity = ps.getQuantity();
+
+			map.computeIfAbsent(sectorName, k -> new ArrayList<>())
+					.add(new MulSectorData(productName, quantity));
+		}
+
+		return map;
+	}
+	
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {
 

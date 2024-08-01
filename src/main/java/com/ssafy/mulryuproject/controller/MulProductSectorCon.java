@@ -1,18 +1,15 @@
 package com.ssafy.mulryuproject.controller;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.mulryuproject.data.MulSectorData;
+import com.ssafy.mulryuproject.dto.MulSectorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import com.google.gson.JsonObject;
 import com.ssafy.mulryuproject.dto.MulProductSectorDTO;
 import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
@@ -51,6 +48,13 @@ public class MulProductSectorCon {
 		}
 	}
 	
+	//0731 LHJ Sector 이름을 전송하면, 해당 sector에 있는 모든 물류 전부 List로 받아서 보내주는 컨트롤러
+	@GetMapping("/sectorInfo")
+	public ResponseEntity<Map<String, List<MulSectorData>>> getSectorProduct(@RequestParam String SectorName){
+		Map<String, List<MulSectorData>> sectorInfo = service.getListBySectorName(SectorName);
+		return new ResponseEntity<>(sectorInfo, HttpStatus.OK);
+	}
+	
 	//getOne
 	@GetMapping("/productSector_{id}")
 	public ResponseEntity<MulProductSector> getProductSectorOne(@PathVariable int id) {
@@ -63,7 +67,7 @@ public class MulProductSectorCon {
 				.build();
 		Optional<MulProductSector> productOne = service.getPS(product);
 		
-		return productOne.get() == null 
+		return productOne.isEmpty() == true
 			    ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY) 
 			    : new ResponseEntity<>(productOne.get(), HttpStatus.OK);
 	}

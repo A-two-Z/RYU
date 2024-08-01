@@ -36,12 +36,16 @@ public class MulSectorServiceImpl implements MulSectorService {
 	@Override
 	public Optional<MulSector> getSector(MulSector sector) {
 		int id = sector.getSectorId();
-		if(sectorRepo.existsById(sector.getSectorId())) 
+		if(sectorRepo.existsById(sector.getSectorId()))
 			return sectorRepo.findById(id);
 		else
 			return null;
 	}
+	@Override
+	public Optional<MulSector> getSectorByName(String sectorName) {
 
+		return sectorRepo.findBySectorName(sectorName);
+	}
 	@Override
 	public MulSector updateSector(MulSector sector) {
 

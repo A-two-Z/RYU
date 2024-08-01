@@ -2,6 +2,7 @@ package com.ssafy.mulryuproject.repository;
 
 import java.util.List;
 
+import com.ssafy.mulryuproject.entity.MulSector;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +24,6 @@ public interface MulProductSectorRepo extends JpaRepository<MulProductSector, In
     @Query("update MulProductSector m set m.quantity = :newQuantity where m.productSectorId = :id")
     void updateProductSectorQuantity(@Param("newQuantity") int newQuantity, @Param("id") int id);
 
+	List<MulProductSector> findBySectorId(MulSector sectorId);
+	
 }
