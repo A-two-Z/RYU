@@ -49,7 +49,7 @@ public class MulProductSectorCon {
 	}
 	
 	//0731 LHJ Sector 이름을 전송하면, 해당 sector에 있는 모든 물류 전부 List로 받아서 보내주는 컨트롤러
-	@GetMapping("/productSector")
+	@GetMapping("/sectorInfo")
 	public ResponseEntity<Map<String, List<MulSectorData>>> getSectorProduct(@RequestParam String SectorName){
 		Map<String, List<MulSectorData>> sectorInfo = service.getListBySectorName(SectorName);
 		return new ResponseEntity<>(sectorInfo, HttpStatus.OK);
@@ -67,7 +67,7 @@ public class MulProductSectorCon {
 				.build();
 		Optional<MulProductSector> productOne = service.getPS(product);
 		
-		return productOne.get() == null 
+		return productOne.isEmpty() == true
 			    ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY) 
 			    : new ResponseEntity<>(productOne.get(), HttpStatus.OK);
 	}
