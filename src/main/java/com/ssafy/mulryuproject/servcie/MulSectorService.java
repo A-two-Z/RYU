@@ -15,7 +15,10 @@ public interface MulSectorService {
 	
 	// Read One
 	public Optional<MulSector> getSector(MulSector sector);
-	
+
+	// Get Sector Id By Sector Name
+	public Optional<MulSector> getSectorByName(String sectorName);
+
 	// Update
 	public MulSector updateSector(MulSector sector);
 	

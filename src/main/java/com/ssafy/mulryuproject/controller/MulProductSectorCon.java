@@ -1,8 +1,10 @@
 package com.ssafy.mulryuproject.controller;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.mulryuproject.data.MulSectorData;
+import com.ssafy.mulryuproject.dto.MulSectorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,17 +50,9 @@ public class MulProductSectorCon {
 	
 	//0731 LHJ Sector 이름을 전송하면, 해당 sector에 있는 모든 물류 전부 List로 받아서 보내주는 컨트롤러
 	@GetMapping("/productSector")
-	public ResponseEntity<JsonObject> getSectorProduct(@RequestParam String SectorName){
-/*
-추천 방법
-대부분의 경우, 방법 1이 더 나은 접근 방식입니다. 이유는 다음과 같습니다:
-
-비즈니스 로직의 분리: 서비스 간의 비즈니스 로직이 잘 분리되어 있어 유지보수 및 확장이 용이합니다.
-테스트 용이성: A 테이블의 비즈니스 로직과 B 테이블의 비즈니스 로직을 독립적으로 테스트할 수 있습니다.
-확장성: 나중에 A 테이블이나 B 테이블의 비즈니스 로직이 변경될 때, 서비스 간의 명확한 경계가 유지됩니다.
-따라서, A 테이블의 Service를 구현하고 B 테이블의 Service에서 A 테이블의 Service를 Autowired하여 사용하는 방법이 일반적으로 더 나은 선택입니다.
- */
-		
+	public ResponseEntity<Map<String, List<MulSectorData>>> getSectorProduct(@RequestParam String SectorName){
+		Map<String, List<MulSectorData>> sectorInfo = service.getListBySectorName(SectorName);
+		return new ResponseEntity<>(sectorInfo, HttpStatus.OK);
 	}
 	
 	//getOne

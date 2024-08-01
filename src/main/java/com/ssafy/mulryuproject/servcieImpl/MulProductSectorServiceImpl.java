@@ -1,8 +1,9 @@
 package com.ssafy.mulryuproject.servcieImpl;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import com.ssafy.mulryuproject.data.MulSectorData;
+import com.ssafy.mulryuproject.dto.MulSectorDTO;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
@@ -57,11 +58,24 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	}
 
 	private final MulSectorService sectorService;
-	
-	public List<MulProductSector> getListBySectorId(String SectorName){
-		sectorService.
-		
-		return psRepo.findBySectorId(SectorId);
+
+	@Override
+	public Map<String, List<MulSectorData>> getListBySectorName(String SectorName){
+		Optional<MulSector> sectorId = sectorService.getSectorByName(SectorName);
+		List<MulProductSector> list = psRepo.findBySectorId(sectorId.get());
+
+		Map<String, List<MulSectorData>> map  = new LinkedHashMap<>();
+
+		for (MulProductSector ps : list) {
+			String sectorName = ps.getSectorId().getSectorName();
+			String productName = ps.getProductId().getProductName();
+			int quantity = ps.getQuantity();
+
+			map.computeIfAbsent(sectorName, k -> new ArrayList<>())
+					.add(new MulSectorData(productName, quantity));
+		}
+
+		return map;
 	}
 	
 	@Override

@@ -2,19 +2,25 @@ package com.ssafy.mulryuproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.ssafy.mulryuproject.dto.MulSectorDTO;
+import com.ssafy.mulryuproject.entity.*;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.repository.MulOrderNumRepo;
+import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import com.ssafy.mulryuproject.servcie.MulSectorService;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ssafy.mulryuproject.entity.MulOrder;
-import com.ssafy.mulryuproject.entity.MulOrderNumber;
-import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.servcie.RedisService;
 
+import java.util.List;
+import java.util.Optional;
+
 @SpringBootTest
+@RequiredArgsConstructor
 class MulryuProjectApplicationTests {
 
 	@Autowired
@@ -50,6 +56,14 @@ class MulryuProjectApplicationTests {
 		orderNumRepo.updateStatus(
 				MulOrderStatus.WAIT,
 				orderNum.getOrderNumberId());
+	}
+	MulSectorService sectorService;
+	MulProductSectorRepo psRepo;
+	@Test
+	public List<MulProductSector> getListBySectorId(String sectorName){
+		Optional<MulSector> sectorId = sectorService.getSectorByName(sectorName);
+		List<MulProductSector> list = psRepo.findBySectorId(sectorId.get());
+		return list;
 	}
 
 //	@Test
