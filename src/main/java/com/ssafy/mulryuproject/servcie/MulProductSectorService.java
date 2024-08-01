@@ -25,6 +25,7 @@ public interface MulProductSectorService {
 	// Product Id를 통해 section을 찾아오는 메소드
 	public List<MulProductSector> getPSListToProduct(MulProduct product);
 	public List<MulProductSector> getPSListToProduct(int productId);
+
 	// SectorName을 통해 어떤 물품이 몇 개 있는지 확인하는 메소드
 	public Map<String, List<MulSectorData>> getListBySectorName(String SectorName);
 
