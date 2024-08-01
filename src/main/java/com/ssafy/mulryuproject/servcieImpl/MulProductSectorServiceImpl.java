@@ -43,10 +43,12 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	public Optional<MulProductSector> getPS(MulProductSector ps) {
 		// TODO Auto-generated method stub
 		int id = ps.getProductSectorId();
+//		psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
+
 		if(psRepo.existsById(ps.getProductSectorId()))
 			return psRepo.findById(id);
 		else
-			return Optional.empty();	
+			return Optional.empty();
 	}
 
 	@Override
