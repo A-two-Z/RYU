@@ -23,4 +23,6 @@ public interface MulProductSectorRepo extends JpaRepository<MulProductSector, In
     @Query("update MulProductSector m set m.quantity = :newQuantity where m.productSectorId = :id")
     void updateProductSectorQuantity(@Param("newQuantity") int newQuantity, @Param("id") int id);
 
+	List<MulProductSector> findBySectorId(int sectorId);	
+	
 }
