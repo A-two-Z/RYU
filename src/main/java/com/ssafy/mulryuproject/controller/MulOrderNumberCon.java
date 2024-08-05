@@ -25,8 +25,8 @@ public class MulOrderNumberCon {
 		
 		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
 	}
-	@GetMapping("/status_{status}")
-	public ResponseEntity<List<MulOrderNumber>> getOrderNumStatus(@PathVariable String status){
+	@GetMapping("/status")
+	public ResponseEntity<List<MulOrderNumber>> getOrderNumStatus(){
 		List<MulOrderNumber> list =  service.getOrderNumberList();
 
 		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
