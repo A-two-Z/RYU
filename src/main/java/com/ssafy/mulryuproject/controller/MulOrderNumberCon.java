@@ -25,10 +25,12 @@ public class MulOrderNumberCon {
 		
 		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
 	}
+
 //	@GetMapping("/status")
 //	public ResponseEntity<List<MulOrderNumber>> getOrderNumStatus(){
 //		List<MulOrderNumber> list =  service.getOrderNumberList();
 //
 //		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
 //	}
+
 }
