@@ -61,6 +61,11 @@ function ProductList() {
 
         console.log(orderDataString);
 
+        if(orderDataString == null){
+            alert("주문하신 물품이 없습니다.");
+            return;
+        }
+
         // 데이터 전송
         fetch(process.env.REACT_APP_AWS_URI+'/order', {
             method: 'POST',
@@ -70,6 +75,7 @@ function ProductList() {
             body: orderDataString
         })
             .then(response => {
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }else if(response.status == 202){

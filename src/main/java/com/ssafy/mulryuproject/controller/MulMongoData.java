@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Order Controller", description = "주문 관련 데이터를 CRUD하는 API")
+@Tag(name = "MongoDB와 연동하는 컨트롤러", description = "데이터 백업 및 일관성 유지를 위해 MongoDB에 주문 데이터를 백업하여 사용합니다.")
 @RequestMapping("/Mongo")
 public class MulMongoData {
 	private final MulSaveOrderToMongo service;
