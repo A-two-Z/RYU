@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/mulryuProject-0.0.1-SNAPSHOT.jar app.jar
+COPY target/*.jar app.jar
 
 # Set environment variables
 ENV REDIS_HOST=my-redis
