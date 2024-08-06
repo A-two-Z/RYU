@@ -9,7 +9,7 @@ function ProductList() {
     const [orderQuantities, setOrderQuantities] = useState({});
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_AWS_URI+':8080/product')
+        fetch(process.env.REACT_APP_AWS_URI+'/product')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

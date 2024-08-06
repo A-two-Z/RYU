@@ -39,7 +39,7 @@ function OrderList() {
         const orderNumber = document.getElementById('order-number').innerText;
         const orderButton = document.getElementById('order-button');
 
-        fetch(process.env.REACT_APP_AWS_URI+':8080/MulToRobot/orderToQ', {
+        fetch(process.env.REACT_APP_AWS_URI+'/MulToRobot/orderToQ', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
