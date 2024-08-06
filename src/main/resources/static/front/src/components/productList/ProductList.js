@@ -52,42 +52,40 @@ function ProductList() {
             }
         });
 
-        if(orders == null){
+        if(orders.length == 0){
             alert("주문하신 물품이 없습니다.");
             return;
         }
-        
+
         const orderData = {
             orders: orders,
             orderNum: orderNumber
         };
 
-
-
         const orderDataString = JSON.stringify(orderData, null, 2);
 
         console.log(orderDataString);
 
-        // // 데이터 전송
-        // fetch(process.env.REACT_APP_AWS_URI+'/order', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: orderDataString
-        // })
-        //     .then(response => {
-        //
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! Status: ${response.status}`);
-        //         }else if(response.status == 202){
-        //             alert("주문 전송에 성공했습니다.")
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //         alert('주문 전송에 실패했습니다.');
-        //     });
+        // 데이터 전송
+        fetch(process.env.REACT_APP_AWS_URI+'/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: orderDataString
+        })
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }else if(response.status == 202){
+                    alert("주문 전송에 성공했습니다.")
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('주문 전송에 실패했습니다.');
+            });
     }
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
