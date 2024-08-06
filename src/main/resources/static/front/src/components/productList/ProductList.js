@@ -47,7 +47,7 @@ function ProductList() {
             const quantityInput = document.querySelector(`input[name="quantity_${productId}"]`);
             const quantity = quantityInput.value;
 
-            if (quantity) {
+            if (quantity != 0) {
                 orders.push({productId: productId, quantity: quantity});
             }
         });
