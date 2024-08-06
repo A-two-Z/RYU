@@ -62,7 +62,7 @@ function ProductList() {
         console.log(orderDataString);
 
         // 데이터 전송
-        fetch(process.env.REACT_APP_AWS_URI+':8080/order', {
+        fetch(process.env.REACT_APP_AWS_URI+'/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
