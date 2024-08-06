@@ -82,7 +82,6 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {
-
 		for(MulMakeOrderDetail detail : orders.getOrders()){
 			Optional<MulProductSector> ps = psRepo.findById(detail.getProductSectorId());
 
