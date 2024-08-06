@@ -86,7 +86,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		for(MulMakeOrderDetail detail : orders.getOrders()){
 			Optional<MulProductSector> ps = psRepo.findById(detail.getProductSectorId());
 
-			psRepo.updateProductSectorQuantity(detail.getProductSectorId(), ps.get().getQuantity() - detail.getOrderQuantity());
+			psRepo.updateProductSectorQuantity(ps.get().getQuantity() - detail.getOrderQuantity(), detail.getProductSectorId());
 		}
 	}
 
