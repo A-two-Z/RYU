@@ -22,7 +22,7 @@ public interface MulProductSectorService {
 	// Read One
 	public Optional<MulProductSector> getPS(MulProductSector ps);
 	
-	// Product Id를 통해 section을 찾아오는 메소드
+	// Product Id를 통해 section을 찾아오는 메소드 ( & 오버 리딩)
 	public List<MulProductSector> getPSListToProduct(MulProduct product);
 	public List<MulProductSector> getPSListToProduct(int productId);
 

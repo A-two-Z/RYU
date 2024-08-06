@@ -8,7 +8,7 @@ function OrderList() {
     const [orderStatus, setOrderStatus] = useState('WAIT');
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_AWS_URI+':8080/order_Num')
+        fetch(process.env.REACT_APP_AWS_URI+'/order_Num')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

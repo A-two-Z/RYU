@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import com.ssafy.mulryuproject.servcie.MulOrderNumService;
@@ -27,4 +25,12 @@ public class MulOrderNumberCon {
 		
 		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
 	}
+
+//	@GetMapping("/status")
+//	public ResponseEntity<List<MulOrderNumber>> getOrderNumStatus(){
+//		List<MulOrderNumber> list =  service.getOrderNumberList();
+//
+//		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+//	}
+
 }
