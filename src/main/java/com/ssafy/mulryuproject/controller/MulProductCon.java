@@ -3,6 +3,8 @@ package com.ssafy.mulryuproject.controller;
 import java.util.List;
 import java.util.Optional;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,12 +24,17 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Product Controller", description = "Product 관련 데이터를 CRUD 하는 컨트롤러")
 @RequestMapping("/product")
 public class MulProductCon {
 	private final MulProductService service;
 
 	// Create
 	@PostMapping
+	@Operation(
+			summary = "product를 생성하는 메소드",
+			description = "product의 이름만 전송하면 자동으로 생성됩니다. Id는 auto-increased로 설정되어 클라이언트에서 ID를 전송하더라도 무시됩니다."
+	)
 	public ResponseEntity<MulProduct> saveProduct(@RequestBody MulProduct product) {
 		MulProductDTO productDto = new MulProductDTO();
 		productDto.setProductName(product.getProductName());
