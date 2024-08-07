@@ -25,6 +25,7 @@ public class MulMongoData {
 	private final MulSaveOrderToMongo service;
 
 	@GetMapping
+	@Operation(summary = "MongoDB에 저장된 모든 데이터를 가져옴", description = "현재까지 MongoDB에 저장된 모든 주문 데이터를 가져옵니다.")
 	public ResponseEntity<List<MulMakeOrder>> getOrderForDate(@RequestParam Date date) {
 		List<MulMakeOrder> list = service.getOrdersAfter(date);
 		return new ResponseEntity<>(list, HttpStatus.OK);

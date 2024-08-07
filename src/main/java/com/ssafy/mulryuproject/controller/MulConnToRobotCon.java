@@ -41,7 +41,7 @@ public class MulConnToRobotCon {
     )
 	@io.swagger.v3.oas.annotations.parameters.RequestBody(
 			required = true,
-			description = "MulOrderNumber의 값을 받아옵니다. 실제로 전송되는 데이터는 orderNumberId 하나 뿐이어도 정상적으로 작동합니다.\n"
+			description = "MulOrderNumber의 값을 받아옵니다. 실제로 전송되는 데이터는 orderNumber 하나 뿐이어도 정상적으로 작동합니다.\n"
 					+ "Id의 값은 반드시 1 이상이여야 하며, status=Delivery 인 orderNumber를 가져오려 하면 서버 내부적으로 무시됩니다."
 			)
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody MulOrderNumber orderNumber) { //
