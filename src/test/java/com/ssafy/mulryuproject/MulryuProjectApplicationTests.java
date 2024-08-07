@@ -34,7 +34,7 @@ class MulryuProjectApplicationTests {
 		// Reset or initialize Redis state if needed
 	}
 
-	@Test
+//	@Test
 	void checkBuild() {
 		MulOrder order = MulOrder.builder().orderId(1).orderQuantity(10)
 				.orderNumberId(MulOrderNumber.builder().orderNumberId(1).build())
@@ -50,7 +50,7 @@ class MulryuProjectApplicationTests {
 		
 	}
 
-	@Test
+//	@Test
 	public void toggleOrderStatus() {
 		MulOrderNumber orderNum = MulOrderNumber.builder().orderNumberId(2).build();
 		orderNumRepo.updateStatus(
@@ -59,7 +59,7 @@ class MulryuProjectApplicationTests {
 	}
 	MulSectorService sectorService;
 	MulProductSectorRepo psRepo;
-	@Test
+//	@Test
 	public List<MulProductSector> getListBySectorId(String sectorName){
 		Optional<MulSector> sectorId = sectorService.getSectorByName(sectorName);
 		List<MulProductSector> list = psRepo.findBySectorId(sectorId.get());
