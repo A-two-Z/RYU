@@ -53,7 +53,7 @@ public class MulOrderCon {
 		// Order를 Json으로 받아옴
 		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
 		
-		// 우선 orderNumber를 통해 orderNumberTable에 OrderNumber를 저장함
+		// 우선 orderNumberTable에 OrderNumber를 저장함
 		String orderNumber = jsonObject.get("orderNum").getAsString();
 
 		// OrderNumber 테이블에 orderNumber를 저장한다

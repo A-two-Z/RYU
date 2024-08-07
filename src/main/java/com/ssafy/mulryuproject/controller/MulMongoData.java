@@ -3,6 +3,7 @@ package com.ssafy.mulryuproject.controller;
 import java.util.Date;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class MulMongoData {
 	}
 
 	@GetMapping("/data")
+	@Operation(summary = "MongoDB에서 가장 마지막으로 저장된 데이터를 가져옴", description = "해당 메소드 호출 기준 가장 최근에 저장된 데이터 불러오기")
 	public ResponseEntity<MulMakeOrder> getLastData() {
 		return new ResponseEntity<>(service.getLastData(), HttpStatus.OK);
 	}
