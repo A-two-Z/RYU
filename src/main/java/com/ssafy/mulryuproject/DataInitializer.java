@@ -4,6 +4,7 @@ import java.util.List;
 import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -54,4 +55,12 @@ public class DataInitializer implements CommandLineRunner {
         }
 
     }
+
+    @PreDestroy
+    public void onDestroy() {
+        System.out.println("컨테이너가 종료됩니다.");
+        // 종료 전에 수행할 작업
+    }
+
+
 }
