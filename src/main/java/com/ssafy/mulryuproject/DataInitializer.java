@@ -1,6 +1,7 @@
 package com.ssafy.mulryuproject;
 import java.util.List;
 
+import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
 import lombok.RequiredArgsConstructor;
@@ -34,19 +35,19 @@ public class DataInitializer implements CommandLineRunner {
         // MulProduct 테이블의 모든 데이터를 Redis에 저장
         List<MulProduct> products = productRepository.findAll();
         for (MulProduct product : products) {
-            redisTemplate.opsForValue().set("product_" + product.getProductId(), product.getProductName());
+            redisTemplate.opsForValue().set(RedisConstants.PRODUCT + product.getProductId(), product.getProductName());
         }
 
         // MulSelect 테이블의 모든 데이터를 Redis에 저장
         List<MulSector> sectors = sectorRepository.findAll();
         for (MulSector sector : sectors) {
-            redisTemplate.opsForValue().set("sector_" + sector.getSectorId(), sector.getSectorName());
+            redisTemplate.opsForValue().set(RedisConstants.SECTOR + sector.getSectorId(), sector.getSectorName());
         }
 
         // MulProductSector 테이블의 모든 데이터를 Redis에 저장
         List<MulProductSector> productSectors = productSectorRepo.findAll();
         for(MulProductSector ps : productSectors){
-            String psId = "productSector_"+ps.getProductSectorId();
+            String psId = RedisConstants.PRODUCTSECTOR+ps.getProductSectorId();
             String quantity = Integer.toString(ps.getQuantity());
 
             redisTemplate.opsForValue().set(psId,quantity);

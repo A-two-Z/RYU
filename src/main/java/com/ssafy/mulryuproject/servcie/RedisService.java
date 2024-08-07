@@ -9,5 +9,7 @@ public interface RedisService {
 	String getProductName(int key);
 
 	String getSectorName(int key);
+	
+	String getProductSector(int key);
 
 }
