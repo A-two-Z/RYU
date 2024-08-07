@@ -35,9 +35,10 @@ function OrderList() {
 
     const buttonText = orderStatus === 'WAIT' ? '전송' : '전송 완료';
     const isDisabled = orderStatus === 'DELIVERY';
-    function sendOrder(){
-        const orderNumber = document.getElementById('order-number').innerText;
-        const orderButton = document.getElementById('order-button');
+    function sendOrder(index){
+        const orderNumber = index;
+
+        console.log(orderNumber);
 
         fetch(process.env.REACT_APP_AWS_URI+'/MulToRobot/orderToQ', {
             method: 'POST',
@@ -46,7 +47,7 @@ function OrderList() {
             },
             body: JSON.stringify({
                 'orderNumber': orderNumber})
-        })
+            })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -77,7 +78,7 @@ function OrderList() {
                     <tr id="order-row">
                         <td id="order-id">{order.orderNumberId}</td>
                         <td id="order-number">{order.orderNumber}</td>
-                        <td><button id="order-button" onClick={sendOrder} disabled={order.orderStatus === 'DELIVERY'}>{order.orderStatus}</button ></td>
+                        <td><button id="order-button" onClick={() => sendOrder(order.orderNumber)} disabled={order.orderStatus === 'DELIVERY'}>{order.orderStatus}</button ></td>
                     </tr>
                 ))}
                 </tbody>
