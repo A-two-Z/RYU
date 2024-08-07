@@ -1,6 +1,9 @@
 package com.ssafy.mulryuproject;
 import java.util.List;
 
+import com.ssafy.mulryuproject.entity.MulProductSector;
+import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,10 +21,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private MulProductRepo productRepository;
-
     @Autowired
     private MulSectorRepo sectorRepository;
-
+    @Autowired
+    private MulProductSectorRepo productSectorRepo;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
@@ -39,5 +42,15 @@ public class DataInitializer implements CommandLineRunner {
         for (MulSector sector : sectors) {
             redisTemplate.opsForValue().set("sector_" + sector.getSectorId(), sector.getSectorName());
         }
+
+        // MulProductSector 테이블의 모든 데이터를 Redis에 저장
+        List<MulProductSector> productSectors = productSectorRepo.findAll();
+        for(MulProductSector ps : productSectors){
+            String psId = "productSector_"+ps.getProductSectorId();
+            String quantity = Integer.toString(ps.getQuantity());
+
+            redisTemplate.opsForValue().set(psId,quantity);
+        }
+
     }
 }
