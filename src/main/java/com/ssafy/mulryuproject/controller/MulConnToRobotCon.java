@@ -8,10 +8,7 @@ import com.ssafy.mulryuproject.servcie.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.Gson;
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
@@ -73,6 +70,15 @@ public class MulConnToRobotCon {
 
 		// 몽고 DB에도 저장
 		saveOrderService.saveRobotOrderToMongo(robot);
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@GetMapping("Test")
+	public ResponseEntity<List<MulOrder>> Test() {
+
+		int lenth = clear.length();
+		System.out.println(lenth);
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

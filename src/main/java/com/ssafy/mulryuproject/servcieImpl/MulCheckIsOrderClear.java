@@ -34,30 +34,38 @@ public class MulCheckIsOrderClear {
     // 각 데이터 항목의 만료 작업을 추적하기 위한 맵
     private final static Map<String, ScheduledFuture<?>> expirationTasks = new ConcurrentHashMap<>();
 
-    private MulSaveOrderToMongo mongo;
-    private MulProductSectorService productSector;
-    private RedisService redisService;
-    private MulOrderNumService orderNumService;
+    private final MulSaveOrderToMongo mongo; // final 안 붙여서 null.............왜???
+    private final MulProductSectorService productSector;
+    private final RedisService redisService;
+    private final MulOrderNumService orderNumService;
 
     // 데이터를 저장하고, TTL(시간 제한)을 설정하는 메서드
     public void orderNumberPut(String orderNumber) {
         // 데이터를 HashSet에 저장
         IsOrderClear.add(orderNumber);
-        System.out.println("orderNumber : "+orderNumber);
         // TTL이 지나면 데이터 삭제 작업을 스케줄링합니다
         ScheduledFuture<?> future = scheduler.schedule(() -> {
             // TTL이 지나면 데이터가 삭제되고 API 호출
-            if (IsOrderClear.remove(orderNumber)) {
+            boolean isRemove = IsOrderClear.remove(orderNumber);
+            if(isRemove){
                 MulMakeOrder order = mongo.findByOrderNumberId(orderNumber);
                 for(MulMakeOrderDetail psId : order.getOrders()){
                     falseRobot(orderNumber, psId);
                 }
             }
-            System.out.println("isFinish?");
-        }, 10, TimeUnit.SECONDS); // (Test용 30초) 1시간 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
+        }, 10, TimeUnit.SECONDS); // (Test용 10초) 1시간 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
         // 만료 작업을 추적하기 위한 ScheduledFuture 저장
         expirationTasks.put(orderNumber, future);
-        System.out.println(future.toString());
+
+    }
+
+    public int length(){
+        System.out.println("Set의 갯수: "+IsOrderClear.size());
+        System.out.println("set 내부에 남아있는 정보: "+IsOrderClear.toString());
+        MulMakeOrder order = mongo.findByOrderNumberId("20240808143515");
+        System.out.println(order.toString());
+
+        return expirationTasks.size();
     }
 
     // 데이터를 조회하고 삭제하는 메서드
@@ -72,6 +80,8 @@ public class MulCheckIsOrderClear {
             // 데이터가 삭제되면 만료 타이머를 취소
             expirationTasks.remove(orderNumber).cancel(false);
             System.out.println(orderNumber+"이 정상적으로 배달되었습니다.");
+        }else{
+            System.out.println("정상적인 번호가 아닙니다. 번호를 확인해주세요.");
         }
 
         return exists; // 조회된 데이터 존재 여부 반환
