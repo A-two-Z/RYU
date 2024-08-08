@@ -74,23 +74,20 @@ public class MulConnToRobotCon {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@GetMapping("Test")
-	public ResponseEntity<List<MulOrder>> Test() {
-
-		int lenth = clear.length();
-		System.out.println(lenth);
-
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
+	@Operation(
+			summary = "Robot 서버로부터 완료된 OrderNumber를 받아오는 API",
+			description = "MulCheckIsOrderClear 클래스의 orderNumberPut 메소드에 구현된 스케줄러를 통해 일정 시간 내로" +
+					"Robot 서버에서 OrderNumber를 받아오지 못한다면 해당 order는 성공하지 못한 것으로 판단하여 Redis를 롤백합니다."
+	)
+	@io.swagger.v3.oas.annotations.parameters.RequestBody(
+			required = true,
+			description = "OrderNumber와 status 값을 받아옵니다."
+	)
 	@PostMapping("status")
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody String getOrder) {
-		System.out.println("OK");
-		System.out.println(getOrder);
-
 		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
-		Gson gson = new Gson();
 
+		Gson gson = new Gson();
 		MulOrderNumber mul = gson.fromJson(getOrder, MulOrderNumber.class);
 
 //		System.out.println("Mul Order Number: " + mul.toString());
