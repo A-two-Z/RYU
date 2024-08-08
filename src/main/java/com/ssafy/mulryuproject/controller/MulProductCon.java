@@ -45,6 +45,10 @@ public class MulProductCon {
 
 	// Read List
 	@GetMapping
+	@Operation(
+			summary = "product를 가져오는 메소드",
+			description = "product 리스트를 가져옵니다."
+	)
 	public ResponseEntity<List<MulProduct>> getProductList() {
 		List<MulProduct> productList = service.getProductList();
 
@@ -57,6 +61,10 @@ public class MulProductCon {
 
 	// Read One
 	@GetMapping("/product_{id}")
+	@Operation(
+			summary = "product 하나를 가져오는 메소드",
+			description = "id를 전송하면 product 하나의 기능을 가져옵니다."
+	)
 	public ResponseEntity<MulProduct> getProductOne(@PathVariable int id) {
 		MulProduct product = MulProduct.builder().productId(id).build();
 		Optional<MulProduct> productOne = service.getProduct(product);
@@ -68,6 +76,10 @@ public class MulProductCon {
 
 	// Update
 	@PutMapping
+	@Operation(
+			summary = "product를 업데이트 하는 메소드",
+			description = "product를 업데이트 합니다."
+	)
 	public ResponseEntity<MulProduct> updateProduct(@RequestBody MulProduct product) {
 		MulProduct savedEntity = service.updateProduct(product);
 		return ResponseEntity.ok(savedEntity);
@@ -75,6 +87,10 @@ public class MulProductCon {
 
 	// Delete
 	@DeleteMapping("/{id}")
+	@Operation(
+			summary = "product를 삭제 하는 메소드",
+			description = "product를 삭제 합니다."
+	)
 	public ResponseEntity<MulProduct> deleteProduct(@PathVariable int id) {
 		boolean deleteEntity = service.deleteProductById(id);
 		return (deleteEntity ? new ResponseEntity<>(HttpStatus.ACCEPTED)

@@ -31,8 +31,8 @@ public class MulSectorCon {
 	@GetMapping
     @Operation(
             summary = "Sector의 정보를 받아오는 API",
-            description = "Sector의 이름 정보를 받아오는 API입니다. sector의 경우 24.08.06 기준 15개의 sector가 있으며" +
-                    "sector의 이름은 S001 ~ S015 까지 존재합니다."
+            description = "Sector의 이름 정보를 받아오는 API입니다. sector의 경우 24.08.08 기준 6개의 sector가 있으며" +
+                    "sector의 이름은 A001, B001 ~ B003, C001 ~ C002 까지 존재합니다."
     )
     public ResponseEntity<List<MulSector>> getSectorList(){
         List<MulSector> sectorInfo = sectorService.getSectorList();
