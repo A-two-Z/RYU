@@ -21,7 +21,8 @@ public interface MulProductSectorService {
 	
 	// Read One
 	public Optional<MulProductSector> getPS(MulProductSector ps);
-	
+	public Optional<MulProductSector> getPS(int psId);
+
 	// Product Id를 통해 section을 찾아오는 메소드 ( & 오버 리딩)
 	public List<MulProductSector> getPSListToProduct(MulProduct product);
 	public List<MulProductSector> getPSListToProduct(int productId);
@@ -31,11 +32,15 @@ public interface MulProductSectorService {
 
 	// Update
 	public MulProductSector updatePS(MulProductSector ps);
+
+	//Redis에 업데이트 하는 메소드
 	public void updateQuantity(MulMakeOrder orders);
 
-	// 수량 업데이트 하는 메소드
+	// 수량 업데이트 하는 메소드(List 형식으로 되어있을 때 사용)
 	public void updatePSQunatity(MulProductSector ps);
-	
+	// 데이터를 한 개씩 업데이트 할 때 사용(현재는 서버가 종료될 때 Redis에 저쟁되어 있던 quantity DB에 저장할 떄 사용)
+	public void updatePSQunatity(int quantity, int id);
+
 	// Delete
 	public boolean deletePStById(Integer id);
 

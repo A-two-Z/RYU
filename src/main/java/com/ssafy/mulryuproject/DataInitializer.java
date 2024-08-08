@@ -1,13 +1,19 @@
 package com.ssafy.mulryuproject;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import com.ssafy.mulryuproject.servcie.MulProductSectorService;
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +25,7 @@ import com.ssafy.mulryuproject.repository.MulSectorRepo;
 import jakarta.transaction.Transactional;
 
 @Component
-public class DataInitializer implements CommandLineRunner {
+public class DataInitializer implements CommandLineRunner, ApplicationListener<ContextClosedEvent> {
 
     @Autowired
     private MulProductRepo productRepository;
@@ -27,6 +33,8 @@ public class DataInitializer implements CommandLineRunner {
     private MulSectorRepo sectorRepository;
     @Autowired
     private MulProductSectorRepo productSectorRepo;
+    @Autowired
+    private MulProductSectorService productSectorService;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
@@ -56,11 +64,24 @@ public class DataInitializer implements CommandLineRunner {
 
     }
 
-    @PreDestroy
-    public void onDestroy() {
-        System.out.println("컨테이너가 종료됩니다.");
-        // 종료 전에 수행할 작업
+    @Override
+    public void onApplicationEvent(ContextClosedEvent event) {
+        // 종료 전에 Redis에 저장되어 있었던 모든 Quantity 저장
+
+        Set<String> keys = redisTemplate.keys(RedisConstants.PRODUCTSECTOR+"*");
+
+        if (keys != null) {
+            for (String key : keys) {
+                int quantity = Integer.parseInt(
+                        redisTemplate.opsForValue().get(key)
+                );
+                int processedKey = Integer.parseInt(
+                        key.substring(RedisConstants.PRODUCTSECTOR.length())
+                );
+                Optional<MulProductSector> sec = productSectorService.getPS(processedKey);
+                productSectorService.updatePSQunatity(quantity, processedKey);
+            }
+        }
+
     }
-
-
 }

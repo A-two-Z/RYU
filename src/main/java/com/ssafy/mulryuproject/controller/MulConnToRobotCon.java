@@ -2,7 +2,10 @@ package com.ssafy.mulryuproject.controller;
 
 import java.util.List;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.ssafy.mulryuproject.servcie.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import com.ssafy.mulryuproject.entity.MulOrderNumber;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import com.ssafy.mulryuproject.servcieImpl.MulCheckIsOrderClear;
 
 // 서버 간 통신 담당 Controller
 
@@ -31,7 +35,10 @@ public class MulConnToRobotCon {
 	private final MulTransmitOrderService transmitService;
 	private final MulOrderNumService onService;
 	private final MulProductSectorService psService;
-	
+
+	private final MulCheckIsOrderClear clear;
+	private final MulCheckIsOrderClear IsOrderClear;
+
 	// 중요! RabbitMQ로 전달하는 메소드
 	@PostMapping("/orderToQ")
 	@Operation(
@@ -46,21 +53,20 @@ public class MulConnToRobotCon {
 			)
 	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody MulOrderNumber orderNumber) { //
 
-		long beforeTime = System.currentTimeMillis();
-		System.out.println(orderNumber.toString());
-		MulMakeOrder robot = toMakeOrderService.makeOrder(orderNumber); 
+		MulMakeOrder robot = toMakeOrderService.makeOrder(orderNumber);
 		
 		Gson jsonToRobot = new Gson();
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
 		// 0729 Ssafy Wifi에서 통신 불가능
-		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
+//		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
+
+		// 내부적으로 실행
+		IsOrderClear.orderNumberPut(orderNumber.getOrderNumber());
 
 		// 0724 LHJ orderStatus를 Toggle 형식으로 바꿈
 		MulOrderNumber on = onService.getOrderNumber(orderNumber);
-		System.out.println(on.toString());
 		onService.toggleOrderStatus(on);
-		System.out.println(robotOrderToJson);
 
 		// rabbitMQ에 보내게 되면 업데이트
 		psService.updateQuantity(robot);
@@ -68,10 +74,23 @@ public class MulConnToRobotCon {
 		// 몽고 DB에도 저장
 		saveOrderService.saveRobotOrderToMongo(robot);
 
-		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
-		long secDiffTime = (afterTime - beforeTime)/1000; //두 시간에 차 계산
-		System.out.println("시간차이(m) : "+secDiffTime);
-		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@PostMapping("status")
+	public ResponseEntity<List<MulOrder>> orderToQ(@RequestBody String getOrder) {
+		System.out.println("OK");
+		System.out.println(getOrder);
+
+		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
+		Gson gson = new Gson();
+
+		MulOrderNumber mul = gson.fromJson(getOrder, MulOrderNumber.class);
+
+//		System.out.println("Mul Order Number: " + mul.toString());
+
+		clear.orderNumberClear(mul.getOrderNumber());
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

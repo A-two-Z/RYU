@@ -2,11 +2,12 @@ package com.ssafy.mulryuproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.ssafy.mulryuproject.dto.MulSectorDTO;
+import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.entity.*;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
 import com.ssafy.mulryuproject.repository.MulOrderNumRepo;
 import com.ssafy.mulryuproject.repository.MulProductSectorRepo;
+import com.ssafy.mulryuproject.servcie.MulProductSectorService;
 import com.ssafy.mulryuproject.servcie.MulSectorService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ssafy.mulryuproject.servcie.RedisService;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @SpringBootTest
 @RequiredArgsConstructor
@@ -64,6 +68,29 @@ class MulryuProjectApplicationTests {
 		Optional<MulSector> sectorId = sectorService.getSectorByName(sectorName);
 		List<MulProductSector> list = psRepo.findBySectorId(sectorId.get());
 		return list;
+	}
+
+//	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+//
+//	@Autowired
+	private MulProductSectorService prosec;
+
+//	@Test
+	public void Redis(){
+		Set<String> keys = redisTemplate.keys(RedisConstants.PRODUCTSECTOR+"*");
+		if (keys != null) {
+			for (String key : keys) {
+				String value = redisTemplate.opsForValue().get(key);
+				String processedKey = key.substring(RedisConstants.PRODUCTSECTOR.length());
+				System.out.println("Key: " + processedKey + ", Value: " + value);
+				Optional<MulProductSector> sec = prosec.getPS(Integer.parseInt(processedKey));
+				System.out.println(sec);
+			}
+
+		} else {
+			System.out.println("No keys found.");
+		}
 	}
 
 //	@Test

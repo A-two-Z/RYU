@@ -2,7 +2,7 @@ spring:
   application:
     name: mulryuProject
   datasource:
-#  TestDB로 이전 PJT MariaDB 연동
+    #  TestDB로 이전 PJT MariaDB 연동
     url: ${MARIA_URI}
     username: ${MARIA_USERNAME}
     password: ${MARIA_PASSWORD}
