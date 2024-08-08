@@ -34,8 +34,10 @@ function ProductList() {
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-        return `${year}${month}${day}${hours}${minutes}${seconds}`;
+        const milliseconds = String(now.getMilliseconds()).padStart(3, '0'); // 3자리로 패딩
+        return `${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
     }
+
 
     function submitOrder() {
         const orders = [];
