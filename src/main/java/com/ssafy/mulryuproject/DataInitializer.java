@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ssafy.mulryuproject.entity.MulProduct;
@@ -23,6 +24,8 @@ import com.ssafy.mulryuproject.repository.MulProductRepo;
 import com.ssafy.mulryuproject.repository.MulSectorRepo;
 
 import jakarta.transaction.Transactional;
+
+// 서버가 실행될 때, 1시간 단위로 업데이트, 서버가 종료될 때 실행되는 메소드를 다루는 클래스입니다.
 
 @Component
 public class DataInitializer implements CommandLineRunner, ApplicationListener<ContextClosedEvent> {
@@ -36,7 +39,7 @@ public class DataInitializer implements CommandLineRunner, ApplicationListener<C
     @Autowired
     private MulProductSectorService productSectorService;
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate; // IntelliJ를 사용할 시 Error표시가 날 수 있으나, 정상 작동합니다.
 
     @Override
     @Transactional
@@ -62,6 +65,24 @@ public class DataInitializer implements CommandLineRunner, ApplicationListener<C
             redisTemplate.opsForValue().set(psId,quantity);
         }
 
+    }
+
+    @Scheduled(fixedRate = 3600000) // 1시간마다 실행
+    public void saveDBForOneHour(){
+        Set<String> keys = redisTemplate.keys(RedisConstants.PRODUCTSECTOR+"*");
+
+        if (keys != null) {
+            for (String key : keys) {
+                int quantity = Integer.parseInt(
+                        redisTemplate.opsForValue().get(key)
+                );
+                int processedKey = Integer.parseInt(
+                        key.substring(RedisConstants.PRODUCTSECTOR.length())
+                );
+                Optional<MulProductSector> sec = productSectorService.getPS(processedKey);
+                productSectorService.updatePSQunatity(quantity, processedKey);
+            }
+        }
     }
 
     @Override

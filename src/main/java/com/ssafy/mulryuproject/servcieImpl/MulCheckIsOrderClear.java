@@ -59,15 +59,6 @@ public class MulCheckIsOrderClear {
 
     }
 
-    public int length(){
-        System.out.println("Set의 갯수: "+IsOrderClear.size());
-        System.out.println("set 내부에 남아있는 정보: "+IsOrderClear.toString());
-        MulMakeOrder order = mongo.findByOrderNumberId("20240808143515");
-        System.out.println(order.toString());
-
-        return expirationTasks.size();
-    }
-
     // 데이터를 조회하고 삭제하는 메서드
     // 이 경우는 로봇 서버로부터 orderNumber 데이터를 받아오기 때문에
     // 이 서버가 다운되더라도 db의 값은 정상적으로 update 된다
