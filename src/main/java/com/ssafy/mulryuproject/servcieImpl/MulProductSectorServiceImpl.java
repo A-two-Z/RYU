@@ -82,9 +82,9 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 			String sectorName = ps.getSectorId().getSectorName();
 			String productName = ps.getProductId().getProductName();
 
-			System.out.println(redisTemplate.opsForValue().get(RedisConstants.PRODUCTSECTOR+ps.getProductSectorId()));
+			String nowQuantity = redisTemplate.opsForValue().get(RedisConstants.PRODUCTSECTOR+ps.getProductSectorId());
 
-			int quantity = ps.getQuantity();
+			int quantity = Integer.parseInt(nowQuantity);
 
 			map.computeIfAbsent(sectorName, k -> new ArrayList<>())
 					.add(new MulSectorData(productName, quantity));

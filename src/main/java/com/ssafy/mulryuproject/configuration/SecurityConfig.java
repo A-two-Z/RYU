@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
-@Configuration
+//@EnableWebSecurity
+//@Configuration
 public class SecurityConfig {
 
     @Value("${spring.security.user.name}")
@@ -32,7 +32,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/product").permitAll() // /product 경로는 인증 없이 접근 허용
                                 .requestMatchers("/order").permitAll() // /order 경로는 인증 필요 (임시로 인증 없이 접근 허용)
-                                .anyRequest().authenticated() // 나머지 모든 경로는 인증 필요
+                                .anyRequest().permitAll() // 나머지 모든 경로는 인증 필요
                 )
                 .formLogin(formLogin ->
                         formLogin.permitAll() // 로그인 페이지는 누구나 접근 가능
@@ -44,20 +44,20 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.builder()
-                .username(username)
-                .password(passwordEncoder().encode(password)) // 환경 변수로부터 읽은 비밀번호를 인코딩하여 설정
-                .roles("admin")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // BCryptPasswordEncoder를 빈으로 설정
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        UserDetails user = User.builder()
+//                .username(username)
+//                .password(passwordEncoder().encode(password)) // 환경 변수로부터 읽은 비밀번호를 인코딩하여 설정
+//                .roles("admin")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder(); // BCryptPasswordEncoder를 빈으로 설정
+//    }
 
 }
