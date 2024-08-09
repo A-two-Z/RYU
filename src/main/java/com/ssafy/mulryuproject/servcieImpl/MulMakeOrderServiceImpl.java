@@ -3,7 +3,6 @@ package com.ssafy.mulryuproject.servcieImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,15 +10,11 @@ import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
 import com.ssafy.mulryuproject.entity.MulMakeOrder;
 import com.ssafy.mulryuproject.entity.MulOrder;
 import com.ssafy.mulryuproject.entity.MulOrderNumber;
-import com.ssafy.mulryuproject.entity.MulProduct;
 import com.ssafy.mulryuproject.entity.MulProductSector;
-import com.ssafy.mulryuproject.entity.MulSector;
 import com.ssafy.mulryuproject.servcie.MulMakeOrderService;
 import com.ssafy.mulryuproject.servcie.MulOrderNumService;
 import com.ssafy.mulryuproject.servcie.MulOrderService;
 import com.ssafy.mulryuproject.servcie.MulProductSectorService;
-import com.ssafy.mulryuproject.servcie.MulProductService;
-import com.ssafy.mulryuproject.servcie.MulSectorService;
 import com.ssafy.mulryuproject.servcie.RedisService;
 
 import lombok.RequiredArgsConstructor;
@@ -55,15 +50,20 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		for(MulOrder order : orders) {
 //			MulProduct product = productService.getProduct(order).get();
 			int productId = order.getProductId().getProductId();
+
+			// product의 이름을 받아옴
 			String product = redisService.getProductName(productId);
-			
+
+			// product들이 들어있는 sector들을 받아옴
 			List<MulProductSector> sectors = psService.getPSListToProduct(productId);
+
+			// sector 중 하나를 선택
 			MulProductSector sector = getSector(sectors, order.getOrderQuantity());
 
 			// 0729 LHJ 남아있는 sector가 없으면 오류 던짐
 			ExceptionUtils.throwIfSectorIsNull(sector);
 
-			MulMakeOrderDetail detail = createToRobot(order, product, sector);
+			MulMakeOrderDetail detail = createOrderToRobot(order, product, sector);
 
 			list.add(detail);
 		}
@@ -108,7 +108,7 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 	// 0723 LHJ 
 	// {orderId: 1, product Name: "name", "sector Name": "sector", "orderQuantity" : 20} 하나를 만드는 메소드
 	// 이 클래스 내부에서만 사용된다.
-	private MulMakeOrderDetail createToRobot(MulOrder order, String productName, MulProductSector sector) {
+	private MulMakeOrderDetail createOrderToRobot(MulOrder order, String productName, MulProductSector sector) {
 
 		
 		// MariaDB에서 받아옴

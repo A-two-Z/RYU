@@ -18,7 +18,8 @@ import jakarta.transaction.Transactional;
 public interface MulProductSectorRepo extends JpaRepository<MulProductSector, Integer>{
 	
 	List<MulProductSector> findByProductIdOrderBySectorId(MulProduct productId);
-	
+
+
 	@Modifying(clearAutomatically = true)
     @Transactional
     @Query("update MulProductSector m set m.quantity = :newQuantity where m.productSectorId = :id")

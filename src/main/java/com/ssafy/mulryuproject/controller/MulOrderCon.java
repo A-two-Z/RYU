@@ -42,26 +42,27 @@ import lombok.RequiredArgsConstructor;
 public class MulOrderCon {
 
 	private final MulOrderService orderService;
-	private final MulSaveOrderToMongo mongoOrderService;
 	private final MulOrderNumService orderNumservice;
 
 	// Create
 	@PostMapping
 	@Operation(summary = "주문을 생성하는 메소드", description = "한 개의 주문을 생성하는 메소드입니다.")
-	@io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "Json 형식으로 받아온 뒤, 클래스 내부에서 Json 데이터를 파싱하는 형식입니다.", content = @Content(schema = @Schema(type = "object"), examples = @ExampleObject(name = "Order Example", value = "{ \"orders\": [ { \"productId\": 0, \"quantity\": 0 }, { \"productId\": 0, \"quantity\": 0 } ], \"orderNumber\": 0 }")))
+	@io.swagger.v3.oas.annotations.parameters.RequestBody(
+			required = true,
+			description = "Json 형식으로 받아온 뒤, 클래스 내부에서 Json 데이터를 파싱하는 형식입니다.",
+			content = @Content(schema = @Schema(type = "object"),
+					examples = @ExampleObject(name = "Order Example",
+							value = "{ \"orders\": [ { \"productId\": 0, \"quantity\": 0 }, { \"productId\": 0, \"quantity\": 0 } ], \"orderNumber\": 0 }")))
 	public ResponseEntity<MulOrder> createOrder(@RequestBody String getOrder) {
 		// Order를 Json으로 받아옴
 		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
 		
-		// 우선 orderNumber를 통해 orderNumberTable에 OrderNumber를 저장함
+		// orderNumberTable에 OrderNumber를 저장한다
 		String orderNumber = jsonObject.get("orderNum").getAsString();
-
-		// OrderNumber 테이블에 orderNumber를 저장한다
-		orderNumservice.saveOrderNum(MulOrderNumber.builder().orderNumber(orderNumber).build());
+		MulOrderNumber saveNumber = orderNumservice.saveOrderNum(MulOrderNumber.builder().orderNumber(orderNumber).build());
 		
 		// 테이블에 저장된 orderNumber를 통해 OrderNumber 테이블의 PK를 가져온다
-		int orderNumberId = orderNumservice.getOrderNumber(MulOrderNumber.builder().orderNumber(orderNumber).build())
-				.getOrderNumberId();
+		int orderNumberId = saveNumber.getOrderNumberId();
 
 		JsonArray ordersArray = jsonObject.getAsJsonArray("orders");
 		
@@ -86,7 +87,7 @@ public class MulOrderCon {
 							.build())
 					.build();
 			
-			System.out.println(saveOrder.toString());
+//			System.out.println(saveOrder.toString());
 			
 			orderService.saveOrder(saveOrder);
 		}
@@ -117,16 +118,6 @@ public class MulOrderCon {
 				: new ResponseEntity<>(orderOne.get(), HttpStatus.OK);
 	}
 
-	// MongoDB로부터 특정 시점 이후의 order 데이터를 가져옴
-	@GetMapping("/after")
-	@Operation(summary = "로봇에게 전달된 order를 특정 시점 이후로 모든 메소드", description = "orderId를 통해 하나의 주문을 가져오는 메소드 입니다.")
-	@Parameter(description = "date 파라미터를 받아오며, 파라미터의 ")
-	public ResponseEntity<List<MulMakeOrder>> getOrdersAfter(
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-		List<MulMakeOrder> list = mongoOrderService.getOrdersAfter(date);
-		return list.size() <= 0 ? new ResponseEntity<>(HttpStatus.BAD_GATEWAY)
-				: new ResponseEntity<>(list, HttpStatus.OK);
-	}
 
 	// getStatusList
 	/*

@@ -1,5 +1,6 @@
 package com.ssafy.mulryuproject.servcieImpl;
 
+import com.ssafy.mulryuproject.constants.RedisConstants;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +26,18 @@ public class RedisServiceImpl implements RedisService {
     
     @Override
 	public String getProductName(int key) {
-        return redisTemplate.opsForValue().get("product_"+key);
+        return redisTemplate.opsForValue().get(RedisConstants.PRODUCT +key);
     }
     
     @Override
 	public String getSectorName(int key) {
-        return redisTemplate.opsForValue().get("sector_"+key);
+        return redisTemplate.opsForValue().get(RedisConstants.SECTOR+key);
     }
-    
-    
-    
+
+    @Override
+    public String getProductSector(int key) {
+        return redisTemplate.opsForValue().get(RedisConstants.PRODUCTSECTOR+key);
+    }
+
+
 }

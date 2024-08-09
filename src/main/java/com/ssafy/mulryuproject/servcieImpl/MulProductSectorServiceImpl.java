@@ -2,8 +2,11 @@ package com.ssafy.mulryuproject.servcieImpl;
 
 import java.util.*;
 
+import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.data.MulSectorData;
 import com.ssafy.mulryuproject.dto.MulSectorDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mulryuproject.data.MulMakeOrderDetail;
@@ -50,6 +53,11 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		else
 			return Optional.empty();
 	}
+	@Override
+	public Optional<MulProductSector> getPS(int psId){
+		return psRepo.findById(psId);
+	}
+
 
 	@Override
 	public MulProductSector updatePS(MulProductSector ps) {
@@ -79,24 +87,34 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 		return map;
 	}
-	
+
+	@Autowired
+	RedisTemplate<String, String> redisTemplate;
+
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {
 
-		for(MulMakeOrderDetail detail : orders.getOrders()){
-			Optional<MulProductSector> ps = psRepo.findById(detail.getProductSectorId());
+		for(MulMakeOrderDetail order : orders.getOrders()){
+			// Redis의 Key값을 가져온다.
+			String psId = RedisConstants.PRODUCTSECTOR + order.getProductSectorId();
+			System.out.println("MulProductSectorServiceImpl의 updateQuantity 메소드: "+psId);
+			// Redis에 저장된 Product Sector의 현재 수량을 가져온다.
+			int nowQuantity = Integer.parseInt(
+					redisTemplate.opsForValue().get(psId)
+				);
 
-			MulProductSector quantityUp = MulProductSector.builder()
-					.productSectorId(detail.getProductSectorId())
-					.quantity(
-							ps.get().getQuantity() - detail.getOrderQuantity()
-					)
-			.build();
+			// nowQuantity(현재 수량) - 주문한 수량
+			String quantity = Integer.toString(nowQuantity - order.getOrderQuantity());
 
-			psRepo.save(quantityUp);
+			// redis에 업데이트
+			redisTemplate.opsForValue().set(psId,quantity);
 		}
 	}
 
+	@Override
+	public void updatePSQunatity(int quantity, int id) {
+		psRepo.updateProductSectorQuantity(quantity, id);
+	}
 
 	@Override
 	public boolean deletePStById(Integer id) {

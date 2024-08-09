@@ -2,6 +2,7 @@ package com.ssafy.mulryuproject.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class MulOrderNumberCon {
 	private final MulOrderNumService service;
 	
 	@GetMapping
+	@Operation(summary = "주문 번호 전체를 받아오는 API")
 	public ResponseEntity<List<MulOrderNumber>> getOrderNumList(){
 		List<MulOrderNumber> list =  service.getOrderNumberList();
 		

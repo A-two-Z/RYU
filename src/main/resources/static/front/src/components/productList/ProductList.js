@@ -9,7 +9,7 @@ function ProductList() {
     const [orderQuantities, setOrderQuantities] = useState({});
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_AWS_URI+':8080/product')
+        fetch(process.env.REACT_APP_AWS_URI+'/product')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -34,8 +34,10 @@ function ProductList() {
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-        return `${year}${month}${day}${hours}${minutes}${seconds}`;
+        const milliseconds = String(now.getMilliseconds()).padStart(3, '0'); // 3자리로 패딩
+        return `${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
     }
+
 
     function submitOrder() {
         const orders = [];
@@ -47,10 +49,15 @@ function ProductList() {
             const quantityInput = document.querySelector(`input[name="quantity_${productId}"]`);
             const quantity = quantityInput.value;
 
-            if (quantity) {
+            if (quantity != 0) {
                 orders.push({productId: productId, quantity: quantity});
             }
         });
+
+        if(orders.length == 0){
+            alert("주문하신 물품이 없습니다.");
+            return;
+        }
 
         const orderData = {
             orders: orders,
@@ -70,6 +77,7 @@ function ProductList() {
             body: orderDataString
         })
             .then(response => {
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }else if(response.status == 202){
