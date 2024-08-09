@@ -26,7 +26,6 @@ spring:
       name: ${SECURITY_NAME}
       password: ${SECURITY_PASSWORD}
 
-
   rabbitmq: # 0719 LHJ RabbitMQ 연동을 위한 설정파일
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}

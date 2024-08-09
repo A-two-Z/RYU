@@ -112,6 +112,14 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
+		<!-- 0809 LHJ JWT를 사용하기 위한 라이브러리
+		만약 에러가 나면 maven 종속성 로딩하기 ( intelliJ의 경우 ctrl + shift + o )
+		-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.12.6</version>
+		</dependency>
 
 	</dependencies>
 

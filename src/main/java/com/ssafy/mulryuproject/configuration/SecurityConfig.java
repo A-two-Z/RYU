@@ -18,11 +18,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-//    @Value("${SECURITY_PASSWORD}") // 환경 변수로부터 비밀번호를 읽어옴
-    private String password = "admin";
+    @Value("${spring.security.user.name}")
+    private String password;
 
-//    @Value("${SECURITY_USERNAME}") // 환경 변수로부터 비밀번호를 읽어옴
-    private String username = "admin";
+    @Value("${spring.security.user.password}")
+    private String username;
 
 
     @Bean
@@ -31,8 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/product").permitAll() // /product 경로는 인증 없이 접근 허용
-//                                .requestMatchers("/order").authenticated() // /order 경로는 인증 필요
-                                .anyRequest().permitAll() // 나머지 모든 경로는 인증 필요
+                                .requestMatchers("/order").authenticated() // /order 경로는 인증 필요
+                                .anyRequest().authenticated() // 나머지 모든 경로는 인증 필요
                 )
                 .formLogin(formLogin ->
                         formLogin
