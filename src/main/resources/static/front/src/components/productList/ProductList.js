@@ -92,8 +92,8 @@ function ProductList() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return (
-        <div>
-            <h1>Product List</h1>
+        <div className='productlist'>
+            <h1>Product List <sub>(administrator)</sub></h1>
             <table>
                 <thead>
                 <tr>
