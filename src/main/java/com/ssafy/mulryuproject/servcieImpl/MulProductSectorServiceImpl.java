@@ -69,6 +69,8 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 	private final MulSectorService sectorService;
 
+	private final RedisTemplate<String, String> redisTemplate;
+
 	@Override
 	public Map<String, List<MulSectorData>> getListBySectorName(String SectorName){
 		Optional<MulSector> sectorId = sectorService.getSectorByName(SectorName);
@@ -79,6 +81,9 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		for (MulProductSector ps : list) {
 			String sectorName = ps.getSectorId().getSectorName();
 			String productName = ps.getProductId().getProductName();
+
+			System.out.println(redisTemplate.opsForValue().get(RedisConstants.PRODUCTSECTOR+ps.getProductSectorId()));
+
 			int quantity = ps.getQuantity();
 
 			map.computeIfAbsent(sectorName, k -> new ArrayList<>())
@@ -88,8 +93,6 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		return map;
 	}
 
-	@Autowired
-	RedisTemplate<String, String> redisTemplate;
 
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {

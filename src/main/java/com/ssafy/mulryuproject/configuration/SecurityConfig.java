@@ -31,16 +31,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/product").permitAll() // /product 경로는 인증 없이 접근 허용
-                                .requestMatchers("/order").authenticated() // /order 경로는 인증 필요
+                                .requestMatchers("/order").permitAll() // /order 경로는 인증 필요 (임시로 인증 없이 접근 허용)
                                 .anyRequest().authenticated() // 나머지 모든 경로는 인증 필요
                 )
                 .formLogin(formLogin ->
-                        formLogin
-                                .permitAll() // 로그인 페이지는 누구나 접근 가능
+                        formLogin.permitAll() // 로그인 페이지는 누구나 접근 가능
                 )
                 .logout(logout ->
-                        logout
-                                .permitAll() // 로그아웃 페이지는 누구나 접근 가능
+                        logout.permitAll() // 로그아웃 페이지는 누구나 접근 가능
                 );
 
         return http.build();
