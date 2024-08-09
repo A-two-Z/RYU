@@ -1,22 +1,40 @@
-.nav{
-  background-color:black;
-  &-bar{
-    margin:0;
-    padding:10px;
-    list-style-type: none;
-    display:flex;
-    justify-content: space-around;
+.nav {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: space-between;
+  background-color: #1B1B1B;
+  
+  h1 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 40px;
+    color: white;
+    img {
+      height: 60px;
+    }
+  }
+  
 
-    li{
-      a{
+  &-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    li {
+      padding: 8px 30px;
+      a {
         font-size: 30px;
         text-decoration: none;
-        color:white;
-        &:hover{
-          color:#61dafb;
+        color: white;
+        &:hover {
+          color: #96ABFB;
+        }
+        &.active {
+          font-weight: bold;
+          color: #96ABFB;  // 현재 선택된 메뉴 항목의 색상을 변경
+          border-bottom: 1px solid #96ABFB; // 하단에 밑줄 추가
         }
       }
-
     }
   }
 }
