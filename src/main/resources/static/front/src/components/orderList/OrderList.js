@@ -62,8 +62,8 @@ function OrderList() {
     }
 
     return (
-        <div>
-            <h1>관리자 페이지</h1>
+        <div className="orderlist">
+            <h1>Order List <sub>(administrator)</sub></h1>
             <table>
                 <thead>
                 <tr>
