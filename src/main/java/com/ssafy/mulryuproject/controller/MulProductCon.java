@@ -85,6 +85,7 @@ public class MulProductCon {
 		return ResponseEntity.ok(savedEntity);
 	}
 
+	/* 현재는 사용하지 않는 메소드
 	// Delete
 	@DeleteMapping("/{id}")
 	@Operation(
@@ -96,5 +97,5 @@ public class MulProductCon {
 		return (deleteEntity ? new ResponseEntity<>(HttpStatus.ACCEPTED)
 				: new ResponseEntity<>(HttpStatus.BAD_REQUEST));
 	}
-
+*/
 }
