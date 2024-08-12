@@ -53,7 +53,7 @@ public class MulCheckIsOrderClear {
                     falseRobot(orderNumber, psId);
                 }
             }
-        }, 1, TimeUnit.MINUTES); // (Test용 10초) 1시간 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
+        }, 10, TimeUnit.MINUTES); // (Test용 10초) 10분 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
         // 만료 작업을 추적하기 위한 ScheduledFuture 저장
         expirationTasks.put(orderNumber, future);
 
