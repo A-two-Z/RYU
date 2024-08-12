@@ -13,6 +13,8 @@ import com.ssafy.mulryuproject.servcie.RedisService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -53,7 +55,7 @@ public class MulCheckIsOrderClear {
                     falseRobot(orderNumber, psId);
                 }
             }
-        }, 10, TimeUnit.MINUTES); // (Test용 10초) 10분 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
+        }, 10, TimeUnit.MINUTES); // 10분 내로 데이터를 받아오지 못하면 Redis 다시 업데이트
         // 만료 작업을 추적하기 위한 ScheduledFuture 저장
         expirationTasks.put(orderNumber, future);
 
