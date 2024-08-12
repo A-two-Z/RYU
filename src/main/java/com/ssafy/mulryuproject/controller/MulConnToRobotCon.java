@@ -56,7 +56,7 @@ public class MulConnToRobotCon {
 		String robotOrderToJson = jsonToRobot.toJson(robot);
 		
 		// 0729 Ssafy Wifi에서 통신 불가능
-//		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
+		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
 
 		// 내부적으로 실행
 		IsOrderClear.orderNumberPut(orderNumber.getOrderNumber());
