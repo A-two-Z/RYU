@@ -65,7 +65,7 @@ function RobotTable() {
   };
 
   return (
-    <div>
+    <div className="orderlist">
       <h1>Robot List <sub>(administrator)</sub></h1>
       <table>
         <thead>
