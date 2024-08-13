@@ -5,6 +5,7 @@ import java.util.*;
 import com.ssafy.mulryuproject.constants.RedisConstants;
 import com.ssafy.mulryuproject.data.MulSectorData;
 import com.ssafy.mulryuproject.dto.MulSectorDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,11 @@ import com.ssafy.mulryuproject.servcie.MulSectorService;
 
 import lombok.RequiredArgsConstructor;
 
+import static com.ssafy.mulryuproject.constants.logsConstants.REDIS_UPDATE;
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MulProductSectorServiceImpl implements MulProductSectorService {
 	private final MulProductSectorRepo psRepo;
 
@@ -46,7 +50,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	public Optional<MulProductSector> getPS(MulProductSector ps) {
 		// TODO Auto-generated method stub
 		int id = ps.getProductSectorId();
-//		psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
+//		return psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
 
 		if(psRepo.existsById(ps.getProductSectorId()))
 			return psRepo.findById(id);
@@ -104,13 +108,14 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 			// Redis에 저장된 Product Sector의 현재 수량을 가져온다.
 			int nowQuantity = Integer.parseInt(
 					redisTemplate.opsForValue().get(psId)
-				);
+			);
 
 			// nowQuantity(현재 수량) - 주문한 수량
 			String quantity = Integer.toString(nowQuantity - order.getOrderQuantity());
 
 			// redis에 업데이트
 			redisTemplate.opsForValue().set(psId,quantity);
+			log.info(REDIS_UPDATE);
 		}
 	}
 

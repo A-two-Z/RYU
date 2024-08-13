@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ssafy.mulryuproject.servcie.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import com.ssafy.mulryuproject.servcieImpl.MulCheckIsOrderClear;
 
+import static com.ssafy.mulryuproject.constants.logsConstants.MULSTATUS;
+
 // 서버 간 통신 담당 Controller
 
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "MulToRobot", description = "로봇 서버로 order를 전달하는 API")
 @RequestMapping("/MulToRobot")
+@Slf4j
 public class MulConnToRobotCon {
 	private final MulMakeOrderService toMakeOrderService;
 	private final MulSaveOrderToMongo saveOrderService;
@@ -90,7 +94,7 @@ public class MulConnToRobotCon {
 		Gson gson = new Gson();
 		MulOrderNumber mul = gson.fromJson(getOrder, MulOrderNumber.class);
 
-//		System.out.println("Mul Order Number: " + mul.toString());
+		log.info(getOrder+MULSTATUS);
 
 		clear.orderNumberClear(mul.getOrderNumber());
 
