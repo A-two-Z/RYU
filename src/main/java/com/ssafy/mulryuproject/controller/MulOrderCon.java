@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Tag(name = "Order Controller", description = "주문 관련 데이터를 CRUD하는 API")
 @RequestMapping("/order")
+@Slf4j
 public class MulOrderCon {
 
 	private final MulOrderService orderService;
@@ -86,10 +88,10 @@ public class MulOrderCon {
 							.orderNumberId(orderNumberId)
 							.build())
 					.build();
-			
-//			System.out.println(saveOrder.toString());
-			
+
 			orderService.saveOrder(saveOrder);
+			log.info("MulOrderCon에서 데이터 정상적으로 저장됨");
+
 		}
 		
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);

@@ -66,6 +66,7 @@ function RobotTable() {
 
   return (
     <div>
+      <h1>Robot List <sub>(administrator)</sub></h1>
       <table>
         <thead>
           <tr>
