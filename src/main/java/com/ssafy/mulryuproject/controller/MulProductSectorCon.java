@@ -90,7 +90,9 @@ public class MulProductSectorCon {
 	}
 	*/
 	//update
-	
+
+	/* 현재는 사용하지 않는 메소드
+
 	//delete
 	@Operation(
 			summary = "Sector의 id를 전송하면 해당 productSector를 삭제하는 메소드",
@@ -102,4 +104,6 @@ public class MulProductSectorCon {
 		return (deleteEntity ? new ResponseEntity<>(HttpStatus.ACCEPTED)
 				: new ResponseEntity<>(HttpStatus.BAD_REQUEST));
 	}
+
+	 */
 }
