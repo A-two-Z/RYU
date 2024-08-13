@@ -24,7 +24,7 @@ public class MulOrderNumberCon {
 	@Operation(summary = "주문 번호 전체를 받아오는 API")
 	public ResponseEntity<List<MulOrderNumber>> getOrderNumList(){
 		List<MulOrderNumber> list =  service.getOrderNumberList();
-		
+
 		return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
 	}
 

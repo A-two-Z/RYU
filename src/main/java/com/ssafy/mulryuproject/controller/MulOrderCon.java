@@ -100,6 +100,7 @@ public class MulOrderCon {
 	@Operation(summary = "주문을 가져오는 메소드", description = "status가 Delivery인 주문을 포함한, 모든 주문을 가져오는 메소드입니다.")
 	public ResponseEntity<List<MulOrder>> getOrderList() {
 		List<MulOrder> orderList = orderService.getOrderList();
+
 		if (orderList != null && !orderList.isEmpty()) {
 			return new ResponseEntity<>(orderList, HttpStatus.OK);
 		} else {

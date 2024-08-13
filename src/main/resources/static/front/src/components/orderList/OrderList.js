@@ -8,19 +8,25 @@ function OrderList() {
     const [orderStatus, setOrderStatus] = useState('WAIT');
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_AWS_URI+'/order_Num')
+        fetch(process.env.REACT_APP_AWS_URI+'/order_Num',{
+            method: 'GET',
+            
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+
                 return response.json();
             })
             .then(data => {
                 setOrders(data);
+                console.log(data);
                 setLoading(false);
             })
             .catch(error => {
                 setError(error);
+                console.log(error)
                 setLoading(false);
             });
     }, []);

@@ -1,8 +1,10 @@
 package com.ssafy.mulryuproject.configuration;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -25,10 +27,18 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/product").permitAll() // /product 경로는 인증 없이 접근 허용
                                 .requestMatchers("/productSector/*").permitAll() // /order 경로는 인증 필요 (임시로 인증 없이 접근 허용)
-                                .anyRequest().authenticated() // 나머지 모든 경로는 인증 필요
+                                .anyRequest().permitAll() // 나머지 모든 경로는 인증 필요
                 )
                 .formLogin(formLogin ->
                         formLogin.permitAll() // 로그인 페이지는 누구나 접근 가능
+                                .successHandler((request, response, authentication) -> {
+                                    response.setContentType("application/json");
+                                    response.setStatus(HttpServletResponse.SC_OK);
+                                    authentication.isAuthenticated();
+                                })
+                                .failureHandler((request, response, exception) -> {
+                                    response.setStatus(502);
+                                })
                 )
                 .logout(logout ->
                         logout.permitAll() // 로그아웃 페이지는 누구나 접근 가능
