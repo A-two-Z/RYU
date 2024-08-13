@@ -14,5 +14,5 @@ public class logsConstants {
     public static final String REDIS_UPDATE = "Redis에서 Quantity 업데이트";
 
     public static final String ORDERDATASAVE = "MulOrderCon에서 데이터 정상적으로 저장됨";
-
+    public static final String REDIS_ORDERNUMBER = ": 주문번호가 처리되어 Redis에서 업데이트";
 }
