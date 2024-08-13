@@ -53,7 +53,6 @@ function ProductList() {
                 </tbody>
             </table>
             <button onClick={submitOrder}>주문 제출</button>
-
         </div>
     )
 }
