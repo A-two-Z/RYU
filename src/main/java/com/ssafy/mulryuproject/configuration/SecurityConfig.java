@@ -14,16 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-//@EnableWebSecurity
-//@Configuration
+@EnableWebSecurity
+@Configuration
 public class SecurityConfig {
-
-    @Value("${spring.security.user.name}")
-    private String password;
-
-    @Value("${spring.security.user.password}")
-    private String username;
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,8 +24,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/product").permitAll() // /product 경로는 인증 없이 접근 허용
-                                .requestMatchers("/order").permitAll() // /order 경로는 인증 필요 (임시로 인증 없이 접근 허용)
-                                .anyRequest().permitAll() // 나머지 모든 경로는 인증 필요
+                                .requestMatchers("/productSector/*").permitAll() // /order 경로는 인증 필요 (임시로 인증 없이 접근 허용)
+                                .anyRequest().authenticated() // 나머지 모든 경로는 인증 필요
                 )
                 .formLogin(formLogin ->
                         formLogin.permitAll() // 로그인 페이지는 누구나 접근 가능

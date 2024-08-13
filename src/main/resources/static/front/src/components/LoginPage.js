@@ -9,7 +9,7 @@ function LoginPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/login', { username, password });
+            const response = await axios.post('/login', { username, password });
             const { token } = response.data;
             localStorage.setItem('jwtToken', token); // JWT 토큰을 로컬 스토리지에 저장
             window.location.href = '/orders'; // 주문 페이지로 리디렉션
