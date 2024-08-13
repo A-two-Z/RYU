@@ -13,5 +13,6 @@ public class logsConstants {
     // MulProductSectorServiceImpl
     public static final String REDIS_UPDATE = "Redis에서 Quantity 업데이트";
 
+    public static final String ORDERDATASAVE = "MulOrderCon에서 데이터 정상적으로 저장됨";
 
 }

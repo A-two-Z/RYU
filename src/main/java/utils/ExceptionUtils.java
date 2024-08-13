@@ -1,10 +1,11 @@
 package utils;
 
 import com.ssafy.mulryuproject.entity.MulProductSector;
-import com.ssafy.mulryuproject.entity.MulSector;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 public class ExceptionUtils {
 
     // 이미 배송된 제품에 대한 예외를 던지는 메서드
@@ -21,8 +22,8 @@ public class ExceptionUtils {
         }
     }
 
-//    @ExceptionHandler(MulProductSector.class)
-//    public ResponseEntity<ErrorResponse> handleMemberException(MemberException e) {
+//    @ExceptionHandler
+//    public ResponseEntity<ErrorResponse> handleMemberException(ProductSectorException e) {
 //        log.debug("[MemberException] : {} is occurred", e.getErrorCode());
 //        return ErrorResponse.toResponseEntity(e.getErrorCode());
 //    }

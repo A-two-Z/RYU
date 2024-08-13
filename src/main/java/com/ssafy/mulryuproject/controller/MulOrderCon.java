@@ -36,6 +36,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+import static com.ssafy.mulryuproject.constants.logsConstants.ORDERDATASAVE;
+
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Order Controller", description = "주문 관련 데이터를 CRUD하는 API")
@@ -55,13 +57,15 @@ public class MulOrderCon {
 			content = @Content(schema = @Schema(type = "object"),
 					examples = @ExampleObject(name = "Order Example",
 							value = "{ \"orders\": [ { \"productId\": 0, \"quantity\": 0 }, { \"productId\": 0, \"quantity\": 0 } ], \"orderNumber\": 0 }")))
-	public ResponseEntity<MulOrder> createOrder(@RequestBody String getOrder) {
+	public ResponseEntity<MulOrder> createOrder(@RequestBody String orderJson) {
 		// Order를 Json으로 받아옴
-		JsonObject jsonObject = JsonParser.parseString(getOrder).getAsJsonObject();
+		JsonObject jsonObject = JsonParser.parseString(orderJson).getAsJsonObject();
 		
 		// orderNumberTable에 OrderNumber를 저장한다
 		String orderNumber = jsonObject.get("orderNum").getAsString();
-		MulOrderNumber saveNumber = orderNumservice.saveOrderNum(MulOrderNumber.builder().orderNumber(orderNumber).build());
+		MulOrderNumber saveNumber = orderNumservice.saveOrderNum(
+				MulOrderNumber.builder().orderNumber(orderNumber).build()
+		);
 		
 		// 테이블에 저장된 orderNumber를 통해 OrderNumber 테이블의 PK를 가져온다
 		int orderNumberId = saveNumber.getOrderNumberId();
@@ -90,7 +94,7 @@ public class MulOrderCon {
 					.build();
 
 			orderService.saveOrder(saveOrder);
-			log.info("MulOrderCon에서 데이터 정상적으로 저장됨");
+			log.info(ORDERDATASAVE);
 
 		}
 		
