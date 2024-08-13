@@ -13,6 +13,7 @@ import com.ssafy.mulryuproject.servcie.RedisService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.*;
 
+import static com.ssafy.mulryuproject.constants.logsConstants.*;
+
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class MulCheckIsOrderClear {
+
 
     // 데이터 저장을 위한 HashSet
     private final static Set<String> IsOrderClear = Collections.newSetFromMap(new ConcurrentHashMap<>());
@@ -72,9 +77,9 @@ public class MulCheckIsOrderClear {
         if (exists) {
             // 데이터가 삭제되면 만료 타이머를 취소
             expirationTasks.remove(orderNumber).cancel(false);
-            System.out.println(orderNumber+"이 정상적으로 배달되었습니다.");
+            log.info(orderNumber+IS_DEIVERY);
         }else{
-            System.out.println("정상적인 번호가 아닙니다. 번호를 확인해주세요.");
+            log.warn(WARN_ORDERNUMBER_NOMATCH);
         }
 
         return exists; // 조회된 데이터 존재 여부 반환
@@ -99,8 +104,7 @@ public class MulCheckIsOrderClear {
         MulOrderNumber orderNumberId = orderNumService.getOrderNumber(MulOrderNumber.builder().orderNumber(orderNumber).build());
         orderNumService.toggleOrderStatus(orderNumberId);
 
-        System.out.println("orderNumber :"+orderNumber+"가 배달되지 않았습니다.");
-
+        log.error(ERROR_ORDERNUMBER_NODEIVERY);
     }
 
 }
