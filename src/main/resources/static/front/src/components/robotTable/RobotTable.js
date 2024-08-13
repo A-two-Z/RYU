@@ -30,7 +30,7 @@ function RobotTable() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // Send new robot data to the backend API using POST
-    fetch(process.env.REACT_APP_AWS_URI_ROBOT+'api/robots', {
+    fetch(process.env.REACT_APP_AWS_URI_ROBOT+'/api/robots', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
