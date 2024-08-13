@@ -3,6 +3,7 @@ package utils;
 import com.ssafy.mulryuproject.entity.MulProductSector;
 import com.ssafy.mulryuproject.entity.MulSector;
 import com.ssafy.mulryuproject.enums.MulOrderStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 public class ExceptionUtils {
 
@@ -19,5 +20,12 @@ public class ExceptionUtils {
             throw new IllegalStateException("모든 섹터에서 물품이 존재하지 않습니다.");
         }
     }
+
+//    @ExceptionHandler(MulProductSector.class)
+//    public ResponseEntity<ErrorResponse> handleMemberException(MemberException e) {
+//        log.debug("[MemberException] : {} is occurred", e.getErrorCode());
+//        return ErrorResponse.toResponseEntity(e.getErrorCode());
+//    }
+
 }
 

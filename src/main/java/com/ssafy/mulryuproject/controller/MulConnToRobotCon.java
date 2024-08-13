@@ -94,7 +94,7 @@ public class MulConnToRobotCon {
 		Gson gson = new Gson();
 		MulOrderNumber mul = gson.fromJson(getOrder, MulOrderNumber.class);
 
-		log.info(mul.getOrderNumber()+MULSTATUS);
+		log.info(getOrder+MULSTATUS);
 
 		clear.orderNumberClear(mul.getOrderNumber());
 
