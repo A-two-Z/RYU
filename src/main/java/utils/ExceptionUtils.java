@@ -22,6 +22,13 @@ public class ExceptionUtils {
         }
     }
 
+    // 다른 예외 처리 메서드를 추가할 수 있습니다.
+    public static void throwOrderNumberIsNull(String orderNumber) {
+        if (orderNumber == null) {
+            throw new IllegalStateException("orderNumber가 null값 입니다.");
+        }
+    }
+
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponse> handleMemberException(ProductSectorException e) {
 //        log.debug("[MemberException] : {} is occurred", e.getErrorCode());
