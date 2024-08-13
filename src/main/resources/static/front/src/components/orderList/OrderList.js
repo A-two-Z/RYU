@@ -10,7 +10,7 @@ function OrderList() {
     useEffect(() => {
         fetch(process.env.REACT_APP_AWS_URI+'/order_Num',{
             method: 'GET',
-            
+
         })
             .then(response => {
                 if (!response.ok) {
@@ -53,7 +53,7 @@ function OrderList() {
             },
             body: JSON.stringify({
                 'orderNumber': orderNumber})
-            })
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
