@@ -28,7 +28,7 @@ function LoginPage() {
                     // const { token } = response.data;
                     alert(response.data);
                     console.log(response.ok);
-                    localStorage.setItem('jwtToken', response.data); // JWT 토큰을 로컬 스토리지에 저장
+                    // localStorage.setItem('jwtToken', response.data); // JWT 토큰을 로컬 스토리지에 저장
                     window.location.href = '/order'; // 주문 페이지로 리디렉션
                 }
             })
