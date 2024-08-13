@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
  @Override
  public void addCorsMappings(CorsRegistry registry) {
      registry.addMapping("/**")
-             .allowedOriginPatterns("https://be-proto.vercel.app/") // “*“같은 와일드카드를 사용
+             .allowedOriginPatterns("https://be-proto.vercel.app/", "https://ssafymulryu.kro.kr/") // “*“같은 와일드카드를 사용
              .allowedMethods("GET", "POST", "OPTIONS") // 허용할 HTTP method
              .allowedHeaders("*") // 허용할 헤더를 설정합니다.
              .allowCredentials(true); // 쿠키 인증 요청 허용
