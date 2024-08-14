@@ -105,7 +105,6 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 		for(MulMakeOrderDetail order : orders.getOrders()){
 			// Redis의 Key값을 가져온다.
 			String psId = RedisConstants.PRODUCTSECTOR + order.getProductSectorId();
-			System.out.println("MulProductSectorServiceImpl의 updateQuantity 메소드: "+psId);
 			// Redis에 저장된 Product Sector의 현재 수량을 가져온다.
 			int nowQuantity = Integer.parseInt(
 					redisTemplate.opsForValue().get(psId)
