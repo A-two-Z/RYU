@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+import utils.ExceptionUtils;
 
 import java.util.Collections;
 import java.util.Map;
@@ -70,6 +71,7 @@ public class MulCheckIsOrderClear {
     // 이 경우는 로봇 서버로부터 orderNumber 데이터를 받아오기 때문에
     // 이 서버가 다운되더라도 db의 값은 정상적으로 update 된다
     public boolean orderNumberClear(String orderNumber) {
+        ExceptionUtils.throwOrderNumberIsNull(orderNumber);
 
         // 데이터 삭제 ( 만약 데이터가 없다면 false )
         boolean exists = IsOrderClear.remove(orderNumber);
