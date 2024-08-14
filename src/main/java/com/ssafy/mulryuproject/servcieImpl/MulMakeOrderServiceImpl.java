@@ -48,7 +48,6 @@ public class MulMakeOrderServiceImpl implements MulMakeOrderService {
 		ExceptionUtils.throwIfDelivered(orderNumId.getOrderStatus());
 		
 		for(MulOrder order : orders) {
-//			MulProduct product = productService.getProduct(order).get();
 			int productId = order.getProductId().getProductId();
 
 			// product의 이름을 받아옴
