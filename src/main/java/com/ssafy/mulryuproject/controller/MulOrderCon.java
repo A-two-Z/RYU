@@ -93,9 +93,10 @@ public class MulOrderCon {
 
 			orderService.saveOrder(saveOrder);
 
-			log.info("DB에 Order 데이터 정상적으로 저장됨");
 		}
-		
+
+		log.info("DB에 Order 데이터 정상적으로 저장됨");
+
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
