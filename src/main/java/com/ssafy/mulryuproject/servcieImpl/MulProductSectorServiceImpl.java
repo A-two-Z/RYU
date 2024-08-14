@@ -22,6 +22,7 @@ import com.ssafy.mulryuproject.servcie.MulSectorService;
 
 import lombok.RequiredArgsConstructor;
 
+import static com.ssafy.mulryuproject.constants.logsConstants.REDIS_ORDERNUMBER;
 import static com.ssafy.mulryuproject.constants.logsConstants.REDIS_UPDATE;
 
 @Service
@@ -50,7 +51,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 	public Optional<MulProductSector> getPS(MulProductSector ps) {
 		// TODO Auto-generated method stub
 		int id = ps.getProductSectorId();
-//		psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
+//		return psRepo.findById(id).orElseThrow(() -> new RuntimeException("오류!"));
 
 		if(psRepo.existsById(ps.getProductSectorId()))
 			return psRepo.findById(id);
@@ -100,7 +101,7 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 	@Override
 	public void updateQuantity(MulMakeOrder orders) {
-
+		log.info(orders.getOrderNumber()+REDIS_ORDERNUMBER);
 		for(MulMakeOrderDetail order : orders.getOrders()){
 			// Redis의 Key값을 가져온다.
 			String psId = RedisConstants.PRODUCTSECTOR + order.getProductSectorId();
