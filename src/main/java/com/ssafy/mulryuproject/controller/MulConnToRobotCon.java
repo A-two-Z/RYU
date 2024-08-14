@@ -62,6 +62,8 @@ public class MulConnToRobotCon {
 		// 0729 Ssafy Wifi에서 통신 불가능
 		transmitService.sendMessage(robotOrderToJson); // 0초~1초 사이
 
+		log.info("주문번호 ["+orderNumber.getOrderNumber()+"]의 배달 명령 RabbitMQ로 전달");
+
 		// 내부적으로 실행
 		IsOrderClear.orderNumberPut(orderNumber.getOrderNumber());
 
@@ -71,12 +73,15 @@ public class MulConnToRobotCon {
 
 		// rabbitMQ에 보내게 되면 업데이트
 		psService.updateQuantity(robot);
+		log.info("주문번호 ["+orderNumber.getOrderNumber()+"]의 Quantity Redis에서 업데이트");
 
 		// 몽고 DB에도 저장
 		saveOrderService.saveRobotOrderToMongo(robot);
+		log.info("주문번호 ["+orderNumber.getOrderNumber()+"] 데이터 MongoDB에 백업");
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+
 
 	@Operation(
 			summary = "Robot 서버로부터 완료된 OrderNumber를 받아오는 API",

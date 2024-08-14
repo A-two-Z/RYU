@@ -66,6 +66,8 @@ public class MulOrderCon {
 		// 테이블에 저장된 orderNumber를 통해 OrderNumber 테이블의 PK를 가져온다
 		int orderNumberId = saveNumber.getOrderNumberId();
 
+		log.info("서버에서 주문번호 [" +orderNumber+"]와 관련한 주문을 받아옴");
+
 		JsonArray ordersArray = jsonObject.getAsJsonArray("orders");
 		
 		for (JsonElement order : ordersArray) {
@@ -90,7 +92,8 @@ public class MulOrderCon {
 					.build();
 
 			orderService.saveOrder(saveOrder);
-			log.info("MulOrderCon에서 데이터 정상적으로 저장됨");
+
+			log.info("DB에 Order 데이터 정상적으로 저장됨");
 
 		}
 		
