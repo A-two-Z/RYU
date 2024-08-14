@@ -116,8 +116,8 @@ public class MulProductSectorServiceImpl implements MulProductSectorService {
 
 			// redis에 업데이트
 			redisTemplate.opsForValue().set(psId,quantity);
-			log.info(REDIS_UPDATE);
 		}
+		log.info(REDIS_UPDATE);
 	}
 
 	@Override
