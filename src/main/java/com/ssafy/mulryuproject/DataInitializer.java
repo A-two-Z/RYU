@@ -109,7 +109,7 @@ public class DataInitializer implements CommandLineRunner, ApplicationListener<C
         redisData.forEach((key, redisValue) -> {
             String dbValue = dbData.get(key);
             if (dbValue == null) {
-                log.error(dbValue+"가 없습니다. dbValue를 확인해주세요." );
+                log.error(key+"값이 DB에 없습니다. DB를 확인해주세요." );
 
             } else if (!redisValue.equals(dbValue)) {
                 log.warn("Redis와 DB의 값이 다릅니다. 확인해주세요. key: " + key +
