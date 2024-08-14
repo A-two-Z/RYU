@@ -106,7 +106,7 @@ public class MulCheckIsOrderClear {
         MulOrderNumber orderNumberId = orderNumService.getOrderNumber(MulOrderNumber.builder().orderNumber(orderNumber).build());
         orderNumService.toggleOrderStatus(orderNumberId);
 
-        log.error(ERROR_ORDERNUMBER_NODEIVERY);
+        log.error(orderNumber + ERROR_ORDERNUMBER_NODEIVERY);
     }
 
 }
