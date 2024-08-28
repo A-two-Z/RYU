@@ -7,21 +7,51 @@
 
 <!-- ## 개발 요약 -->
 ## 작품명 : 류(流)
-<div align="center"><img src="Home.jpg" width="500px;" alt="" /></div>
+<div align="center"><img src="https://private-user-images.githubusercontent.com/130520505/362104646-a3e078a6-e5bd-4544-a32c-d9abe62e4c9b.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjQ4MTQ0NTIsIm5iZiI6MTcyNDgxNDE1MiwicGF0aCI6Ii8xMzA1MjA1MDUvMzYyMTA0NjQ2LWEzZTA3OGE2LWU1YmQtNDU0NC1hMzJjLWQ5YWJlNjJlNGM5Yi5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgyOFQwMzAyMzJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05MmI0NDMxNGVlMzRlZjBkNmE4YTIxZDE3MDkyY2ZiMThjY2YwNGYxYzlhZTYzYWFiNzVlOTc5MTE5M2FlNWUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.ifpTGrZ6Xsxuf7ILmC9SMXJxVOylwhjEs3ptUn7-Ut0" width="500px;" alt="" /></div>
+
 
 
 ## 소개
 
-이 프로젝트는 기존 물류 창고의 집하 과정을 자동화 및 최적화하는 것을 목표로 한다.
+많은 물류 창고에서 직원들은 '무거운 PDA'를 들고, 직접 '섹터마다' 카트를 끌며 물건을 운반합니다. 직원들은 물건을 직접 '컨베이어 벨트'로 운반하여 하역 작업을 수행합니다. 이 과정에서 여러 문제가 발생할 수 있습니다.
 
-로봇의 자율주행과 경로탐색 기능을 활용하여 집하 작업을 효율적으로 수행하며, 이를 통해 물류 창고의 운영 효율성을 극대화한다.
+**비효율적인 동선**: 직원이 주문된 물건들을 운반하기 위해 각 섹터를 이동 할 시, 최적화된 동선으로 이동하기 보다는 불필요한 이동이 자주 발생할 가능성이 높습니다.
+**사고 위험성 증가**: 좁은 공간에서 여러 명의 직원이 동시에 작업할 경우, 충돌이나 사고가 발생할 가능성이 높아집니다.
+
+이러한 문제들을 해결하기 위해 본 프로젝트에서는 자율 주행 로봇을 활용한 물류 자동화 솔루션을 제안합니다. 이 로봇은 들어온 주문 요청을 분석하고 물건이 있는 위치로 효율적으로 이동한 뒤, 해당 물품을 수집하고 운송합니다. 이를 통해 직원들은 특정 섹터에서 대기하다 물건을 로봇 위에 옮겨담는 작업을 수행한 뒤, 완료 신호를 보내는 것으로 업무를 끝낼 수 있습니다.
 
 <br>
 
+## 동작 사진
+git 추가 예정
+
+
+## 작품 설명
+#### 1. 하드웨어: 서보모터와 초음파 센서<br>
+**서보모터**: 로봇의 움직임을 제어하기 위해 사용됩니다. 제자리 회전, 정방향 후진, 미세 전진 등을 구현하기 위해 서보모터를 활용하여 로봇의 방향과 위치를 정밀하게 조정합니다.<br>
+**초음파 센서**: 물품 하역 시 사용됩니다. ESP32 마이크로컨트롤러를 통해 초음파 센서로부터 거리를 측정한 후, 이 정보를 MQTT 프로토콜을 통해 전송합니다. 로봇이 컨베이어벨트와의 거리가 일정 기준 이하로 가까워지면, 서보모터를 작동시켜 물품을 하역합니다.
+#### 2. 맵 매핑과 경로 탐색: SLAM과 Nav2
+**SLAM (Simultaneous Localization and Mapping)**: ‘Cartographer’를 사용하여 로봇이 주행할 환경을 스캔하고, 맵핑합니다. 이 과정에서 로봇은 자신의 위치를 파악하면서 동시에 주행 환경의 지도를 생성합니다.<br>
+**Nav2**: SLAM을 통해 생성된 맵을 기반으로 경로를 설정하고, 로봇이 설정된 경로를 따라 주행할 수 있도록 합니다. Nav2는 로봇이 주행 중 장애물을 회피하거나 목적지까지 최적의 경로를 찾도록 돕습니다.
+#### 3. 물품 하역: 초음파 센서와 서보모터
+초음파 센서를 통해 컨베이어벨트와의 거리를 측정하고, 일정 거리 이하로 가까워지면 하역 작업을 수행합니다. 하역 작업은 서보모터를 이용하여 로봇이 정확한 위치에서 물품을 하역할 수 있도록 합니다.
+#### 4. 회전 매커니즘
+로봇은 U턴 형태로 회전하면서 제자리에서 방향을 전환합니다. 이를 위해, 회전, 미세전진, 정방향 후진을 반복하는 과정을 통해 로봇의 위치(X, Y 좌표)가 바뀌지 않도록 제자리 회전을 구현합니다.
+#### 5. WearOS와 주문 관리
+**WearOS**를 이용하여 주문 관리 시스템을 구축합니다. 하나의 주문이 완료될 때까지 다른 주문은 MQTT를 통해 블로킹되며, 예상치 못한 종료 상황에 대비해 물류 정보를 내부 데이터베이스에 저장합니다. 싱글톤 패턴을 적용하여 애플리케이션의 라이프사이클을 관리합니다.
+#### 6. 디지털 트윈: Unity와 ROS2 통신
+**디지털 트윈**: Unity를 활용하여 가상 환경에서 로봇의 동작을 시뮬레이션하고, 이를 실제 환경과 동기화합니다. 이를 위해 rosbridge_websocket을 통해 Unity와 ROS2 간의 통신을 구현합니다.<br>
+**맵핑**: Unity에서 생성된 가상 맵과 실제 환경의 맵을 매핑합니다. 이 과정에서, 가상 세계와 현실 세계의 좌표계를 일치시키기 위해 좌표 축을 재정렬합니다. 예를 들어, 위치 좌표는 X, Y, Z에서 -Y, Z, X로 매핑되고, 회전 좌표는 X, Y, Z, W에서 Y, -Z, X, W로 매핑됩니다.<br>
+**보정**: 프로토타입에서는 각 구간에 동일한 보정값을 적용하지만, 실제 구현 시에는 구간별로 다른 보정값을 적용하여 더욱 정밀한 매핑을 구현할 수 있습니다.
+
+
+
+## 시연 영상
+유튜브 영상 추가 예정
 
 
 ## System Architecture
-![SystemArchitecture](SystemArchitecture.jpg)
+![SystemArchitecture](https://github.com/user-attachments/assets/78b62013-acb7-4d3f-86c0-714aff0abd55)
 
 <br>
 
@@ -36,12 +66,7 @@
 
 <br>
 
-## 개발결과물의 파급력 및 기대효과
-### 새로운 월패드의 모습 제안
-이 작품은 한결 같이 벽에 붙어 같은 기능만 수행하는 정적인 기기로 인지되던 월패드를 모든 세대가 가정에 하나씩 가지고 있는 주거 환경 기반 it 기기로 재해석했다. 앱 스토어를 통해 개발자가 자유롭게 webOS 월패드 앱을 창작해 배포하고 사용자가 자신의 생활 양식에 따라 앱을 선택해 사용하는 webOS 생태계를 구축할 수 있을 것이다. 이것은 주거환경 친화적인 다양한 월패드 앱들이 개발될 환경을 조성하고, 새로운 시장을 개척할 수 있을 것이다. 그 예시로 이 작품은 영상 처리를 활용해 기존 주거 환경에서 불편했던 점을 배달 물품 도난 방지, 차량 스케쥴링을 통해 성공적으로 해결했다. 또한 사용자의 수요에 맞춰 홈 트레이닝 도우미 앱을 만들었다. 이런 기존 월패드에 없던 다양한 서비스를 제공하는 앱들은 월패드가 사용자에게 더 친숙하게 인식될 계기가 될 것이다. 사용자의 기호에 따라 유연하게 바뀔 수 있는 새로운 사용법을 제안하는 **방파제의 Home++ 월패드** 는 시장에서 충분히 활용될 수 있을 것이라 생각한다.
-
-<br>
-
+<!--
 ## 파일 구성도
 📦AtwoZ <br/>
  ┣ 📂client-Unity<br/>
@@ -79,6 +104,8 @@
  ┃ ┃ ┃ ┃ ┗ 📜windowBlind.ino <br/>
  ┗ 📜README.md
 <br><br>
+
+-->
 
 ## 팀 명단
 | Profile | Role | Part | Tech Stack |
