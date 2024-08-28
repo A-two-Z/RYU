@@ -7,7 +7,7 @@
 
 <!-- ## 개발 요약 -->
 ## 작품명 : 류(流)
-<div align="center"><img src="https://private-user-images.githubusercontent.com/130520505/362104646-a3e078a6-e5bd-4544-a32c-d9abe62e4c9b.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjQ4MTQ0NTIsIm5iZiI6MTcyNDgxNDE1MiwicGF0aCI6Ii8xMzA1MjA1MDUvMzYyMTA0NjQ2LWEzZTA3OGE2LWU1YmQtNDU0NC1hMzJjLWQ5YWJlNjJlNGM5Yi5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgyOFQwMzAyMzJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05MmI0NDMxNGVlMzRlZjBkNmE4YTIxZDE3MDkyY2ZiMThjY2YwNGYxYzlhZTYzYWFiNzVlOTc5MTE5M2FlNWUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.ifpTGrZ6Xsxuf7ILmC9SMXJxVOylwhjEs3ptUn7-Ut0" width="500px;" alt="" /></div>
+![류봇](https://github.com/user-attachments/assets/a3e078a6-e5bd-4544-a32c-d9abe62e4c9b)
 
 
 
