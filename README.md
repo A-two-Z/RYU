@@ -1,7 +1,7 @@
 # 제 22회 임베디드 소프트웨어 경진대회 자유부문 AtwoZ팀
 <div align="right">
 <a href="https://github.com/A-two-Z"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"/></a>
-<a href="https://www.youtube.com/watch?v=NKqtxh3rhbs"><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/></a>
+<a href="https://www.youtube.com/watch?v="><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/></a>
 </div>
 
 
