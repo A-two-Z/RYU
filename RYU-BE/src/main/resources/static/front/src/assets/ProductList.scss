@@ -1,0 +1,68 @@
+// Variables
+$primary-color: #B89AED;
+$secondary-color: #96ABFB;
+$text-color: #ffffff;
+$border-color: #dddddd;
+$bg-color: #f3f3f3;
+$font-size: 20px;
+$padding: 12px 15px;
+
+.productlist{
+  margin: 20px;
+}
+
+// Table styles
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: $font-size;
+  text-align: left;
+
+  thead {
+    tr {
+      background-color: $primary-color;
+      color: $text-color;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+
+  th,
+  td {
+    padding: $padding;
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $border-color;
+
+      &:nth-of-type(even) {
+        background-color: $bg-color;
+      }
+
+      &:last-of-type {
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  zoom: 1.5;
+}
+
+button {
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: $font-size;
+  background-color: $primary-color;
+  color: $text-color;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}

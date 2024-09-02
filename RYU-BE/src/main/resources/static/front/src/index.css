@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "BMJUA";
+  font-weight: normal;
+  src: url("./fonts/BMJUA.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "BMJUA";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: "BMJUA";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

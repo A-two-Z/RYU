@@ -1,0 +1,26 @@
+.orderlist{
+  margin: 20px;
+}
+
+button:disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
+
+button {
+  background-color: #B89AED;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+table tr td {
+  padding: 10px 30px;
+}
