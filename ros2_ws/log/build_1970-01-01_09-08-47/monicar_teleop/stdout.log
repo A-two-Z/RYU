@@ -1,0 +1,16 @@
+running develop
+running egg_info
+writing monicar_teleop.egg-info/PKG-INFO
+writing dependency_links to monicar_teleop.egg-info/dependency_links.txt
+writing entry points to monicar_teleop.egg-info/entry_points.txt
+writing requirements to monicar_teleop.egg-info/requires.txt
+writing top-level names to monicar_teleop.egg-info/top_level.txt
+reading manifest file 'monicar_teleop.egg-info/SOURCES.txt'
+writing manifest file 'monicar_teleop.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages/monicar-teleop.egg-link (link to .)
+Installing teleop_joy script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop
+Installing teleop_keyboard script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop
+
+Installed /home/ssafy/ros2_ws/build/monicar_teleop
+running symlink_data

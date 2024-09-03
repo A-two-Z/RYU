@@ -1,0 +1,27 @@
+[2.747s] Invoking command in '/home/ssafy/ros2_ws/build/monicar_cv': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_cv/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_cv/build --no-deps symlink_data
+[3.325s] running develop
+[3.677s] running egg_info
+[3.678s] writing monicar_cv.egg-info/PKG-INFO
+[3.679s] writing dependency_links to monicar_cv.egg-info/dependency_links.txt
+[3.679s] writing entry points to monicar_cv.egg-info/entry_points.txt
+[3.679s] writing requirements to monicar_cv.egg-info/requires.txt
+[3.679s] writing top-level names to monicar_cv.egg-info/top_level.txt
+[3.755s] reading manifest file 'monicar_cv.egg-info/SOURCES.txt'
+[3.757s] writing manifest file 'monicar_cv.egg-info/SOURCES.txt'
+[3.834s] running build_ext
+[3.835s] Creating /home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages/monicar-cv.egg-link (link to .)
+[3.837s] Installing csi_pub script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv
+[3.838s] Installing find_ball script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv
+[3.838s] Installing usbcam_pub script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv
+[3.838s] 
+[3.839s] Installed /home/ssafy/ros2_ws/build/monicar_cv
+[3.839s] running symlink_data
+[3.839s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/resource/monicar_cv -> /home/ssafy/ros2_ws/install/monicar_cv/share/ament_index/resource_index/packages
+[3.839s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/package.xml -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv
+[3.839s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/blob_detect.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch
+[3.840s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/usbcam.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch
+[3.840s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/csivideo.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch
+[3.840s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/csicam.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch
+[3.840s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/usbvideo.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch
+[3.841s] symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/param/cvparam.yaml -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/param
+[4.002s] Invoked command in '/home/ssafy/ros2_ws/build/monicar_cv' returned '0': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_cv/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_cv/build --no-deps symlink_data

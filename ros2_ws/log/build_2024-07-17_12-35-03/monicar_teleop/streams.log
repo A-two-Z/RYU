@@ -1,0 +1,24 @@
+[2.773s] Invoking command in '/home/ssafy/ros2_ws/build/monicar_teleop': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_teleop/build --no-deps symlink_data
+[3.341s] running develop
+[3.689s] running egg_info
+[3.689s] writing monicar_teleop.egg-info/PKG-INFO
+[3.691s] writing dependency_links to monicar_teleop.egg-info/dependency_links.txt
+[3.691s] writing entry points to monicar_teleop.egg-info/entry_points.txt
+[3.691s] writing requirements to monicar_teleop.egg-info/requires.txt
+[3.692s] writing top-level names to monicar_teleop.egg-info/top_level.txt
+[3.759s] reading manifest file 'monicar_teleop.egg-info/SOURCES.txt'
+[3.760s] writing manifest file 'monicar_teleop.egg-info/SOURCES.txt'
+[3.840s] running build_ext
+[3.841s] Creating /home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages/monicar-teleop.egg-link (link to .)
+[3.843s] Installing teleop_joy script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop
+[3.844s] Installing teleop_keyboard script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop
+[3.845s] 
+[3.845s] Installed /home/ssafy/ros2_ws/build/monicar_teleop
+[3.845s] running symlink_data
+[3.845s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/resource/monicar_teleop -> /home/ssafy/ros2_ws/install/monicar_teleop/share/ament_index/resource_index/packages
+[3.846s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/package.xml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop
+[3.847s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/launch/teleop_keyboard.launch.py -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/launch
+[3.847s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/launch/teleop_joy.launch.py -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/launch
+[3.848s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/param/teleop_keyboard.param.yaml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/param
+[3.848s] symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/param/teleop_joy.param.yaml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/param
+[4.045s] Invoked command in '/home/ssafy/ros2_ws/build/monicar_teleop' returned '0': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_teleop/build --no-deps symlink_data

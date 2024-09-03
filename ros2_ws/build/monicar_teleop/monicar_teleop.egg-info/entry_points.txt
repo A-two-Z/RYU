@@ -1,0 +1,4 @@
+[console_scripts]
+teleop_joy = monicar_teleop.teleop_joy:main
+teleop_keyboard = monicar_teleop.teleop_keyboard:main
+

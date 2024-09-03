@@ -1,0 +1,22 @@
+[5.395s] Invoking command in '/home/ssafy/ros2_ws/build/monicar_control': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_control/build --no-deps symlink_data
+[6.089s] running develop
+[6.576s] running egg_info
+[6.577s] writing monicar_control.egg-info/PKG-INFO
+[6.578s] writing dependency_links to monicar_control.egg-info/dependency_links.txt
+[6.578s] writing entry points to monicar_control.egg-info/entry_points.txt
+[6.578s] writing requirements to monicar_control.egg-info/requires.txt
+[6.579s] writing top-level names to monicar_control.egg-info/top_level.txt
+[6.810s] reading manifest file 'monicar_control.egg-info/SOURCES.txt'
+[6.953s] writing manifest file 'monicar_control.egg-info/SOURCES.txt'
+[7.032s] running build_ext
+[7.174s] Creating /home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages/monicar-control.egg-link (link to .)
+[7.176s] Installing blob_chase script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.177s] Installing chase_object_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.178s] Installing chase_the_ball script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.178s] Installing chase_traffic_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.178s] Installing joy_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.179s] Installing motor_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[7.180s] 
+[7.180s] Installed /home/ssafy/ros2_ws/build/monicar_control
+[7.180s] running symlink_data
+[7.325s] Invoked command in '/home/ssafy/ros2_ws/build/monicar_control' returned '0': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_control/build --no-deps symlink_data
