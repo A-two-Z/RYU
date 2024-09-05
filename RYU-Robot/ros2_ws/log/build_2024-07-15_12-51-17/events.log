@@ -1,0 +1,188 @@
+[0.000000] (-) TimerEvent: {}
+[0.000882] (monicar_control) JobQueued: {'identifier': 'monicar_control', 'dependencies': OrderedDict()}
+[0.001137] (monicar_cv) JobQueued: {'identifier': 'monicar_cv', 'dependencies': OrderedDict()}
+[0.001652] (monicar_teleop) JobQueued: {'identifier': 'monicar_teleop', 'dependencies': OrderedDict()}
+[0.002000] (monicar_control) JobStarted: {'identifier': 'monicar_control'}
+[0.098906] (-) TimerEvent: {}
+[0.167928] (monicar_cv) JobStarted: {'identifier': 'monicar_cv'}
+[0.181057] (monicar_teleop) JobStarted: {'identifier': 'monicar_teleop'}
+[0.201093] (-) TimerEvent: {}
+[0.302537] (-) TimerEvent: {}
+[0.403363] (-) TimerEvent: {}
+[0.504234] (-) TimerEvent: {}
+[0.605060] (-) TimerEvent: {}
+[0.705966] (-) TimerEvent: {}
+[0.806998] (-) TimerEvent: {}
+[0.917992] (-) TimerEvent: {}
+[1.019176] (-) TimerEvent: {}
+[1.120375] (-) TimerEvent: {}
+[1.221306] (-) TimerEvent: {}
+[1.322240] (-) TimerEvent: {}
+[1.423149] (-) TimerEvent: {}
+[1.524551] (-) TimerEvent: {}
+[1.625712] (-) TimerEvent: {}
+[1.726785] (-) TimerEvent: {}
+[1.827798] (-) TimerEvent: {}
+[1.928731] (-) TimerEvent: {}
+[2.029665] (-) TimerEvent: {}
+[2.131258] (-) TimerEvent: {}
+[2.232280] (-) TimerEvent: {}
+[2.333358] (-) TimerEvent: {}
+[2.434327] (-) TimerEvent: {}
+[2.535267] (-) TimerEvent: {}
+[2.636227] (-) TimerEvent: {}
+[2.737370] (-) TimerEvent: {}
+[2.838411] (-) TimerEvent: {}
+[2.939496] (-) TimerEvent: {}
+[3.040589] (-) TimerEvent: {}
+[3.141552] (-) TimerEvent: {}
+[3.242533] (-) TimerEvent: {}
+[3.343482] (-) TimerEvent: {}
+[3.444689] (-) TimerEvent: {}
+[3.545934] (-) TimerEvent: {}
+[3.646859] (-) TimerEvent: {}
+[3.747652] (-) TimerEvent: {}
+[3.848196] (-) TimerEvent: {}
+[3.948992] (-) TimerEvent: {}
+[4.049648] (-) TimerEvent: {}
+[4.150662] (-) TimerEvent: {}
+[4.251861] (-) TimerEvent: {}
+[4.308546] (monicar_cv) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/ssafy/ros2_ws/build/monicar_cv/build', '--no-deps', 'symlink_data'], 'cwd': '/home/ssafy/ros2_ws/build/monicar_cv', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ssafy', 'SSH_CLIENT': '70.12.246.75 60061 22', 'LC_TIME': 'ko_KR.UTF-8', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/galactic/opt/yaml_cpp_vendor/lib:/opt/ros/galactic/opt/rviz_ogre_vendor/lib:/opt/ros/galactic/lib/aarch64-linux-gnu:/opt/ros/galactic/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/ssafy', 'OLDPWD': '/home/ssafy/ros2_ws/src/monicar/script', 'SSH_TTY': '/dev/pts/0', 'JETSON_L4T': '35.5.0', 'ROS_PYTHON_VERSION': '3', 'JETSON_MODEL': 'NVIDIA Orin Nano Developer Kit', 'LC_MONETARY': 'ko_KR.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'ROS_DISTRO': 'galactic', 'LOGNAME': 'ssafy', 'JETSON_MODULE': 'NVIDIA Jetson Orin Nano (Developer kit)', 'JETSON_SERIAL_NUMBER': '1420524217157', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'P3768', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '3', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/galactic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra23x', 'ROS_DOMAIN_ID': '1', 'AMENT_PREFIX_PATH': '/opt/ros/galactic', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'JETSON_CUDA_ARCH_BIN': '8.7', 'PWD': '/home/ssafy/ros2_ws/build/monicar_cv', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '70.12.246.75 60061 70.12.245.24 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ssafy/ros2_ws/build/monicar_cv/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '5.1.3', 'JETSON_P_NUMBER': 'p3767-0005'}, 'shell': False}
+[4.352108] (-) TimerEvent: {}
+[4.453262] (-) TimerEvent: {}
+[4.560371] (-) TimerEvent: {}
+[4.610075] (monicar_control) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/ssafy/ros2_ws/build/monicar_control/build', '--no-deps', 'symlink_data'], 'cwd': '/home/ssafy/ros2_ws/build/monicar_control', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ssafy', 'SSH_CLIENT': '70.12.246.75 60061 22', 'LC_TIME': 'ko_KR.UTF-8', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/galactic/opt/yaml_cpp_vendor/lib:/opt/ros/galactic/opt/rviz_ogre_vendor/lib:/opt/ros/galactic/lib/aarch64-linux-gnu:/opt/ros/galactic/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/ssafy', 'OLDPWD': '/home/ssafy/ros2_ws/src/monicar/script', 'SSH_TTY': '/dev/pts/0', 'JETSON_L4T': '35.5.0', 'ROS_PYTHON_VERSION': '3', 'JETSON_MODEL': 'NVIDIA Orin Nano Developer Kit', 'LC_MONETARY': 'ko_KR.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'ROS_DISTRO': 'galactic', 'LOGNAME': 'ssafy', 'JETSON_MODULE': 'NVIDIA Jetson Orin Nano (Developer kit)', 'JETSON_SERIAL_NUMBER': '1420524217157', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'P3768', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '3', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/galactic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra23x', 'ROS_DOMAIN_ID': '1', 'AMENT_PREFIX_PATH': '/opt/ros/galactic', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'JETSON_CUDA_ARCH_BIN': '8.7', 'PWD': '/home/ssafy/ros2_ws/build/monicar_control', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '70.12.246.75 60061 70.12.245.24 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ssafy/ros2_ws/build/monicar_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '5.1.3', 'JETSON_P_NUMBER': 'p3767-0005'}, 'shell': False}
+[4.618855] (monicar_teleop) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/ssafy/ros2_ws/build/monicar_teleop/build', '--no-deps', 'symlink_data'], 'cwd': '/home/ssafy/ros2_ws/build/monicar_teleop', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ssafy', 'SSH_CLIENT': '70.12.246.75 60061 22', 'LC_TIME': 'ko_KR.UTF-8', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/galactic/opt/yaml_cpp_vendor/lib:/opt/ros/galactic/opt/rviz_ogre_vendor/lib:/opt/ros/galactic/lib/aarch64-linux-gnu:/opt/ros/galactic/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/ssafy', 'OLDPWD': '/home/ssafy/ros2_ws/src/monicar/script', 'SSH_TTY': '/dev/pts/0', 'JETSON_L4T': '35.5.0', 'ROS_PYTHON_VERSION': '3', 'JETSON_MODEL': 'NVIDIA Orin Nano Developer Kit', 'LC_MONETARY': 'ko_KR.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'ROS_DISTRO': 'galactic', 'LOGNAME': 'ssafy', 'JETSON_MODULE': 'NVIDIA Jetson Orin Nano (Developer kit)', 'JETSON_SERIAL_NUMBER': '1420524217157', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'P3768', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '3', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/galactic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra23x', 'ROS_DOMAIN_ID': '1', 'AMENT_PREFIX_PATH': '/opt/ros/galactic', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'JETSON_CUDA_ARCH_BIN': '8.7', 'PWD': '/home/ssafy/ros2_ws/build/monicar_teleop', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '70.12.246.75 60061 70.12.245.24 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ssafy/ros2_ws/build/monicar_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages:/opt/ros/galactic/lib/python3.8/site-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'JETSON_JETPACK': '5.1.3', 'JETSON_P_NUMBER': 'p3767-0005'}, 'shell': False}
+[4.660612] (-) TimerEvent: {}
+[4.761620] (-) TimerEvent: {}
+[4.863059] (-) TimerEvent: {}
+[4.964518] (-) TimerEvent: {}
+[5.065465] (-) TimerEvent: {}
+[5.130656] (monicar_cv) StdoutLine: {'line': b'running develop\n'}
+[5.165666] (-) TimerEvent: {}
+[5.166500] (monicar_teleop) StdoutLine: {'line': b'running develop\n'}
+[5.221923] (monicar_control) StdoutLine: {'line': b'running develop\n'}
+[5.265813] (-) TimerEvent: {}
+[5.366697] (-) TimerEvent: {}
+[5.442236] (monicar_cv) StdoutLine: {'line': b'running egg_info\n'}
+[5.443042] (monicar_cv) StdoutLine: {'line': b'creating monicar_cv.egg-info\n'}
+[5.443275] (monicar_cv) StdoutLine: {'line': b'writing monicar_cv.egg-info/PKG-INFO\n'}
+[5.443593] (monicar_cv) StdoutLine: {'line': b'writing dependency_links to monicar_cv.egg-info/dependency_links.txt\n'}
+[5.443845] (monicar_cv) StdoutLine: {'line': b'writing entry points to monicar_cv.egg-info/entry_points.txt\n'}
+[5.444263] (monicar_cv) StdoutLine: {'line': b'writing requirements to monicar_cv.egg-info/requires.txt\n'}
+[5.444500] (monicar_cv) StdoutLine: {'line': b'writing top-level names to monicar_cv.egg-info/top_level.txt\n'}
+[5.466804] (-) TimerEvent: {}
+[5.474750] (monicar_teleop) StdoutLine: {'line': b'running egg_info\n'}
+[5.475239] (monicar_teleop) StdoutLine: {'line': b'creating monicar_teleop.egg-info\n'}
+[5.475490] (monicar_teleop) StdoutLine: {'line': b'writing monicar_teleop.egg-info/PKG-INFO\n'}
+[5.476252] (monicar_teleop) StdoutLine: {'line': b'writing dependency_links to monicar_teleop.egg-info/dependency_links.txt\n'}
+[5.476592] (monicar_teleop) StdoutLine: {'line': b'writing entry points to monicar_teleop.egg-info/entry_points.txt\n'}
+[5.476809] (monicar_teleop) StdoutLine: {'line': b'writing requirements to monicar_teleop.egg-info/requires.txt\n'}
+[5.476991] (monicar_teleop) StdoutLine: {'line': b'writing top-level names to monicar_teleop.egg-info/top_level.txt\n'}
+[5.528868] (monicar_control) StdoutLine: {'line': b'running egg_info\n'}
+[5.529358] (monicar_control) StdoutLine: {'line': b'creating monicar_control.egg-info\n'}
+[5.529589] (monicar_control) StdoutLine: {'line': b'writing monicar_control.egg-info/PKG-INFO\n'}
+[5.530185] (monicar_control) StdoutLine: {'line': b'writing dependency_links to monicar_control.egg-info/dependency_links.txt\n'}
+[5.530556] (monicar_control) StdoutLine: {'line': b'writing entry points to monicar_control.egg-info/entry_points.txt\n'}
+[5.530776] (monicar_control) StdoutLine: {'line': b'writing requirements to monicar_control.egg-info/requires.txt\n'}
+[5.530957] (monicar_control) StdoutLine: {'line': b'writing top-level names to monicar_control.egg-info/top_level.txt\n'}
+[5.566897] (-) TimerEvent: {}
+[5.590340] (monicar_control) StdoutLine: {'line': b"writing manifest file 'monicar_control.egg-info/SOURCES.txt'\n"}
+[5.590862] (monicar_cv) StdoutLine: {'line': b"writing manifest file 'monicar_cv.egg-info/SOURCES.txt'\n"}
+[5.591163] (monicar_teleop) StdoutLine: {'line': b"writing manifest file 'monicar_teleop.egg-info/SOURCES.txt'\n"}
+[5.654127] (monicar_teleop) StdoutLine: {'line': b"reading manifest file 'monicar_teleop.egg-info/SOURCES.txt'\n"}
+[5.654833] (monicar_cv) StdoutLine: {'line': b"reading manifest file 'monicar_cv.egg-info/SOURCES.txt'\n"}
+[5.655031] (monicar_control) StdoutLine: {'line': b"reading manifest file 'monicar_control.egg-info/SOURCES.txt'\n"}
+[5.655325] (monicar_teleop) StdoutLine: {'line': b"writing manifest file 'monicar_teleop.egg-info/SOURCES.txt'\n"}
+[5.655514] (monicar_cv) StdoutLine: {'line': b"writing manifest file 'monicar_cv.egg-info/SOURCES.txt'\n"}
+[5.655733] (monicar_control) StdoutLine: {'line': b"writing manifest file 'monicar_control.egg-info/SOURCES.txt'\n"}
+[5.667055] (-) TimerEvent: {}
+[5.732322] (monicar_control) StdoutLine: {'line': b'running build_ext\n'}
+[5.733469] (monicar_teleop) StdoutLine: {'line': b'running build_ext\n'}
+[5.736427] (monicar_cv) StdoutLine: {'line': b'running build_ext\n'}
+[5.767132] (-) TimerEvent: {}
+[5.808010] (monicar_control) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages/site.py\n'}
+[5.967912] (-) TimerEvent: {}
+[5.968895] (monicar_teleop) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages/site.py\n'}
+[5.969299] (monicar_cv) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages/site.py\n'}
+[5.973391] (monicar_cv) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_cv/lib/python3.8/site-packages/monicar-cv.egg-link (link to .)\n'}
+[5.973665] (monicar_teleop) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_teleop/lib/python3.8/site-packages/monicar-teleop.egg-link (link to .)\n'}
+[5.973843] (monicar_control) StdoutLine: {'line': b'Creating /home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages/monicar-control.egg-link (link to .)\n'}
+[5.975579] (monicar_teleop) StdoutLine: {'line': b'Installing teleop_joy script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop\n'}
+[5.975837] (monicar_control) StdoutLine: {'line': b'Installing blob_chase script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.976206] (monicar_cv) StdoutLine: {'line': b'Installing csi_pub script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv\n'}
+[5.976461] (monicar_teleop) StdoutLine: {'line': b'Installing teleop_keyboard script to /home/ssafy/ros2_ws/install/monicar_teleop/lib/monicar_teleop\n'}
+[5.977121] (monicar_control) StdoutLine: {'line': b'Installing chase_object_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.977708] (monicar_cv) StdoutLine: {'line': b'Installing find_ball script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv\n'}
+[5.978388] (monicar_cv) StdoutLine: {'line': b'Installing usbcam_pub script to /home/ssafy/ros2_ws/install/monicar_cv/lib/monicar_cv\n'}
+[5.978920] (monicar_control) StdoutLine: {'line': b'Installing chase_the_ball script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.979270] (monicar_teleop) StdoutLine: {'line': b'\n'}
+[5.979492] (monicar_teleop) StdoutLine: {'line': b'Installed /home/ssafy/ros2_ws/build/monicar_teleop\n'}
+[5.979774] (monicar_control) StdoutLine: {'line': b'Installing chase_traffic_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.979997] (monicar_control) StdoutLine: {'line': b'Installing joy_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.980244] (monicar_teleop) StdoutLine: {'line': b'running symlink_data\n'}
+[5.980433] (monicar_cv) StdoutLine: {'line': b'\n'}
+[5.980644] (monicar_cv) StdoutLine: {'line': b'Installed /home/ssafy/ros2_ws/build/monicar_cv\n'}
+[5.980872] (monicar_cv) StdoutLine: {'line': b'running symlink_data\n'}
+[5.981074] (monicar_teleop) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_teleop/share/ament_index\n'}
+[5.981293] (monicar_control) StdoutLine: {'line': b'Installing motor_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control\n'}
+[5.981482] (monicar_teleop) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_teleop/share/ament_index/resource_index\n'}
+[5.981611] (monicar_cv) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_cv/share/ament_index\n'}
+[5.981731] (monicar_cv) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_cv/share/ament_index/resource_index\n'}
+[5.981849] (monicar_teleop) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_teleop/share/ament_index/resource_index/packages\n'}
+[5.981965] (monicar_cv) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_cv/share/ament_index/resource_index/packages\n'}
+[5.982081] (monicar_control) StdoutLine: {'line': b'\n'}
+[5.982195] (monicar_control) StdoutLine: {'line': b'Installed /home/ssafy/ros2_ws/build/monicar_control\n'}
+[5.982312] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/resource/monicar_teleop -> /home/ssafy/ros2_ws/install/monicar_teleop/share/ament_index/resource_index/packages\n'}
+[5.982444] (monicar_control) StdoutLine: {'line': b'running symlink_data\n'}
+[5.982557] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/resource/monicar_cv -> /home/ssafy/ros2_ws/install/monicar_cv/share/ament_index/resource_index/packages\n'}
+[5.982685] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/package.xml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop\n'}
+[5.982805] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/package.xml -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv\n'}
+[5.982923] (monicar_teleop) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/launch\n'}
+[5.983038] (monicar_cv) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.983153] (monicar_control) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index\n'}
+[5.983273] (monicar_control) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index\n'}
+[5.983387] (monicar_control) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index/packages\n'}
+[5.983499] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/blob_detect.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.983616] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/launch/teleop_keyboard.launch.py -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/launch\n'}
+[5.983781] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/launch/teleop_joy.launch.py -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/launch\n'}
+[5.983900] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/usbcam.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.984020] (monicar_teleop) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/param\n'}
+[5.984134] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/resource/monicar_control -> /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index/packages\n'}
+[5.984255] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/csivideo.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.984397] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/param/teleop_keyboard.param.yaml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/param\n'}
+[5.984513] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/package.xml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control\n'}
+[5.984627] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/csicam.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.984741] (monicar_teleop) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_teleop/param/teleop_joy.param.yaml -> /home/ssafy/ros2_ws/install/monicar_teleop/share/monicar_teleop/param\n'}
+[5.984856] (monicar_control) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.984970] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/launch/usbvideo.launch.py -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/launch\n'}
+[5.985082] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/blob_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985195] (monicar_cv) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/param\n'}
+[5.985307] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/motor.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985421] (monicar_cv) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_cv/param/cvparam.yaml -> /home/ssafy/ros2_ws/install/monicar_cv/share/monicar_cv/param\n'}
+[5.985534] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/traffic_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985647] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_chase.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985758] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/chase_the_ball.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985871] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_traffic.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.985983] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/blob_chase.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.986096] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch\n'}
+[5.986227] (monicar_control) StdoutLine: {'line': b'creating /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986342] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.298n2Wheel.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986455] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.nuriBldc.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986567] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.jetracer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986694] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.jetbot.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986847] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.986964] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.pca9685Steer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.987076] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.motorhatSteer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[5.987189] (monicar_control) StdoutLine: {'line': b'symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.motorhat2wheel.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param\n'}
+[6.068159] (-) TimerEvent: {}
+[6.108796] (monicar_control) CommandEnded: {'returncode': 0}
+[6.168316] (-) TimerEvent: {}
+[6.269500] (-) TimerEvent: {}
+[6.295769] (monicar_control) JobEnded: {'identifier': 'monicar_control', 'rc': 0}
+[6.299146] (monicar_teleop) CommandEnded: {'returncode': 0}
+[6.316099] (monicar_teleop) JobEnded: {'identifier': 'monicar_teleop', 'rc': 0}
+[6.458242] (-) TimerEvent: {}
+[6.458624] (monicar_cv) CommandEnded: {'returncode': 0}
+[6.472398] (monicar_cv) JobEnded: {'identifier': 'monicar_cv', 'rc': 0}
+[6.474014] (-) EventReactorShutdown: {}

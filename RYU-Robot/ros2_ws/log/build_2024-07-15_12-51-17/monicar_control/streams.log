@@ -1,0 +1,48 @@
+[4.614s] Invoking command in '/home/ssafy/ros2_ws/build/monicar_control': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_control/build --no-deps symlink_data
+[5.220s] running develop
+[5.527s] running egg_info
+[5.527s] creating monicar_control.egg-info
+[5.527s] writing monicar_control.egg-info/PKG-INFO
+[5.528s] writing dependency_links to monicar_control.egg-info/dependency_links.txt
+[5.528s] writing entry points to monicar_control.egg-info/entry_points.txt
+[5.529s] writing requirements to monicar_control.egg-info/requires.txt
+[5.529s] writing top-level names to monicar_control.egg-info/top_level.txt
+[5.588s] writing manifest file 'monicar_control.egg-info/SOURCES.txt'
+[5.653s] reading manifest file 'monicar_control.egg-info/SOURCES.txt'
+[5.653s] writing manifest file 'monicar_control.egg-info/SOURCES.txt'
+[5.730s] running build_ext
+[5.965s] Creating /home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages/site.py
+[5.972s] Creating /home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages/monicar-control.egg-link (link to .)
+[5.974s] Installing blob_chase script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.975s] Installing chase_object_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.977s] Installing chase_the_ball script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.978s] Installing chase_traffic_yolo script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.978s] Installing joy_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.979s] Installing motor_control script to /home/ssafy/ros2_ws/install/monicar_control/lib/monicar_control
+[5.980s] 
+[5.980s] Installed /home/ssafy/ros2_ws/build/monicar_control
+[5.980s] running symlink_data
+[5.981s] creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index
+[5.981s] creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index
+[5.981s] creating /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index/packages
+[5.982s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/resource/monicar_control -> /home/ssafy/ros2_ws/install/monicar_control/share/ament_index/resource_index/packages
+[5.982s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/package.xml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control
+[5.983s] creating /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.983s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/blob_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.983s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/motor.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.983s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/traffic_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.983s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_chase.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.983s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/chase_the_ball.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_traffic.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/blob_chase.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/launch/yolo_all.launch.py -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/launch
+[5.984s] creating /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.298n2Wheel.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.nuriBldc.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.jetracer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.984s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.jetbot.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.985s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.985s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.pca9685Steer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.985s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.motorhatSteer.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[5.985s] symbolically linking /home/ssafy/ros2_ws/build/monicar_control/param/motor.motorhat2wheel.yaml -> /home/ssafy/ros2_ws/install/monicar_control/share/monicar_control/param
+[6.110s] Invoked command in '/home/ssafy/ros2_ws/build/monicar_control' returned '0': PYTHONPATH=/home/ssafy/ros2_ws/build/monicar_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/ros2_ws/install/monicar_control/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/ssafy/ros2_ws/build/monicar_control/build --no-deps symlink_data

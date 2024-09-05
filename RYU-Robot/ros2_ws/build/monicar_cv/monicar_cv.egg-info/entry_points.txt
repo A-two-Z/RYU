@@ -1,0 +1,5 @@
+[console_scripts]
+csi_pub = monicar_cv.csi_pub:main
+find_ball = monicar_cv.find_ball:main
+usbcam_pub = monicar_cv.usbcam_pub:main
+

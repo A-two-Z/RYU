@@ -1,0 +1,8 @@
+[console_scripts]
+blob_chase = monicar_control.blob_chase:main
+chase_object_yolo = monicar_control.chase_object_yolo:main
+chase_the_ball = monicar_control.chase_the_ball:main
+chase_traffic_yolo = monicar_control.chase_traffic_yolo:main
+joy_control = monicar_control.joy_control:main
+motor_control = monicar_control.motor_control:main
+
